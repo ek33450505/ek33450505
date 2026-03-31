@@ -1,12 +1,26 @@
 ## Edward Kubiak
 
-I build infrastructure for AI-native development — not apps on top of LLMs, but the orchestration layer underneath them. Currently at META Solutions in Columbus, Ohio.
-
-Most developers use Claude Code interactively. I built a local OS layer on top of it.
+Full-stack engineer at [META Solutions](http://metasolutions.net/) in Columbus, Ohio. By day I build production education technology for Ohio school districts — data sync platforms, compliance systems, containerized APIs. By night I build infrastructure for AI-native development.
 
 ---
 
-## CAST — Claude Agent Specialist Team
+## By day — META Solutions
+
+React · Express · Node.js · Python · MS SQL Server · PostgreSQL · Docker · Jenkins
+
+Production systems in the education technology space:
+
+- **CrossCheck** — EMIS data verification platform. React 18, AG Grid, MUI, JWT auth, TanStack Query. Used by school districts to validate and reconcile state reporting data.
+- **ERATE** — E-Rate funding compliance system. Multi-tier: Flask REST API, PostgreSQL, Python data scrapers, two React frontends, Docker Compose, Traefik, Jenkins CI/CD.
+- **SES Wiki** — Student enrollment scenario knowledge base. React 19 + Express 5, Dockerized, full-text search, auto-backup, inline editing.
+
+Tools: VS Code · DataGrip
+
+---
+
+## By night — AI infrastructure
+
+### CAST — Claude Agent Specialist Team
 
 [claude-agent-team](https://github.com/ek33450505/claude-agent-team) · Shell/Bash · MIT
 
@@ -18,13 +32,11 @@ What makes it unusual:
 - **301 BATS tests**, policy gates, and event sourcing via `cast.db`
 - Phase 10 complete. v3.0 shipped.
 
----
-
-## Claude Code Dashboard
+### Claude Code Dashboard
 
 [claude-code-dashboard](https://github.com/ek33450505/claude-code-dashboard) · React 19 + Express 5 + TypeScript + SQLite · MIT
 
-Real-time observability UI for CAST. Sessions timeline, agent analytics, hook health monitor, memory browser, and a live SQLite explorer. Built to answer the question: *what is my agent team actually doing, and what is it costing me?*
+Real-time observability UI for CAST. Sessions timeline, agent analytics, hook health monitor, memory browser, and a live read-only SQLite explorer. Built to answer the question: *what is my agent team actually doing, and what is it costing me?*
 
 ---
 
