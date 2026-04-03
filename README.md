@@ -1,6 +1,6 @@
 ## Edward Kubiak
 
-Full-stack engineer at [META Solutions](http://metasolutions.net/) in Columbus, Ohio. By day I build production education technology for Ohio school districts — data sync platforms, compliance systems, containerized APIs. By night I build infrastructure for AI-native development.
+Full-stack engineer at [META Solutions](http://metasolutions.net/) in Columbus, Ohio. By day I build production education technology for Ohio school districts. By night I build open-source infrastructure for AI-native development.
 
 ---
 
@@ -8,53 +8,65 @@ Full-stack engineer at [META Solutions](http://metasolutions.net/) in Columbus, 
 
 React · Express · Node.js · Python · MS SQL Server · PostgreSQL · Docker · Jenkins
 
-Production systems in the education technology space:
+Production systems in education technology:
 
 - **CrossCheck** — EMIS data verification platform. React 18, AG Grid, MUI, JWT auth, TanStack Query. Used by school districts to validate and reconcile state reporting data.
 - **ERATE** — E-Rate funding compliance system. Multi-tier: Flask REST API, PostgreSQL, Python data scrapers, two React frontends, Docker Compose, Traefik, Jenkins CI/CD.
 - **SES Wiki** — Student enrollment scenario knowledge base. React 19 + Express 5, Dockerized, full-text search, auto-backup, inline editing.
 
-Tools: VS Code · DataGrip
-
 ---
 
-## By night — AI infrastructure
+## By night — CAST ecosystem
 
 ### CAST — Claude Agent Specialist Team
 
-[claude-agent-team](https://github.com/ek33450505/claude-agent-team) · Shell/Bash · MIT
+[claude-agent-team](https://github.com/ek33450505/claude-agent-team) · Shell/Bash · MIT · v4.2
 
-16 specialist agents (code-writer, reviewer, security, tester, debugger, and more) that dispatch in parallel on a single task — the same way a dev team divides work, but coordinated by a semantic router. Hook-driven architecture means Claude Code's lifecycle events (pre-commit, pre-push, stop) trigger agents automatically without manual invocation.
+17 specialist agents that dispatch automatically via Claude Code's hook layer — commit, debug, review, plan, security, and more. Model-driven routing (no routing tables), local-first SQLite observability, per-agent persistent memory, and 255 BATS tests.
+
+```sh
+brew tap ek33450505/cast && brew install cast
+```
 
 What makes it unusual:
 - **Local-first, zero cloud lock-in** — all memory, routing state, and observability live in SQLite on disk
 - **Token cost tracking per agent** — spend broken down by model, so you can see exactly where Haiku can replace Sonnet
-- **301 BATS tests**, policy gates, and event sourcing via `cast.db`
-- Phase 10 complete. v3.0 shipped.
+- **Policy gates** that hard-block dangerous operations before they execute
+- **Hook-driven dispatch** — Claude Code lifecycle events trigger the right agent automatically
+
+### Modular ecosystem — install only what you need
+
+Each CAST component ships as a standalone Homebrew package. Mix and match to build your own stack:
+
+| Package | What it does | Install |
+|---------|-------------|---------|
+| [cast-agents](https://github.com/ek33450505/cast-agents) | 17 specialist Claude Code agents | `brew tap ek33450505/cast-agents && brew install cast-agents` |
+| [cast-hooks](https://github.com/ek33450505/cast-hooks) | 13 hook scripts — observability, safety gates, dispatch | `brew tap ek33450505/cast-hooks && brew install cast-hooks` |
+| [cast-observe](https://github.com/ek33450505/cast-observe) | Session cost + token spend tracking (SQLite) | `brew tap ek33450505/cast-observe && brew install cast-observe` |
+| [cast-security](https://github.com/ek33450505/cast-security) | Policy gates + PII redaction + audit trail | `brew tap ek33450505/cast-security && brew install cast-security` |
+| [cast-dash](https://github.com/ek33450505/cast-dash) | Terminal UI dashboard (Python + Textual) | `brew tap ek33450505/cast-dash && brew install cast-dash` |
+
+All open source. All independently installable.
 
 ### Claude Code Dashboard
 
-[claude-code-dashboard](https://github.com/ek33450505/claude-code-dashboard) · React 19 + Express 5 + TypeScript + SQLite · MIT
+[claude-code-dashboard](https://github.com/ek33450505/claude-code-dashboard) · React 19 + TypeScript + Express 5 + SQLite · MIT
 
-Real-time observability UI for CAST. Sessions timeline, agent analytics, hook health monitor, memory browser, and a live read-only SQLite explorer. Built to answer the question: *what is my agent team actually doing, and what is it costing me?*
-
----
-
-## Currently building
-
-- Expanding CAST's planning layer — multi-wave orchestration with fan-out/fan-in coordination across agent groups
-- Researching token efficiency patterns across agent workloads (the dashboard makes this measurable)
+Real-time observability UI for CAST. Sessions timeline, agent analytics, hook health monitor, memory browser, and a live read-only SQLite explorer. Built to answer: *what is my agent team actually doing, and what is it costing me?*
 
 ---
 
-## Other work
+## Other projects
 
-- [Edward_Kubiak](https://github.com/ek33450505/Edward_Kubiak) — Portfolio site (React + Vite)
-- [promptbot](https://github.com/ek33450505/promptbot) — Python prompt utilities
+- [Edward_Kubiak](https://github.com/ek33450505/Edward_Kubiak) — Personal portfolio site (React 19 + Vite, GitHub Pages)
+- [cast-site](https://github.com/ek33450505/cast-site) — CAST marketing & documentation site (TypeScript + Vercel)
+- [TARUS](https://github.com/ek33450505/TARUS) — Dual-LLM assistant: Claude API + Ollama, React 19, real-time streaming, SQLite
+- [TARS-Lite](https://github.com/ek33450505/TARS-Lite) — Zero-cloud LLM assistant, 100% local via Ollama
+- [promptbot](https://github.com/ek33450505/promptbot) — Python CLI for prompt optimization
 
 ---
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=ek33450505&show_icons=true&hide_border=true&theme=default&hide=stars)
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=ek33450505&layout=compact&hide_border=true&theme=default)
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=ek33450505&show_icons=true&hide_border=true&theme=dark&hide=stars)
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=ek33450505&layout=compact&hide_border=true&theme=dark)
 
 If CAST is useful to you, a star helps others find it.
