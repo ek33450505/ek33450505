@@ -56,16 +56,6 @@ Real-time observability UI for CAST. Sessions timeline, agent analytics, hook he
 
 ---
 
-## Other projects
-
-- [Edward_Kubiak](https://github.com/ek33450505/Edward_Kubiak) — Personal portfolio site (React 19 + Vite, GitHub Pages)
-- [cast-site](https://github.com/ek33450505/cast-site) — CAST marketing & documentation site (TypeScript + Vercel)
-- [TARUS](https://github.com/ek33450505/TARUS) — Dual-LLM assistant: Claude API + Ollama, React 19, real-time streaming, SQLite
-- [TARS-Lite](https://github.com/ek33450505/TARS-Lite) — Zero-cloud LLM assistant, 100% local via Ollama
-- [promptbot](https://github.com/ek33450505/promptbot) — Python CLI for prompt optimization
-
----
-
 ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=ek33450505&show_icons=true&hide_border=true&theme=dark&hide=stars)
 ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=ek33450505&layout=compact&hide_border=true&theme=dark)
 
