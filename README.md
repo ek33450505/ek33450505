@@ -29,6 +29,11 @@ Tools: VS Code · DataGrip
 
 Observability UI for CAST. Sessions timeline, agent analytics, hook health, memory browser, live SQLite explorer.
 
+### cast-parallel
+[cast-parallel](https://github.com/ek33450505/cast-parallel) · Shell/Bash · MIT
+
+Split a CAST plan across two parallel Claude Code sessions in isolated git worktrees, then merge.
+
 ---
 
 ## Other
