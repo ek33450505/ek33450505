@@ -48,6 +48,7 @@ Each CAST component ships as a standalone Homebrew package. Mix and match to bui
 | [cast-security](https://github.com/ek33450505/cast-security) | Policy gates, PII redaction, and audit trail | `brew tap ek33450505/cast-security && brew install cast-security` |
 | [cast-dash](https://github.com/ek33450505/cast-dash) | Terminal UI dashboard (Python + Textual) | `brew tap ek33450505/cast-dash && brew install cast-dash` |
 | [cast-memory](https://github.com/ek33450505/cast-memory) | Persistent memory for Claude Code agents (Python + Shell + MCP) | `brew tap ek33450505/cast-memory && brew install cast-memory` |
+| [cast-parallel](https://github.com/ek33450505/cast-parallel) | Parallel plan execution across dual worktrees (Shell) | `brew tap ek33450505/cast-memory && brew install cast-memory` |
 
 All open source. All independently installable.
 
