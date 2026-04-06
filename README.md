@@ -57,12 +57,5 @@ Observability UI for CAST. Sessions timeline, agent analytics, hook health monit
 
 ---
 
-## Other
-
-- [Edward_Kubiak](https://github.com/ek33450505/Edward_Kubiak) — Portfolio site (React + Vite)
-- [promptbot](https://github.com/ek33450505/promptbot) — Python prompt utilities
-
----
-
 ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=ek33450505&show_icons=true&hide_border=true&theme=default&hide=stars)
 ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=ek33450505&layout=compact&hide_border=true&theme=default)
