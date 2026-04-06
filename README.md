@@ -1,61 +1,42 @@
 ## Edward Kubiak
 
-Full-stack engineer at [META Solutions](http://metasolutions.net/) in Columbus, Ohio. By day, I build production education technology for Ohio school districts. By night, I build open-source infrastructure for AI-native development.
+Full-stack engineer at [META Solutions](http://metasolutions.net/) in Columbus, Ohio.
+Building education technology for Ohio school districts and AI development tooling.
 
 ---
 
-## By Day — META Solutions
+## Work — META Solutions
 
-`React` `Express` `Node.js` `Python` `MS SQL Server` `PostgreSQL` `Docker` `Jenkins`
+React · Express · Node.js · Python · MS SQL Server · PostgreSQL · Docker · Jenkins
 
-Production systems in education technology:
+- **CrossCheck** — EMIS data verification platform. React 18, AG Grid, MUI, JWT auth, TanStack Query. Used by school districts to validate and reconcile state reporting data.
+- **ERATE** — E-Rate funding compliance system. Flask REST API, PostgreSQL, Python scrapers, two React frontends, Docker Compose, Traefik, Jenkins CI/CD.
+- **SES Wiki** — Student enrollment scenario knowledge base. React 19 + Express 5, Dockerized, full-text search, auto-backup, inline editing.
 
-- **CrossCheck** — EMIS data verification platform. Built with React 18, AG Grid, MUI, JWT auth, and TanStack Query. Used by school districts to validate and reconcile state reporting data.
-- **ERATE** — E-Rate funding compliance system. Multi-tier architecture: Flask REST API, PostgreSQL, Python data scrapers, two React frontends, Docker Compose, Traefik, and Jenkins CI/CD.
-- **SES Wiki** — Student enrollment scenario knowledge base. React 19 + Express 5, Dockerized, with full-text search, auto-backup, and inline editing.
+Tools: VS Code · DataGrip
 
 ---
 
-## By Night — CAST Ecosystem
+## Personal Projects
 
 ### CAST — Claude Agent Specialist Team
+[claude-agent-team](https://github.com/ek33450505/claude-agent-team) · Shell/Bash · MIT
 
-[claude-agent-team](https://github.com/ek33450505/claude-agent-team) · Shell/Bash · MIT · v4.2
-
-17 specialist agents that dispatch automatically via Claude Code's hook layer — commit, debug, review, plan, security, and more. Features model-driven routing (no routing tables), local-first SQLite observability, per-agent persistent memory, and 255 BATS tests.
-```sh
-brew tap ek33450505/cast && brew install cast
-```
-
-What makes it unusual:
-
-- **Local-first, zero cloud lock-in** — all memory, routing state, and observability live in SQLite on disk
-- **Token cost tracking per agent** — spend broken down by model, so you can see exactly where Haiku can replace Sonnet
-- **Policy gates** that hard-block dangerous operations before they execute
-- **Hook-driven dispatch** — Claude Code lifecycle events trigger the right agent automatically
-
----
-
-### Modular Ecosystem — Install Only What You Need
-
-Each CAST component ships as a standalone Homebrew package. Mix and match to build your own stack:
-
-| Package | What It Does | Install |
-|---|---|---|
-| [cast-agents](https://github.com/ek33450505/cast-agents) | 17 specialist Claude Code agents | `brew tap ek33450505/cast-agents && brew install cast-agents` |
-| [cast-hooks](https://github.com/ek33450505/cast-hooks) | 13 hook scripts — observability, safety gates, dispatch | `brew tap ek33450505/cast-hooks && brew install cast-hooks` |
-| [cast-observe](https://github.com/ek33450505/cast-observe) | Session cost + token spend tracking (SQLite) | `brew tap ek33450505/cast-observe && brew install cast-observe` |
-| [cast-security](https://github.com/ek33450505/cast-security) | Policy gates, PII redaction, and audit trail | `brew tap ek33450505/cast-security && brew install cast-security` |
-| [cast-dash](https://github.com/ek33450505/cast-dash) | Terminal UI dashboard (Python + Textual) | `brew tap ek33450505/cast-dash && brew install cast-dash` |
-| [cast-memory](https://github.com/ek33450505/cast-memory) | Persistent memory for Claude Code agents (Python + Shell + MCP) | `brew tap ek33450505/cast-memory && brew install cast-memory` |
-| [cast-parallel](https://github.com/ek33450505/cast-parallel) | Parallel plan execution across dual worktrees (Shell) | `brew tap ek33450505/cast-memory && brew install cast-memory` |
-
-All open source. All independently installable.
-
----
+16 specialist agents (code-writer, reviewer, security, tester, debugger, and more) that dispatch in parallel on a single task. Hook-driven — Claude Code lifecycle events trigger agents automatically. Local-first: all memory, routing state, and observability in SQLite on disk. Token cost tracked per agent. 301 BATS tests.
 
 ### Claude Code Dashboard
+[claude-code-dashboard](https://github.com/ek33450505/claude-code-dashboard) · React 19 + Express 5 + TypeScript + SQLite · MIT
 
-[claude-code-dashboard](https://github.com/ek33450505/claude-code-dashboard) · React 19 + TypeScript + Express 5 + SQLite · MIT
+Observability UI for CAST. Sessions timeline, agent analytics, hook health, memory browser, live SQLite explorer.
 
-Real-time observability UI for CAST. Features a sessions timeline, agent analytics, hook health monitor, memory browser, and a live read-only SQLite explorer. Built to answer one question: *what is my agent team actually doing, and what is it costing me?*
+---
+
+## Other
+
+- [Edward_Kubiak](https://github.com/ek33450505/Edward_Kubiak) — Portfolio site (React + Vite)
+- [promptbot](https://github.com/ek33450505/promptbot) — Python prompt utilities
+
+---
+
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=ek33450505&show_icons=true&hide_border=true&theme=default&hide=stars)
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=ek33450505&layout=compact&hide_border=true&theme=default)
