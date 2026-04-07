@@ -54,8 +54,3 @@ All open source. All independently installable.
 [claude-code-dashboard](https://github.com/ek33450505/claude-code-dashboard) · React 19 + TypeScript + Express 5 + SQLite · MIT
 
 Observability UI for CAST. Sessions timeline, agent analytics, hook health monitor, memory browser, live SQLite explorer.
-
----
-
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=ek33450505&show_icons=true&hide_border=true&theme=default&hide=stars)
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=ek33450505&layout=compact&hide_border=true&theme=default)
