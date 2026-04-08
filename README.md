@@ -19,7 +19,7 @@ Tools: VS Code · DataGrip
 
 ## Personal Projects — CAST Ecosystem
 
-### CAST — Claude Agent Specialist Team
+### **[CAST](https://castframework.dev)**  — Claude Agent Specialist Team
 [claude-agent-team](https://github.com/ek33450505/claude-agent-team) · Shell/Bash · MIT · v4.2
 
 17 specialist agents that dispatch automatically via Claude Code's hook layer — commit, debug, review, plan, security, and more. Model-driven routing, local-first SQLite observability, per-agent persistent memory, and 255 BATS tests.
