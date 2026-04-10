@@ -1,28 +1,35 @@
 ## Edward Kubiak
 
-Full-stack engineer at [META Solutions](http://metasolutions.net/) in Columbus, Ohio.
-Building production education technology for Ohio school districts and open-source infrastructure for AI-native development.
+Full-stack engineer at [META Solutions](http://metasolutions.net/) in Columbus, Ohio. Building open-source infrastructure for AI-native development.
 
 ---
 
-## Work — META Solutions
+## Project Engram
 
-`React` `Express` `Node.js` `Python` `MS SQL Server` `PostgreSQL` `Docker` `Jenkins`
+[project-engram](https://github.com/ek33450505/project-engram) · Python + SQLite + Bash · Apache 2.0 · v0.6.0
 
-- **CrossCheck** — EMIS data verification platform. React 18, AG Grid, MUI, JWT auth, TanStack Query. Used by school districts to validate and reconcile state reporting data.
-- **ERATE** — E-Rate funding compliance system. Flask REST API, PostgreSQL, Python scrapers, two React frontends, Docker Compose, Traefik, Jenkins CI/CD.
-- **SES Wiki** — Student enrollment scenario knowledge base. React 19 + Express 5, Dockerized, full-text search, auto-backup, inline editing.
+Persistent AI identity system. Extracts identity signals from conversations — communication style, behavioral corrections, preferences, relationship arc — compresses them with recency-weighted decay scoring, and injects a token-efficient identity payload at session start. Works across models, across providers.
 
-Tools: VS Code · DataGrip
+```sh
+brew tap ek33450505/engram && brew install engram
+```
+
+- **Provider support** — Claude Code, OpenAI, Ollama, any system-prompt API
+- **Named personas** with directory-based auto-activation
+- **Published portable spec** — `specs/identity-payload-v1.md`
+- **347 tests** — 324 pytest + 23 BATS
+- **Integrates with CAST** — identity payload injected into every agent session
+
+> "The skeleton transfers, the muscle regrows in 2-5 sessions."
 
 ---
 
-## Personal Projects — CAST Ecosystem
+## [CAST](https://castframework.dev) — Claude Agent Specialist Team
 
-### **[CAST](https://castframework.dev)**  — Claude Agent Specialist Team
 [claude-agent-team](https://github.com/ek33450505/claude-agent-team) · Shell/Bash · MIT · v4.2
 
 17 specialist agents that dispatch automatically via Claude Code's hook layer — commit, debug, review, plan, security, and more. Model-driven routing, local-first SQLite observability, per-agent persistent memory, and 255 BATS tests.
+
 ```sh
 brew tap ek33450505/cast && brew install cast
 ```
@@ -34,7 +41,7 @@ brew tap ek33450505/cast && brew install cast
 
 ---
 
-### Modular Ecosystem — Install Only What You Need
+### CAST Modular Ecosystem
 
 | Package | What It Does |
 |---|---|
@@ -53,6 +60,7 @@ All open source. All independently installable.
 ---
 
 ### Claude Code Dashboard
+
 [claude-code-dashboard](https://github.com/ek33450505/claude-code-dashboard) · React 19 + TypeScript + Express 5 + SQLite · MIT
 
 Observability UI for CAST. Sessions timeline, agent analytics, hook health monitor, memory browser, live SQLite explorer.
