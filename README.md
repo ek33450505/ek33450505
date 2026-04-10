@@ -20,7 +20,7 @@ brew tap ek33450505/engram && brew install engram
 - **347 tests** — 324 pytest + 23 BATS
 - **Integrates with CAST** — identity payload injected into every agent session
 
-> "The skeleton transfers, the muscle regrows in 2-5 sessions."
+> One identity. Any model. Every session.
 
 ---
 
