@@ -53,7 +53,6 @@ brew tap ek33450505/cast && brew install cast
 | [cast-memory](https://github.com/ek33450505/cast-memory) | Persistent agent memory (Python + Shell + MCP) |
 | [cast-parallel](https://github.com/ek33450505/cast-parallel) | Parallel plan execution across dual worktrees |
 | [cast-claudes_journal](https://github.com/ek33450505/cast-claudes_journal) | Claude's personal journal — session-end reflections + cross-session continuity |
-| [JARVIS](https://github.com/ek33450505/JARVIS) | 8 personal assistant agents with launchd scheduling |
 
 All open source. All independently installable.
 
