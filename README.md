@@ -2,6 +2,8 @@
 
 Full-stack engineer at [META Solutions](http://metasolutions.net/) in Columbus, Ohio. Building open-source infrastructure for AI-native development.
 
+[edwardkubiak.com](https://edwardkubiak.com) · [LinkedIn](https://www.linkedin.com/in/edward-kubiak-bbbaa6401/) · [edward.kubiak.dev@gmail.com](mailto:edward.kubiak.dev@gmail.com)
+
 ---
 
 ## Project Engram
@@ -26,9 +28,9 @@ brew tap ek33450505/engram && brew install engram
 
 ## [CAST](https://castframework.dev) — Claude Agent Specialist Team
 
-[claude-agent-team](https://github.com/ek33450505/claude-agent-team) · Shell/Bash · MIT · v4.2
+[claude-agent-team](https://github.com/ek33450505/claude-agent-team) · Shell/Bash · MIT · v6.0
 
-31 specialist agents that dispatch automatically via Claude Code's hook layer — commit, debug, review, plan, security, and more. Model-driven routing, local-first SQLite observability, per-agent persistent memory, and 255 BATS tests.
+30 specialist agents that dispatch automatically via Claude Code's hook layer — commit, debug, review, plan, security, and more. Model-driven routing, local-first SQLite observability, per-agent persistent memory, and ~1,600 BATS tests covering the shell surface.
 
 ```sh
 brew tap ek33450505/cast && brew install cast
@@ -45,7 +47,7 @@ brew tap ek33450505/cast && brew install cast
 
 | Package | What It Does |
 |---|---|
-| [cast-agents](https://github.com/ek33450505/cast-agents) | 17 specialist Claude Code agents |
+| [cast-agents](https://github.com/ek33450505/cast-agents) | 30 specialist Claude Code agents |
 | [cast-hooks](https://github.com/ek33450505/cast-hooks) | 13 hook scripts — observability, safety gates, dispatch |
 | [cast-observe](https://github.com/ek33450505/cast-observe) | Session cost + token spend tracking (SQLite) |
 | [cast-security](https://github.com/ek33450505/cast-security) | Policy gates, PII redaction, audit trail |
