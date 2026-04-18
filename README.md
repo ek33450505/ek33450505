@@ -6,26 +6,6 @@ Full-stack engineer at [META Solutions](http://metasolutions.net/) in Columbus, 
 
 ---
 
-## Project Engram
-
-[project-engram](https://github.com/ek33450505/project-engram) · Python + SQLite + Bash · Apache 2.0 · v0.6.0
-
-Persistent AI identity system. Extracts identity signals from conversations — communication style, behavioral corrections, preferences, relationship arc — compresses them with recency-weighted decay scoring, and injects a token-efficient identity payload at session start. Works across models, across providers.
-
-```sh
-brew tap ek33450505/engram && brew install engram
-```
-
-- **Provider support** — Claude Code, OpenAI, Ollama, any system-prompt API
-- **Named personas** with directory-based auto-activation
-- **Published portable spec** — `specs/identity-payload-v1.md`
-- **347 tests** — 324 pytest + 23 BATS
-- **Integrates with CAST** — identity payload injected into every agent session
-
-> One identity. Any model. Every session.
-
----
-
 ## [CAST](https://castframework.dev) — Claude Agent Specialist Team
 
 [claude-agent-team](https://github.com/ek33450505/claude-agent-team) · Shell/Bash · MIT · v6.0
