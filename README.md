@@ -8,9 +8,9 @@ Full-stack engineer at [META Solutions](http://metasolutions.net/) in Columbus, 
 
 ## [CAST](https://castframework.dev) — Claude Agent Specialist Team
 
-[claude-agent-team](https://github.com/ek33450505/claude-agent-team) · Shell/Bash · MIT · v6.0
+[claude-agent-team](https://github.com/ek33450505/claude-agent-team) · Shell/Bash · MIT · v6.0.1
 
-30 specialist agents that dispatch automatically via Claude Code's hook layer — commit, debug, review, plan, security, and more. Model-driven routing, local-first SQLite observability, per-agent persistent memory, and ~1,600 BATS tests covering the shell surface.
+30 specialist agents that dispatch automatically via Claude Code's hook layer — commit, debug, review, plan, security, and more. Model-driven routing, local-first SQLite observability, per-agent persistent memory, and 556 BATS tests.
 
 ```sh
 brew tap ek33450505/cast && brew install cast
