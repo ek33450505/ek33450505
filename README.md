@@ -35,6 +35,7 @@ brew tap ek33450505/cast && brew install cast
 | [cast-memory](https://github.com/ek33450505/cast-memory) | Persistent agent memory (Python + Shell + MCP) |
 | [cast-parallel](https://github.com/ek33450505/cast-parallel) | Parallel plan execution across dual worktrees |
 | [cast-claudes_journal](https://github.com/ek33450505/cast-claudes_journal) | Claude's personal journal — session-end reflections + cross-session continuity |
+| [cast-time](https://github.com/ek33450505/cast-time) | Local time + timezone context for Claude — injected at session start |
 
 All open source. All independently installable.
 
