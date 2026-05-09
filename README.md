@@ -10,9 +10,9 @@ Columbus, Ohio · [edwardkubiak.com](https://edwardkubiak.com) · [LinkedIn](htt
 
 ## What I work on
 
-I spend my days on the unglamorous parts of multi-agent systems — routing, memory, observability, policy gates — the parts that decide whether agents are a demo or a tool you trust to run while you're asleep.
+Lately I’ve been focused on the operational side of multi-agent systems — routing, memory, observability, policy gates — the kinds of details that make the difference between an impressive demo and something reliable enough to leave running on its own.
 
-For the last six months that's meant building [**CAST**](https://github.com/ek33450505/claude-agent-team), a local-first OS layer for Claude Code, plus a small constellation of independent packages around it.
+For the last six months, I’ve been building [**CAST**](https://github.com/ek33450505/claude-agent-team),, a local-first OS layer for Claude Code, plus a handful of smaller supporting packages around it.
 
 ---
 
