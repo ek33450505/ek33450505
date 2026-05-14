@@ -43,6 +43,7 @@ Each package below is independently installable and stands on its own. CAST is w
 
 | Package | One line |
 |---|---|
+| [`cast-desktop`](https://github.com/ek33450505/cast-desktop) | Tauri 2 desktop app — every CAST signal in one window. 11 dashboard views, native PTY terminal (xterm.js + Rust), Cmd+K palette, 6 themes. Local-first against `~/.claude/cast.db`. v<!-- VERSION:cast-desktop -->0.1.0<!-- /VERSION:cast-desktop -->. |
 | [`claude-code-dashboard`](https://github.com/ek33450505/claude-code-dashboard) | React 19 + Express + SQLite observability UI for the agent loop. Sessions, agents, hook health, memory browser, SQLite explorer. v<!-- VERSION:claude-code-dashboard -->2.2.0<!-- /VERSION:claude-code-dashboard -->. |
 | [`cellar-door`](https://github.com/ek33450505/cellar-door) | Typed shared memory for local AI agents — model-agnostic, Claude + Ollama. v<!-- VERSION:cellar-door -->0.3.0<!-- /VERSION:cellar-door -->. |
 | [`cast-hooks`](https://github.com/ek33450505/cast-hooks) | Standalone hook scripts — observability, safety, dispatch. Drop into any Claude Code setup. v<!-- VERSION:cast-hooks -->0.2.0<!-- /VERSION:cast-hooks -->. |
