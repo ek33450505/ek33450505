@@ -20,7 +20,7 @@ For the last six months, I’ve been building [**CAST**](https://github.com/ek33
 
 [`claude-agent-team`](https://github.com/ek33450505/claude-agent-team) · Bash · MIT · **v<!-- CAST_VERSION -->7.0<!-- /CAST_VERSION -->** — backend lockdown
 
-Claude Code ships with a powerful agent primitive and almost no scaffolding around it. CAST is the scaffolding: <!-- CAST_AGENT_COUNT -->33<!-- /CAST_AGENT_COUNT --> specialist agents, hook-driven dispatch, model-tier routing, per-agent persistent memory, and a 27-table SQLite event store that makes the whole loop legible.
+Claude Code ships with a powerful agent primitive and almost no scaffolding around it. CAST is the scaffolding: <!-- CAST_AGENT_COUNT -->23<!-- /CAST_AGENT_COUNT --> specialist agents, hook-driven dispatch, model-tier routing, per-agent persistent memory, and a 37-table SQLite event store that makes the whole loop legible.
 
 ```sh
 brew tap ek33450505/cast && brew install cast
