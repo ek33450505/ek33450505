@@ -10,6 +10,7 @@
 #   CAST_AGENT_COUNT      — tracked agents/core/*.md count
 #   CAST_TEST_COUNT       — total @test functions across tracked .bats files
 #   CAST_TEST_FILE_COUNT  — tracked .bats file count
+#   CAST_DB_TABLE_COUNT   — distinct tables in ALLOWED_TABLES set in cast_db.py
 #   VERSION:<repo>        — VERSION file from ~/Projects/personal/<repo>/
 #
 # Usage:
@@ -62,6 +63,12 @@ if [ -d "$CAST_REPO" ]; then
   update_token "CAST_TEST_COUNT" "$TEST_COUNT"
   update_token "CAST_TEST_FILE_COUNT" "$TEST_FILE_COUNT"
 
+  if [ -f "scripts/cast_db.py" ]; then
+    TABLE_COUNT=$(awk '/ALLOWED_TABLES[[:space:]]*=[[:space:]]*\{/{f=1} f{print} /\}/{if(f)exit}' "scripts/cast_db.py" \
+      | grep -oE "['\"][a-z_][a-z0-9_]*['\"]" | sort -u | wc -l | tr -d ' ')
+    update_token "CAST_DB_TABLE_COUNT" "$TABLE_COUNT"
+  fi
+
   cd "$REPO_ROOT"
 else
   echo "[refresh-stats] $CAST_REPO not found — skipping framework-level counts" >&2
@@ -93,4 +100,5 @@ echo "Profile stats refreshed:"
 [ -n "${CAST_VERSION:-}" ]    && echo "  CAST version:    $CAST_VERSION"
 [ -n "${AGENT_COUNT:-}" ]     && echo "  Agents:          $AGENT_COUNT"
 [ -n "${TEST_COUNT:-}" ]      && echo "  Tests:           $TEST_COUNT across $TEST_FILE_COUNT files"
+[ -n "${TABLE_COUNT:-}" ]     && echo "  DB tables:       $TABLE_COUNT"
 echo "  Per-package versions: scanned $PERSONAL_ROOT"

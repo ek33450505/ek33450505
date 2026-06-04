@@ -1,0 +1,67 @@
+name: Refresh profile stats
+
+# REQUIRES MANUAL REPO SETTING:
+#   Settings → Actions → General → Workflow permissions:
+#   "Allow GitHub Actions to create and approve pull requests" must be CHECKED.
+# Without this, the `peter-evans/create-pull-request` step fails with:
+#   "GitHub Actions is not permitted to create or approve pull requests"
+# This is a one-time toggle per repo.
+
+on:
+  schedule:
+    # Monday at 09:00 UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Check out claude-agent-team
+        uses: actions/checkout@v5
+        with:
+          repository: ek33450505/claude-agent-team
+          path: _siblings/claude-agent-team
+
+      - name: Check out cast-desktop
+        uses: actions/checkout@v5
+        with:
+          repository: ek33450505/cast-desktop
+          path: _siblings/cast-desktop
+
+      - name: Refresh profile stats
+        run: PERSONAL_ROOT="$GITHUB_WORKSPACE/_siblings" bash scripts/refresh-stats.sh
+
+      - name: Check for stat changes
+        id: changes
+        run: |
+          if git diff --quiet README.md; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open PR if stats changed
+        if: steps.changes.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@c5a7806660adbe173f04e3e038b0ccdcd758773c # v6.0.5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: refresh profile stats"
+          title: "chore: refresh profile stats"
+          body: |
+            Automated profile stats refresh from `scripts/refresh-stats.sh`.
+
+            This workflow runs weekly and detects changes to profile README stats
+            (CAST version, agent count, test count, db table count, and per-package versions).
+            Auto-merge after CI green is safe — the change is docs-only.
+          branch: chore/refresh-profile-stats
+          delete-branch: true
+          base: main
+          labels: |
+            automated
+            docs
