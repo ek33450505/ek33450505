@@ -10,17 +10,17 @@ Columbus, Ohio · [edwardkubiak.com](https://edwardkubiak.com) · [LinkedIn](htt
 
 ## What I work on
 
-Lately I’ve been focused on the operational side of multi-agent systems — routing, memory, observability, policy gates — the kinds of details that make the difference between an impressive demo and something reliable enough to leave running on its own.
+Multi-agent systems fail in predictable ways: routing is opaque, memory bleeds across agents, policy is aspirational, and observability stops at the tool call. I’ve spent the last six months doing field research into exactly those failure modes — building [**CAST**](https://github.com/ek33450505/claude-agent-team) to fill the gaps (observability, orchestration, persistent memory) that didn’t yet exist in the Claude Code ecosystem.
 
-For the last six months, I’ve been building [**CAST**](https://github.com/ek33450505/claude-agent-team), a local-first OS layer for Claude Code, plus its native desktop observability surface and a handful of smaller supporting packages around it.
+CAST is a local-first OS layer for Claude Code: a hook-driven agent registry, a typed SQLite event store, per-agent memory isolation, and policy gates that hard-block at the seam rather than hope the agent behaved. The work is partly framework, partly instrumented test bed — every design decision is the result of something breaking in a way I didn’t anticipate.
 
 ---
 
 ## CAST — Claude Agent Specialist Team
 
-[`claude-agent-team`](https://github.com/ek33450505/claude-agent-team) · Bash · MIT · **v<!-- CAST_VERSION -->7.0<!-- /CAST_VERSION -->** — backend lockdown
+[`claude-agent-team`](https://github.com/ek33450505/claude-agent-team) · Bash · MIT · **v<!-- CAST_VERSION -->7.3.1<!-- /CAST_VERSION -->**
 
-Claude Code ships with a powerful agent primitive and almost no scaffolding around it. CAST is the scaffolding: <!-- CAST_AGENT_COUNT -->23<!-- /CAST_AGENT_COUNT --> specialist agents, hook-driven dispatch, model-tier routing, per-agent persistent memory, and a 37-table SQLite event store that makes the whole loop legible.
+Claude Code ships with a powerful agent primitive and almost no scaffolding around it. CAST is the scaffolding: <!-- CAST_AGENT_COUNT -->23<!-- /CAST_AGENT_COUNT --> specialist agents, hook-driven dispatch, model-tier routing, per-agent persistent memory, and a <!-- CAST_DB_TABLE_COUNT -->34<!-- /CAST_DB_TABLE_COUNT -->-table SQLite event store that makes the whole loop inspectable.
 
 ```sh
 brew tap ek33450505/cast && brew install cast
@@ -33,13 +33,13 @@ brew tap ek33450505/cast && brew install cast
 - **Per-agent memory, not shared context.** Each agent keeps its own scoped memory under `~/.claude/agent-memory-local/<agent>/`. Cellar Door (below) extends this to a typed shared store when agents *do* need to coordinate — but the default is isolation, because shared context bleeds.
 - **Policy gates that hard-block.** Branch-protection bypass attempts, force-pushes to main, raw `git commit` — the hook layer refuses them. Quality is enforced at the seam, not by hoping the agent behaved.
 
-**<!-- CAST_TEST_COUNT -->1,306<!-- /CAST_TEST_COUNT --> BATS tests across <!-- CAST_TEST_FILE_COUNT -->141<!-- /CAST_TEST_FILE_COUNT --> files** cover the shell surface. The framework treats its own correctness as a first-class concern.
+**<!-- CAST_TEST_COUNT -->1153<!-- /CAST_TEST_COUNT --> BATS tests across <!-- CAST_TEST_FILE_COUNT -->125<!-- /CAST_TEST_FILE_COUNT --> files** cover the shell surface. The framework treats its own correctness as a first-class concern.
 
 ---
 
 ## cast-desktop — Native Observability for CAST
 
-[`cast-desktop`](https://github.com/ek33450505/cast-desktop) · Tauri 2 + Rust + TypeScript · MIT · **v<!-- VERSION:cast-desktop -->1.0.0<!-- /VERSION:cast-desktop -->** — public release
+[`cast-desktop`](https://github.com/ek33450505/cast-desktop) · Tauri 2 + Rust + TypeScript · MIT · **v<!-- VERSION:cast-desktop -->1.2.11<!-- /VERSION:cast-desktop -->**
 
 The claude-code-dashboard is a web UI that requires a running server. cast-desktop packages CAST observability as a self-contained Tauri 2 native app — no Node, no server management, no configuration.
 
@@ -47,24 +47,31 @@ The desktop app binds native infrastructure to Claude Code's agent execution mod
 
 - **Native PTY terminal** (xterm.js backend + Rust pty layer) with persistent pane-to-session binding. Every terminal pane is tracked in `pane_bindings` table — cast.db always knows which CAST session owns which pane, so you can trace input/output back to the agent run that spawned it.
 - **Inline code editor** (CodeMirror 6 + TypeScript LSP sidecar) with agent dispatch. Select code in the editor, spawn a CAST agent, results stream back into the same window.
-- **Full cast.db coverage**: 55 Express routes, read-only by default, loopback-only (DNS-rebinding guard). Surfaces 24+ tables: sessions, agent runs, routing decisions, memory, hook events, cost telemetry, pane bindings.
+- **Full cast.db coverage**: 70+ Express routes, read-only by default, loopback-only (DNS-rebinding guard). Surfaces 24+ tables: sessions, agent runs, routing decisions, memory, hook events, cost telemetry, pane bindings.
 - **Live session cost SSE**: streams per-session burn rate ($/min) and 4-hour cost projection as tokens flow.
-- **6 themes** — light/dark variants across professional, high-contrast, and accent-color choices.
 - **Homebrew installable**: `brew tap ek33450505/cast-desktop && brew install cast-desktop`
 
 **Design problems it solves:**
 - Eliminates the "observability server management" friction that makes local dashboards feel like extra work.
 - Pane-to-session binding bridges the terminal and agent layers — you can see *which* terminal pane is executing *which* agent without tracing context manually.
 - Sidecar LSP + dispatch keeps the agent loop visible while you're coding — no context switch to a browser tab.
-- Local-only Express binding (no cloud round-trip) means latency is submillisecond; dashboard updates feel real-time.
+- Local-only Express binding means no cloud round-trip, so updates feel real-time.
 
-All code and data flow through `~/.claude/cast.db` — same source of truth as the CLI. Useful as a portfolio piece demonstrating Tauri architecture, SQLite query patterns under load, and React real-time data binding.
+All code and data flow through `~/.claude/cast.db` — same source of truth as the CLI.
 
 ---
 
-## CAST Ecosystem
+## Selected work
 
-> Auto-synced from [claude-agent-team/docs/ecosystem.md](https://github.com/ek33450505/claude-agent-team/blob/main/docs/ecosystem.md). Run `~/Projects/personal/claude-agent-team/scripts/sync-ecosystem-readme.sh` to refresh.
+- [`claude-agent-team`](https://github.com/ek33450505/claude-agent-team) — CAST core: the framework, hook layer, agent registry, cast.db.
+- [`cast-desktop`](https://github.com/ek33450505/cast-desktop) — Tauri 2 native observability app.
+- [`claude-code-dashboard`](https://github.com/ek33450505/claude-code-dashboard) — React 19 + Express + SQLite observability UI.
+- [`cast-hooks`](https://github.com/ek33450505/cast-hooks) — the lifecycle hook scripts.
+
+<details>
+<summary>Full CAST ecosystem — 12 Homebrew-installable packages</summary>
+
+<!-- Auto-synced from claude-agent-team/docs/ecosystem.md. Run scripts/sync-ecosystem-readme.sh to refresh. -->
 
 <!-- ECOSYSTEM_START -->
 | Repo | Description | Latest | Install |
@@ -81,8 +88,10 @@ All code and data flow through `~/.claude/cast.db` — same source of truth as t
 | [cast-dash](https://github.com/ek33450505/cast-dash) | Terminal UI dashboard for live swarm monitoring. 4-panel real-time display (Textual framework). | ![](https://img.shields.io/github/v/release/ek33450505/cast-dash?style=flat-square) | `brew tap ek33450505/cast-dash && brew install cast-dash` |
 | [cast-claudes_journal](https://github.com/ek33450505/cast-claudes_journal) | Session continuity — Claude's Journal auto-injects prior-day context via SessionStart hook. Obsidian vault sync. | ![](https://img.shields.io/github/v/release/ek33450505/cast-claudes_journal?style=flat-square) | `brew tap ek33450505/homebrew-claudes-journal && brew install claudes-journal` |
 | [cast-website](https://github.com/ek33450505/cast-website) | castframework.dev — marketing site and docs portal for the CAST ecosystem. | ![](https://img.shields.io/github/v/release/ek33450505/cast-website?style=flat-square) | — |
-| [cast-desktop](https://github.com/ek33450505/cast-desktop) | Tauri 2 native app — embedded PTY terminal, command palette, 11 dashboard views, Constellation 3D graph. NEW. | ![](https://img.shields.io/github/v/release/ek33450505/cast-desktop?style=flat-square) | `brew tap ek33450505/homebrew-cast-desktop && brew install cast-desktop` |
+| [cast-desktop](https://github.com/ek33450505/cast-desktop) | Tauri 2 native app — embedded PTY terminal, command palette, ~20 dashboard views. | ![](https://img.shields.io/github/v/release/ek33450505/cast-desktop?style=flat-square) | `brew tap ek33450505/homebrew-cast-desktop && brew install cast-desktop` |
 <!-- ECOSYSTEM_END -->
+
+</details>
 
 ### Adjacent Projects
 
@@ -90,7 +99,6 @@ Not part of the CAST ecosystem proper but built alongside:
 
 | Project | One line |
 |---|---|
-| [`claude-code-dashboard`](https://github.com/ek33450505/claude-code-dashboard) | React 19 + Express + SQLite observability UI for the agent loop. Sessions, agents, hook health, memory browser, SQLite explorer. |
 | [`cellar-door`](https://github.com/ek33450505/cellar-door) | Typed shared memory for local AI agents — model-agnostic, Claude + Ollama. |
 
 All open source. All Homebrew-installable where applicable.
