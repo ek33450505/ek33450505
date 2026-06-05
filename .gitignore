@@ -1,2 +1,5 @@
 # Transient CI checkout directories
 _siblings/
+
+# Tilde-expansion bug artifact directory
+~

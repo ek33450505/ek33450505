@@ -18,9 +18,7 @@ CAST is a local-first OS layer for Claude Code: a hook-driven agent registry, a 
 
 ## CAST — Claude Agent Specialist Team
 
-[`claude-agent-team`](https://github.com/ek33450505/claude-agent-team) · Bash · MIT · **v<!-- CAST_VERSION -->7.4<!-- /CAST_VERSION -->**
-
-Claude Code ships with a powerful agent primitive and almost no scaffolding around it. CAST is the scaffolding: <!-- CAST_AGENT_COUNT -->23<!-- /CAST_AGENT_COUNT --> specialist agents, hook-driven dispatch, model-tier routing, per-agent persistent memory, and a <!-- CAST_DB_TABLE_COUNT -->42<!-- /CAST_DB_TABLE_COUNT -->-table SQLite event store that makes the whole loop inspectable.
+[`claude-agent-team`](https://github.com/ek33450505/claude-agent-team) · Bash · MIT · **v<!-- CAST_VERSION -->7.4.1<!-- /CAST_VERSION -->7.4.1<!-- CAST_AGENT_COUNT -->23<!-- /CAST_AGENT_COUNT --> specialist agents, hook-driven dispatch, model-tier routing, per-agent persistent memory, and a <!-- CAST_DB_TABLE_COUNT -->38<!-- /CAST_DB_TABLE_COUNT -->-table SQLite event store that makes the whole loop inspectable.
 
 ```sh
 brew tap ek33450505/cast && brew install cast
@@ -33,7 +31,7 @@ brew tap ek33450505/cast && brew install cast
 - **Per-agent memory, not shared context.** Each agent keeps its own scoped memory under `~/.claude/agent-memory-local/<agent>/`. Cellar Door (below) extends this to a typed shared store when agents *do* need to coordinate — but the default is isolation, because shared context bleeds.
 - **Policy gates that hard-block.** Branch-protection bypass attempts, force-pushes to main, raw `git commit` — the hook layer refuses them. Quality is enforced at the seam, not by hoping the agent behaved.
 
-**<!-- CAST_TEST_COUNT -->1449<!-- /CAST_TEST_COUNT --> BATS tests across <!-- CAST_TEST_FILE_COUNT -->153<!-- /CAST_TEST_FILE_COUNT --> files** cover the shell surface. The framework treats its own correctness as a first-class concern.
+**<!-- CAST_TEST_COUNT -->1172<!-- /CAST_TEST_COUNT --> BATS tests across <!-- CAST_TEST_FILE_COUNT -->125<!-- /CAST_TEST_FILE_COUNT --> files** cover the shell surface. The framework treats its own correctness as a first-class concern.
 
 ---
 
@@ -47,7 +45,7 @@ The desktop app binds native infrastructure to Claude Code's agent execution mod
 
 - **Native PTY terminal** (xterm.js backend + Rust pty layer) with persistent pane-to-session binding. Every terminal pane is tracked in `pane_bindings` table — cast.db always knows which CAST session owns which pane, so you can trace input/output back to the agent run that spawned it.
 - **Inline code editor** (CodeMirror 6 + TypeScript LSP sidecar) with agent dispatch. Select code in the editor, spawn a CAST agent, results stream back into the same window.
-- **Full cast.db coverage**: 70+ Express routes, read-only by default, loopback-only (DNS-rebinding guard). Surfaces 24+ tables: sessions, agent runs, routing decisions, memory, hook events, cost telemetry, pane bindings.
+- **Full cast.db coverage**: 70+ Express routes, read-only by default, loopback-only (DNS-rebinding guard). Surfaces 38 tables: sessions, agent runs, routing decisions, memory, hook events, cost telemetry, pane bindings.
 - **Live session cost SSE**: streams per-session burn rate ($/min) and 4-hour cost projection as tokens flow.
 - **Homebrew installable**: `brew tap ek33450505/cast-desktop && brew install cast-desktop`
 
