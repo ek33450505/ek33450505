@@ -18,7 +18,7 @@ CAST is a local-first OS layer for Claude Code: a hook-driven agent registry, a 
 
 ## CAST — Claude Agent Specialist Team
 
-[`claude-agent-team`](https://github.com/ek33450505/claude-agent-team) · Bash · MIT · **v<!-- CAST_VERSION -->7.3.1<!-- /CAST_VERSION -->**
+[`claude-agent-team`](https://github.com/ek33450505/claude-agent-team) · Bash · MIT · **v<!-- CAST_VERSION -->7.4<!-- /CAST_VERSION -->**
 
 Claude Code ships with a powerful agent primitive and almost no scaffolding around it. CAST is the scaffolding: <!-- CAST_AGENT_COUNT -->23<!-- /CAST_AGENT_COUNT --> specialist agents, hook-driven dispatch, model-tier routing, per-agent persistent memory, and a <!-- CAST_DB_TABLE_COUNT -->42<!-- /CAST_DB_TABLE_COUNT -->-table SQLite event store that makes the whole loop inspectable.
 
