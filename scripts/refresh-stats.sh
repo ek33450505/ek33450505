@@ -63,7 +63,14 @@ if [ -d "$CAST_REPO" ]; then
   update_token "CAST_TEST_COUNT" "$TEST_COUNT"
   update_token "CAST_TEST_FILE_COUNT" "$TEST_FILE_COUNT"
 
-  if [ -f "scripts/cast_db.py" ]; then
+  # Derive DB table count from cast-db-init.sh CREATE TABLE statements (canonical source of truth).
+  # Uses line-anchored grep to exclude comment lines that contain "CREATE TABLE" as prose.
+  # Falls back to cast_db.py ALLOWED_TABLES if init script is absent (e.g., older repo checkouts).
+  if [ -f "scripts/cast-db-init.sh" ]; then
+    TABLE_COUNT=$(grep -E '^CREATE TABLE (IF NOT EXISTS )?[a-z_][a-z0-9_]* \(' "scripts/cast-db-init.sh" \
+      | grep -oE '[a-z_][a-z0-9_]* \(' | grep -oE '^[a-z_][a-z0-9_]*' | sort -u | wc -l | tr -d ' ')
+    update_token "CAST_DB_TABLE_COUNT" "$TABLE_COUNT"
+  elif [ -f "scripts/cast_db.py" ]; then
     TABLE_COUNT=$(awk '/ALLOWED_TABLES[[:space:]]*=[[:space:]]*\{/{f=1} f{print} /\}/{if(f)exit}' "scripts/cast_db.py" \
       | grep -oE "['\"][a-z_][a-z0-9_]*['\"]" | sort -u | wc -l | tr -d ' ')
     update_token "CAST_DB_TABLE_COUNT" "$TABLE_COUNT"

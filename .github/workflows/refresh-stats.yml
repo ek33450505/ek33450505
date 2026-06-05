@@ -20,16 +20,16 @@ jobs:
       contents: write
       pull-requests: write
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v4
 
       - name: Check out claude-agent-team
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
         with:
           repository: ek33450505/claude-agent-team
           path: _siblings/claude-agent-team
 
       - name: Check out cast-desktop
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
         with:
           repository: ek33450505/cast-desktop
           path: _siblings/cast-desktop
