@@ -18,7 +18,7 @@ CAST is a local-first OS layer for Claude Code: a hook-driven agent registry, a 
 
 ## CAST — Claude Agent Specialist Team
 
-[`claude-agent-team`](https://github.com/ek33450505/claude-agent-team) · Bash · MIT · **v<!-- CAST_VERSION -->7.4.1<!-- /CAST_VERSION -->7.4.1<!-- CAST_AGENT_COUNT -->23<!-- /CAST_AGENT_COUNT --> specialist agents, hook-driven dispatch, model-tier routing, per-agent persistent memory, and a <!-- CAST_DB_TABLE_COUNT -->38<!-- /CAST_DB_TABLE_COUNT -->-table SQLite event store that makes the whole loop inspectable.
+[`claude-agent-team`](https://github.com/ek33450505/claude-agent-team) · Bash · MIT · **v<!-- CAST_VERSION -->7.4.1<!-- /CAST_VERSION -->7.4.1<!-- CAST_AGENT_COUNT -->23<!-- /CAST_AGENT_COUNT --> specialist agents, hook-driven dispatch, model-tier routing, per-agent persistent memory, and a <!-- CAST_DB_TABLE_COUNT -->36<!-- /CAST_DB_TABLE_COUNT -->-table SQLite event store that makes the whole loop inspectable.
 
 ```sh
 brew tap ek33450505/cast && brew install cast
@@ -31,7 +31,7 @@ brew tap ek33450505/cast && brew install cast
 - **Per-agent memory, not shared context.** Each agent keeps its own scoped memory under `~/.claude/agent-memory-local/<agent>/`. Cellar Door (below) extends this to a typed shared store when agents *do* need to coordinate — but the default is isolation, because shared context bleeds.
 - **Policy gates that hard-block.** Branch-protection bypass attempts, force-pushes to main, raw `git commit` — the hook layer refuses them. Quality is enforced at the seam, not by hoping the agent behaved.
 
-**<!-- CAST_TEST_COUNT -->1199<!-- /CAST_TEST_COUNT --> BATS tests across <!-- CAST_TEST_FILE_COUNT -->126<!-- /CAST_TEST_FILE_COUNT --> files** cover the shell surface. The framework treats its own correctness as a first-class concern.
+**<!-- CAST_TEST_COUNT -->1709<!-- /CAST_TEST_COUNT --> BATS tests across <!-- CAST_TEST_FILE_COUNT -->162<!-- /CAST_TEST_FILE_COUNT --> files** cover the shell surface. The framework treats its own correctness as a first-class concern.
 
 ---
 
