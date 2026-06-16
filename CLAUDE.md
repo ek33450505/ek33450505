@@ -26,15 +26,20 @@ Reads from `~/Projects/personal/claude-agent-team` and `~/Projects/personal/cast
 
 ## Sentinels
 
-The following tokens auto-update in `README.md`:
+The following tokens auto-update in `README.md` from `~/Projects/personal/claude-agent-team/cast-stats.json`:
 
-- `<!-- CAST_VERSION -->` — CAST framework version from `claude-agent-team/VERSION`
-- `<!-- CAST_AGENT_COUNT -->` — Count of agents in `agents/core/`
-- `<!-- CAST_TEST_COUNT -->` — Total `@test` functions in tracked `.bats` files
-- `<!-- CAST_TEST_FILE_COUNT -->` — Count of tracked `.bats` files
-- `<!-- CAST_DB_TABLE_COUNT -->` — Distinct tables in `cast_db.py` ALLOWED_TABLES
+- `<!-- CAST_VERSION -->` — CAST framework version (e.g., 8.0.0)
+- `<!-- CAST_AGENT_COUNT -->` — Total agents (17 lean + 4 opt-in via --with-extras)
+- `<!-- CAST_TEST_COUNT -->` — Total BATS tests across all files
+- `<!-- CAST_DB_TABLE_COUNT -->` — Distinct tables in cast.db (36 in v8)
+- `<!-- CAST_COMMAND_COUNT -->` — Top-level commands (20 in v8)
+- `<!-- CAST_SKILL_COUNT -->` — Callable skills (18 in v8)
+- `<!-- CAST_PACKAGE_COUNT -->` — Homebrew-installable packages (13 in v8)
+- `<!-- VERSION:cast-desktop -->` — Tracked separately; auto-updated by refresh-stats.sh
 
 Format: `<!-- TOKEN_NAME -->value<!-- /TOKEN_NAME -->`
+
+**Deprecated (v8):** `CAST_TEST_FILE_COUNT` — no longer in canonical stats; dropped from README.
 
 ## Bug Artifact: Tilde Directory
 
