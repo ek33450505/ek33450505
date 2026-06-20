@@ -109,7 +109,7 @@ The desktop app binds native infrastructure to Claude Code's agent execution mod
 
 </details>
 
----
+<!--
 
 ## Also Building
 
@@ -120,7 +120,7 @@ Not part of CAST proper, but built alongside:
 - [**promptbot**](https://github.com/ek33450505/promptbot) — Local-first CLI prompt rewriter.
 - [**cellar-door**](https://github.com/ek33450505/cellar-door) — Typed shared memory for local AI agents.
 
----
+--->
 
 ## Stack
 
