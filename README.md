@@ -82,6 +82,37 @@ The desktop app binds native infrastructure to Claude Code's agent execution mod
 
 ---
 
+## Attest — Completion-Attestation Gate for Claude Code
+
+[`attest`](https://github.com/ek33450505/attest) · Python 3 (stdlib-only) · MIT · **v0.1.0** · **290 tests** · CI green
+
+> **"DONE" is a claim, not proof. Grade the act, not the output.**
+
+My newest standalone OSS tool — and the one I'm proudest of the discipline behind. Multi-agent workflows fail in a quiet way: a subagent reports `Status: DONE` in good faith after a `Write` that returned success but never landed on disk. A silent write-failure behind a confident `DONE`. Attest catches it.
+
+It's a local, deterministic, **zero-LLM** Claude Code hook. `SubagentStart` snapshots the git working tree; `SubagentStop` recomputes the delta, parses the subagent's `Status: DONE` / `## Handoff` claim, and checks whether the files it *claimed* to change actually changed. If a claimed file never landed, it (opt-in) **blocks** the completion so the same subagent is forced to continue and fix it.
+
+**Design decisions worth defending:**
+
+- **Deterministic and zero-LLM.** It never calls a model — so it adds no tokens and *cannot hallucinate its own verdict*. The git tree is the only ground truth; Attest grades the *act*, not the output.
+- **Fail-open on every doubt.** A parse error, a missing file, a slow run → the hook exits 0 and the session continues. It blocks only on *proof* of a false `DONE`, and only in opt-in enforce mode (`ATTEST_ENFORCE=1`). A conservative parser never treats a missing or prose-only claim as a false `DONE`.
+- **Verified against the running system, not the docs.** Validated end-to-end against real Claude Code v2.1.170 with captured payloads committed to the repo — including proving that a synchronous `SubagentStop` hook *can* block a completion, which the official docs don't promise. The tool's own thesis, applied to its own foundation.
+
+### Install
+
+```bash
+# Claude Code plugin
+/plugin marketplace add https://github.com/ek33450505/attest
+/plugin install attest@attest
+```
+
+```bash
+# or via Homebrew
+brew tap ek33450505/attest && brew install attest
+```
+
+---
+
 ## The CAST Ecosystem
 
 <details>
