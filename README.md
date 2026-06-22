@@ -113,6 +113,37 @@ brew tap ek33450505/attest && brew install attest
 
 ---
 
+## looptrip — Multi-Agent Coordination-Pathology Detector
+
+[`looptrip`](https://github.com/ek33450505/looptrip) · Python 3 (stdlib-only core) · Apache-2.0 · **v0.1.0** · **491 tests** · live on [PyPI](https://pypi.org/project/looptrip/)
+
+> **Catch the loop at iteration 2 — not on the invoice.**
+
+A standalone OSS detector for the failure mode that quietly burns money in multi-agent systems: they *loop*. The same subagent gets dispatched again and again with no progress between repeats — duplicate-work, ping-pong / livelock, deadlock, non-termination — and you find out on the bill. looptrip watches a run as a stream of normalized events and trips at the **second** dispatch, the first repeat, instead of letting the loop run to exhaustion.
+
+**Design decisions worth defending:**
+
+- **Deterministic and zero-LLM.** Same event stream → same verdict; it adds no tokens and cannot hallucinate its own finding. The structure of the run is the only ground truth.
+- **An observer, never a gate.** It reports; it never blocks, kills, or auto-fixes. What to do about a loop stays the human's call — blocking is a different tool's job.
+- **Detection-first, over data you already have.** Works over OpenTelemetry GenAI handoff spans or a CAST `cast.db` — no new instrumentation — plus a live `SpanProcessor` for in-flight detection.
+- **Proven on real money.** On two real recorded runaway sessions, tripping at iteration 2 would have averted **$792.96** of duplicate-work spend — reproducible in one command (`looptrip proof`), triple-anchored against a byte-faithful fixture and an independent oracle.
+
+### Install
+
+```bash
+# Claude Code plugin
+/plugin marketplace add https://github.com/ek33450505/looptrip
+/plugin install looptrip@looptrip
+```
+
+```bash
+# or via Homebrew / PyPI
+brew tap ek33450505/looptrip && brew install looptrip
+pip install looptrip
+```
+
+---
+
 ## The CAST Ecosystem
 
 <details>
