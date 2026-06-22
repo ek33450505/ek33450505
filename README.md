@@ -82,7 +82,7 @@ The desktop app binds native infrastructure to Claude Code's agent execution mod
 
 ---
 
-## Attest — Completion-Attestation Gate for Claude Code
+## attest — Completion-Attestation Gate for Claude Code
 
 [`attest`](https://github.com/ek33450505/attest) · Python 3 (stdlib-only) · MIT · **v0.1.0** · **290 tests** · CI green
 
