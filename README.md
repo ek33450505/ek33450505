@@ -88,7 +88,7 @@ The desktop app binds native infrastructure to Claude Code's agent execution mod
 
 > **"DONE" is a claim, not proof. Grade the act, not the output.**
 
-My newest standalone OSS tool — and the one I'm proudest of the discipline behind. Multi-agent workflows fail in a quiet way: a subagent reports `Status: DONE` in good faith after a `Write` that returned success but never landed on disk. A silent write-failure behind a confident `DONE`. Attest catches it.
+Multi-agent workflows fail in a quiet way: a subagent reports `Status: DONE` in good faith after a `Write` that returned success but never landed on disk. A silent write-failure behind a confident `DONE`. Attest catches it.
 
 It's a local, deterministic, **zero-LLM** Claude Code hook. `SubagentStart` snapshots the git working tree; `SubagentStop` recomputes the delta, parses the subagent's `Status: DONE` / `## Handoff` claim, and checks whether the files it *claimed* to change actually changed. If a claimed file never landed, it (opt-in) **blocks** the completion so the same subagent is forced to continue and fix it.
 
