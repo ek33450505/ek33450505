@@ -25,7 +25,7 @@ CAST is a local-first OS layer for Claude Code: hook-driven agent dispatch, type
 
 ## CAST — Native CAST (v8)
 
-[`claude-agent-team`](https://github.com/ek33450505/claude-agent-team) · Bash · MIT · **v<!-- CAST_VERSION -->8.0.0<!-- /CAST_VERSION -->** · **<!-- CAST_AGENT_COUNT -->23<!-- /CAST_AGENT_COUNT --> agents** · **<!-- CAST_TEST_COUNT -->1,736<!-- /CAST_TEST_COUNT --> tests**
+[`claude-agent-team`](https://github.com/ek33450505/claude-agent-team) · Bash · MIT · **v<!-- CAST_VERSION -->8.0.0<!-- /CAST_VERSION -->** · **<!-- CAST_AGENT_COUNT -->23<!-- /CAST_AGENT_COUNT --> agents** · **<!-- CAST_TEST_COUNT -->1797<!-- /CAST_TEST_COUNT --> tests**
 
 ### The Problem It Solves
 
@@ -53,7 +53,7 @@ brew tap ek33450505/cast && brew install cast
 
 ### Capabilities
 
-v<!-- CAST_VERSION -->8.0.0<!-- /CAST_VERSION --> · <!-- CAST_AGENT_COUNT -->23<!-- /CAST_AGENT_COUNT --> agents · <!-- CAST_TEST_COUNT -->1,736<!-- /CAST_TEST_COUNT --> tests · <!-- CAST_DB_TABLE_COUNT -->36<!-- /CAST_DB_TABLE_COUNT --> tables · <!-- CAST_COMMAND_COUNT -->20<!-- /CAST_COMMAND_COUNT --> commands · <!-- CAST_SKILL_COUNT -->18<!-- /CAST_SKILL_COUNT --> skills · <!-- CAST_PACKAGE_COUNT -->13<!-- /CAST_PACKAGE_COUNT --> packages
+v<!-- CAST_VERSION -->8.0.0<!-- /CAST_VERSION --> · <!-- CAST_AGENT_COUNT -->23<!-- /CAST_AGENT_COUNT --> agents · <!-- CAST_TEST_COUNT -->1797<!-- /CAST_TEST_COUNT --> tests · <!-- CAST_DB_TABLE_COUNT -->36<!-- /CAST_DB_TABLE_COUNT --> tables · <!-- CAST_COMMAND_COUNT -->20<!-- /CAST_COMMAND_COUNT --> commands · <!-- CAST_SKILL_COUNT -->18<!-- /CAST_SKILL_COUNT --> skills · <!-- CAST_PACKAGE_COUNT -->13<!-- /CAST_PACKAGE_COUNT --> packages
 
 **Design decisions worth defending:**
 
