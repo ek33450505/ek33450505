@@ -2,7 +2,7 @@
 
 > **Agent infrastructure engineer** — I build the layer between you and the agent loop.
 
-[![Open to work](https://img.shields.io/badge/Open%20to%20work-green?style=flat-square)](https://linkedin.com/in/edward-kubiak/)
+<!--[![Open to work](https://img.shields.io/badge/Open%20to%20work-green?style=flat-square)](https://linkedin.com/in/edward-kubiak/)-->
 [![CAST](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fek33450505%2Fclaude-agent-team%2Fmain%2Fcast-stats.json&query=%24.version&label=CAST&style=flat-square)](https://github.com/ek33450505/claude-agent-team)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 [![Tests](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fek33450505%2Fclaude-agent-team%2Fmain%2Fcast-stats.json&query=%24.tests&label=tests&style=flat-square)](https://github.com/ek33450505/claude-agent-team/tree/main/tests)
