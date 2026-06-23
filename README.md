@@ -142,7 +142,7 @@ A subagent reports `Status: DONE` after a `Write` that returned success but neve
 
 <br>
 
-[`looptrip`](https://github.com/ek33450505/looptrip) · Python 3 · Apache-2.0 · 491 tests · [![PyPI](https://img.shields.io/pypi/v/looptrip?style=flat-square&label=pypi)](https://pypi.org/project/looptrip/) [![installs](https://img.shields.io/pypi/dm/looptrip?style=flat-square&label=installs)](https://pypi.org/project/looptrip/)
+[`looptrip`](https://github.com/ek33450505/looptrip) · Python 3 · Apache-2.0 · 491 tests · [![PyPI](https://img.shields.io/pypi/v/looptrip?style=flat-square&label=pypi)](https://pypi.org/project/looptrip/)
 
 > **Catch the loop at iteration 2 — not on the invoice.**
 
