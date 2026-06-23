@@ -32,7 +32,7 @@ Multi-agent systems fail in predictable ways: routing is opaque, memory bleeds a
 | **[cast-desktop](https://github.com/ek33450505/cast-desktop)** | Native macOS observability app + embedded terminal | Tauri 2 · Rust | v<!-- VERSION:cast-desktop -->1.2.12<!-- /VERSION:cast-desktop --> |
 | **[attest](https://github.com/ek33450505/attest)** | Zero-LLM gate: verifies a subagent's `DONE` vs the git delta | Python | v<!-- VERSION:attest -->0.1.1<!-- /VERSION:attest --> |
 | **[looptrip](https://github.com/ek33450505/looptrip)** | Zero-LLM detector for multi-agent loop pathologies | Python · PyPI | v<!-- VERSION:looptrip -->0.1.1<!-- /VERSION:looptrip --> |
-| **[misfire](https://github.com/ek33450505/misfire)** 🚧 | Turns the rules your agents ignore into enforcement hooks | Python | in dev |
+| **[misfire](https://github.com/ek33450505/misfire)** | Turns the rules your agents ignore into enforcement hooks | Python | v<!-- VERSION:misfire -->0.1.0<!-- /VERSION:misfire --> |
 
 <sub>Deep-dives below — click any project to expand.</sub>
 
@@ -117,7 +117,7 @@ brew tap ek33450505/cast-desktop && brew install cast-desktop
 
 ## Guardrails & detectors
 
-Two standalone, deterministic, **zero-LLM** hooks for Claude Code. Neither calls a model — so neither adds tokens or can hallucinate its own verdict. They grade the *act* against ground truth on disk.
+Three standalone, deterministic, **zero-LLM** tools for Claude Code. None calls a model — so none adds tokens or can hallucinate its own verdict. They grade the *act* against ground truth on disk.
 
 <details>
 <summary><b>attest</b> — catches a subagent's false <code>DONE</code> against the real git delta</summary>
@@ -155,20 +155,21 @@ pip install looptrip
 
 </details>
 
----
-
-## Coming soon
-
 <details>
-<summary><b>misfire</b> 🚧 — turns the rules your agents ignore into the hooks that stop them <em>(in development)</em></summary>
+<summary><b>misfire</b> — measures which of your prose rules agents actually ignore, then enforces only those</summary>
 
 <br>
 
-[`misfire`](https://github.com/ek33450505/misfire) · Python · Apache-2.0 · **In development (Phase 0) · ships later this week**
+[`misfire`](https://github.com/ek33450505/misfire) · Python 3 (stdlib-only) · Apache-2.0 · **v<!-- VERSION:misfire -->0.1.0<!-- /VERSION:misfire -->** · 430 + 5 BATS tests · [![PyPI](https://img.shields.io/pypi/v/misfire?style=flat-square&label=pypi)](https://pypi.org/project/misfire/) [![installs](https://img.shields.io/pypi/dm/misfire?style=flat-square&label=installs)](https://pypi.org/project/misfire/)
 
-Most agent guardrails are written up front and hoped to hold. misfire works backward from evidence: it measures which of *your own* safety and style rules your agents demonstrably ignore — ranked from your run history — then auto-converts only the violated ones into enforcement hooks, leaving the rules they already follow as prose.
+> **Prose rules are hopes. misfire ranks the ones your agents ignore — and converts only those to hooks.**
 
-▸ Public release later this week. [**Watch the repo →**](https://github.com/ek33450505/misfire)
+Most agent guardrails are written up front and hoped to hold. misfire works backward from evidence: it reads your `CLAUDE.md`, `.claude/rules/*.md`, and your own run history, then ranks which machine-checkable prose rules your agents *demonstrably* ignore — by observed violation rate, with confidence thresholds and a minimum-support floor. For the violated, convertible subset only, it scaffolds a deterministic PreToolUse/PostToolUse hook for you to review — leaving safety and judgment rules as prose. An observer and recommender, never a gate: it never auto-applies a change and never writes `settings.json`. The ranking is byte-reproducible against a committed fixture with no database (`misfire rank` reproduces it).
+
+```bash
+pip install misfire
+# or: brew tap ek33450505/misfire && brew install misfire
+```
 
 </details>
 
