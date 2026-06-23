@@ -160,7 +160,7 @@ pip install looptrip
 
 <br>
 
-[`misfire`](https://github.com/ek33450505/misfire) · Python 3 (stdlib-only) · Apache-2.0 · **v<!-- VERSION:misfire -->0.1.0<!-- /VERSION:misfire -->** · 430 + 5 BATS tests · [![PyPI](https://img.shields.io/pypi/v/misfire?style=flat-square&label=pypi)](https://pypi.org/project/misfire/) [![installs](https://img.shields.io/pypi/dm/misfire?style=flat-square&label=installs)](https://pypi.org/project/misfire/)
+[`misfire`](https://github.com/ek33450505/misfire) · Python 3 (stdlib-only) · Apache-2.0 · **v<!-- VERSION:misfire -->0.1.0<!-- /VERSION:misfire -->** · 430 + 5 BATS tests · [![PyPI](https://img.shields.io/pypi/v/misfire?style=flat-square&label=pypi)](https://pypi.org/project/misfire/)
 
 > **Prose rules are hopes. misfire ranks the ones your agents ignore — and converts only those to hooks.**
 
