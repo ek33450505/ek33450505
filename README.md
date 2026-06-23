@@ -9,7 +9,7 @@
 
 **Columbus, Ohio** · [edwardkubiak.com](https://edwardkubiak.com) · [LinkedIn](https://linkedin.com/in/edward-kubiak/) · [edward.kubiak.dev@gmail.com](mailto:edward.kubiak.dev@gmail.com)
 
-By day, I architect and maintain production EdTech at META Solutions — 5 apps serving 4,200+ users across 900+ Ohio school districts.
+By day I architect and maintain production EdTech at META Solutions — 5 apps serving 4,200+ users across 900+ Ohio school districts. Nights and weekends I build agent infrastructure for Claude Code.
 
 **Open to roles on agent infrastructure, developer tools, and Claude Code platform teams.**
 
@@ -17,130 +17,160 @@ By day, I architect and maintain production EdTech at META Solutions — 5 apps 
 
 ## What I work on
 
-Multi-agent systems fail in predictable ways: routing is opaque, memory bleeds across agents, policy is aspirational, and observability stops at the tool call. I've spent the last six months building [**CAST**](https://github.com/ek33450505/claude-agent-team) to fill those gaps — observability, orchestration, persistent memory, and hard-blocking policy enforcement.
+Multi-agent systems fail in predictable ways: routing is opaque, memory bleeds across agents, policy is aspirational, and observability stops at the tool call. I build **[CAST](https://github.com/ek33450505/claude-agent-team)** to close those gaps — and a set of standalone, zero-LLM guardrails that fell out of building it.
 
-CAST is a local-first OS layer for Claude Code: hook-driven agent dispatch, typed event sourcing in SQLite, per-agent memory isolation, and policy gates that refuse dangerous operations at the seam.
+<p align="center">
+  <img src="assets/ecosystem-card.svg" width="760" alt="CAST v8.0.0 — 23 agents, 1,797 tests, 36 db tables, 20 commands, 18 skills, 13 packages" />
+</p>
+
+## Projects at a glance
+
+| Project | What it does | Stack | Status |
+|---|---|---|---|
+| **[CAST](https://github.com/ek33450505/claude-agent-team)** ⭐ | Local-first multi-agent control plane for Claude Code | Bash · SQLite | v<!-- CAST_VERSION -->8.0.0<!-- /CAST_VERSION --> |
+| **[claude-code-dashboard](https://github.com/ek33450505/claude-code-dashboard)** ✨ | Web observability UI — 21+ views, live SSE streaming | React · Express | v<!-- VERSION:claude-code-dashboard -->2.5.0<!-- /VERSION:claude-code-dashboard --> |
+| **[cast-desktop](https://github.com/ek33450505/cast-desktop)** | Native macOS observability app + embedded terminal | Tauri 2 · Rust | v<!-- VERSION:cast-desktop -->1.2.12<!-- /VERSION:cast-desktop --> |
+| **[attest](https://github.com/ek33450505/attest)** | Zero-LLM gate: verifies a subagent's `DONE` vs the git delta | Python | v<!-- VERSION:attest -->0.1.1<!-- /VERSION:attest --> |
+| **[looptrip](https://github.com/ek33450505/looptrip)** | Zero-LLM detector for multi-agent loop pathologies | Python · PyPI | v<!-- VERSION:looptrip -->0.1.1<!-- /VERSION:looptrip --> |
+| **[misfire](https://github.com/ek33450505/misfire)** 🚧 | Turns the rules your agents ignore into enforcement hooks | Python | in dev |
+
+<sub>Deep-dives below — click any project to expand.</sub>
 
 ---
 
-## CAST — Native CAST (v8)
+## CAST
 
-[`claude-agent-team`](https://github.com/ek33450505/claude-agent-team) · Bash · MIT · **v<!-- CAST_VERSION -->8.0.0<!-- /CAST_VERSION -->** · **<!-- CAST_AGENT_COUNT -->23<!-- /CAST_AGENT_COUNT --> agents** · **<!-- CAST_TEST_COUNT -->1797<!-- /CAST_TEST_COUNT --> tests**
+```text
+  ____    _    ____ _____
+ / ___|  / \  / ___|_   _|
+| |     / _ \ \___ \ | |
+| |___ / ___ \ ___) || |
+ \____/_/   \_\____/ |_|
+```
 
-### The Problem It Solves
+[`claude-agent-team`](https://github.com/ek33450505/claude-agent-team) · Bash · MIT · **v<!-- CAST_VERSION -->8.0.0<!-- /CAST_VERSION -->** · <!-- CAST_AGENT_COUNT -->23<!-- /CAST_AGENT_COUNT --> agents · <!-- CAST_TEST_COUNT -->1797<!-- /CAST_TEST_COUNT --> tests · <!-- CAST_DB_TABLE_COUNT -->36<!-- /CAST_DB_TABLE_COUNT --> tables · <!-- CAST_COMMAND_COUNT -->20<!-- /CAST_COMMAND_COUNT --> commands · <!-- CAST_SKILL_COUNT -->18<!-- /CAST_SKILL_COUNT --> skills · <!-- CAST_PACKAGE_COUNT -->13<!-- /CAST_PACKAGE_COUNT --> packages
 
-Multi-agent systems need observability, persistence, and unforgeable policy. CAST ships both in v8:
+A local-first control plane for Claude Code. Multi-agent systems need observability, persistence, and unforgeable policy — CAST ships all three by construction, hung off Claude Code's own lifecycle hooks and recorded in a SQLite database that two surfaces read from.
 
-**Local-first by construction.** `cast.db` (SQLite) replicates outside `~/.claude` via Litestream — your data is yours, observability is yours, and the database survives a full `~/.claude` wipe. No cloud round-trip. The dashboard is a SELECT away.
+```mermaid
+flowchart LR
+  SS["SessionStart"] --> R["router"]
+  PT["PreToolUse"] --> G["policy gate"]
+  SUB["SubagentStop"] --> T["telemetry"]
+  R --> DB[("cast.db")]
+  G --> DB
+  T --> DB
+  DB --> WEB["claude-code-dashboard · web"]
+  DB --> NAT["cast-desktop · native"]
+```
 
-**Data integrity by construction.** Pre-commit hooks block force-pushes and raw `git commit`. A fail-closed migration gate guards schema changes. PreToolUse hooks refuse `pkill`, `killall`, `rm -rf` from agent code — dangerous operations are killed at the seam, not left to agent discipline.
-
-### Install
-
-Copy-paste one:
+- **Hook-driven dispatch over polling.** Routing, telemetry, and policy hang off lifecycle events (`SessionStart`, `PreToolUse`, `SubagentStop`, `Stop`) — no daemon, no background loop, no missed events.
+- **Local-first SQLite everywhere.** Agent runs, routing decisions, memory, and quality gates all live in `~/.claude/cast.db`, replicated off the blast radius via Litestream — the database survives a full `~/.claude` wipe.
+- **Per-agent memory, not shared context.** Each agent keeps scoped memory; isolation by default, coordination only when asked for.
+- **Hard-blocking policy gates.** Force-pushes, raw `git commit`, destructive shell ops — refused at the hook seam, not left to agent discipline.
 
 ```bash
-# Claude Code native plugin (recommended for v8)
+# Claude Code plugin (recommended)
 /plugin marketplace add ek33450505/claude-agent-team
-/plugin install cast
-/plugin enable cast@cast
+/plugin install cast && /plugin enable cast@cast
+# or: brew tap ek33450505/cast && brew install cast
 ```
+
+---
+
+## Observability — two surfaces, one data layer
+
+Everything CAST records lands in `cast.db`. Read it on the web, or natively — same data, two delivery models.
+
+<details>
+<summary><b>claude-code-dashboard</b> ✨ — web observability UI for CAST (21+ views, live SSE)</summary>
+
+<br>
+
+[`claude-code-dashboard`](https://github.com/ek33450505/claude-code-dashboard) · React 19 · TypeScript · Vite 6 · Express 5 · better-sqlite3 · Tailwind v4 · **v<!-- VERSION:claude-code-dashboard -->2.5.0<!-- /VERSION:claude-code-dashboard -->**
+
+A browser dashboard for everything CAST records. Reads `~/.claude/` directly and streams live session data over SSE — which agents fired, what they cost, whether the guards are holding. 21+ views across sessions, analytics, agents, swarm teams, hook health, a memory browser, plans, and a database explorer. No accounts, no telemetry, nothing leaves your machine.
 
 ```bash
-# or via Homebrew
-brew tap ek33450505/cast && brew install cast
+git clone https://github.com/ek33450505/claude-code-dashboard
+cd claude-code-dashboard && npm install && npm run dev
 ```
 
-### Capabilities
+</details>
 
-v<!-- CAST_VERSION -->8.0.0<!-- /CAST_VERSION --> · <!-- CAST_AGENT_COUNT -->23<!-- /CAST_AGENT_COUNT --> agents · <!-- CAST_TEST_COUNT -->1797<!-- /CAST_TEST_COUNT --> tests · <!-- CAST_DB_TABLE_COUNT -->36<!-- /CAST_DB_TABLE_COUNT --> tables · <!-- CAST_COMMAND_COUNT -->20<!-- /CAST_COMMAND_COUNT --> commands · <!-- CAST_SKILL_COUNT -->18<!-- /CAST_SKILL_COUNT --> skills · <!-- CAST_PACKAGE_COUNT -->13<!-- /CAST_PACKAGE_COUNT --> packages
+<details>
+<summary><b>cast-desktop</b> — native macOS observability app with an embedded terminal</summary>
 
-**Design decisions worth defending:**
+<br>
 
-- **Hook-driven dispatch over polling.** Claude Code emits lifecycle events (`SessionStart`, `PreToolUse`, `SubagentStop`, `Stop`). CAST hangs all routing, telemetry, and policy off those — no daemon, no background loop, no missed events.
-- **Local-first SQLite everywhere.** Agent runs, routing decisions, memory, quality gates, hook output — all in `~/.claude/cast.db`. No cloud dependency.
-- **Per-agent memory, not shared context.** Each agent keeps scoped memory under `~/.claude/agent-memory-local/<agent>/`. Isolation by default; coordination via `cellar-door` when needed.
-- **Hard-blocking policy gates.** Force-pushes, raw `git commit`, destructive shell ops — the hook layer refuses them. Quality enforced at the seam.
-- **Eval harness with pass@k metrics.** `cast eval` runs pass@k benchmarks; `eval_runs` table tracks results over time for quantifying agent quality.
-- **Typed agent handoffs.** `schemas/agent-handoff.json` ensures downstream agents receive well-formed context — kills silent cascade failures in multi-agent chains.
+[`cast-desktop`](https://github.com/ek33450505/cast-desktop) · Tauri 2 · Rust · TypeScript · **v<!-- VERSION:cast-desktop -->1.2.12<!-- /VERSION:cast-desktop -->**
 
----
+The same `cast.db`, packaged as a self-contained native app — no Node, no server to run. An embedded PTY terminal with persistent pane-to-session binding, an inline CodeMirror editor that dispatches agents on selection, 11 dashboard views over 70+ read-only loopback routes, and live per-session cost streaming ($/min plus a 4-hour projection).
 
-## cast-desktop — Native Observability for CAST
+```bash
+brew tap ek33450505/cast-desktop && brew install cast-desktop
+```
 
-[`cast-desktop`](https://github.com/ek33450505/cast-desktop) · Tauri 2 + Rust + TypeScript · MIT · **v<!-- VERSION:cast-desktop -->1.2.12<!-- /VERSION:cast-desktop -->**
-
-The claude-code-dashboard requires a running server. cast-desktop packages CAST observability as a self-contained Tauri 2 native app — no Node, no server management.
-
-The desktop app binds native infrastructure to Claude Code's agent execution model:
-
-- **Native PTY terminal** (xterm.js backend + Rust pty layer) with persistent pane-to-session binding. Every pane is tracked in `pane_bindings` table — cast.db always knows which agent run owns which terminal pane.
-- **Inline code editor** (CodeMirror 6 + TypeScript LSP sidecar) with agent dispatch. Select code, spawn a CAST agent, results stream back inline.
-- **Full cast.db coverage**: 70+ Express routes, read-only by default, loopback-only. Surfaces 36 tables: sessions, agent runs, routing decisions, memory, hook events, cost telemetry, pane bindings.
-- **Live session cost SSE**: streams per-session burn rate ($/min) and 4-hour cost projection as tokens flow.
-- **Homebrew installable**: `brew tap ek33450505/cast-desktop && brew install cast-desktop`
+</details>
 
 ---
 
-## attest — Completion-Attestation Gate for Claude Code
+## Guardrails & detectors
 
-[`attest`](https://github.com/ek33450505/attest) · Python 3 (stdlib-only) · MIT · **v0.1.0** · **290 tests** · CI green
+Two standalone, deterministic, **zero-LLM** hooks for Claude Code. Neither calls a model — so neither adds tokens or can hallucinate its own verdict. They grade the *act* against ground truth on disk.
+
+<details>
+<summary><b>attest</b> — catches a subagent's false <code>DONE</code> against the real git delta</summary>
+
+<br>
+
+[`attest`](https://github.com/ek33450505/attest) · Python 3 (stdlib-only) · MIT · **v<!-- VERSION:attest -->0.1.1<!-- /VERSION:attest -->** · 302 tests
 
 > **"DONE" is a claim, not proof. Grade the act, not the output.**
 
-Multi-agent workflows fail in a quiet way: a subagent reports `Status: DONE` in good faith after a `Write` that returned success but never landed on disk. A silent write-failure behind a confident `DONE`. Attest catches it.
-
-It's a local, deterministic, **zero-LLM** Claude Code hook. `SubagentStart` snapshots the git working tree; `SubagentStop` recomputes the delta, parses the subagent's `Status: DONE` / `## Handoff` claim, and checks whether the files it *claimed* to change actually changed. If a claimed file never landed, it (opt-in) **blocks** the completion so the same subagent is forced to continue and fix it.
-
-**Design decisions worth defending:**
-
-- **Deterministic and zero-LLM.** It never calls a model — so it adds no tokens and *cannot hallucinate its own verdict*. The git tree is the only ground truth; Attest grades the *act*, not the output.
-- **Fail-open on every doubt.** A parse error, a missing file, a slow run → the hook exits 0 and the session continues. It blocks only on *proof* of a false `DONE`, and only in opt-in enforce mode (`ATTEST_ENFORCE=1`). A conservative parser never treats a missing or prose-only claim as a false `DONE`.
-- **Verified against the running system, not the docs.** Validated end-to-end against real Claude Code v2.1.170 with captured payloads committed to the repo — including proving that a synchronous `SubagentStop` hook *can* block a completion, which the official docs don't promise. The tool's own thesis, applied to its own foundation.
-
-### Install
+A subagent reports `Status: DONE` after a `Write` that returned success but never landed on disk — a silent write-failure behind a confident claim. attest snapshots the git tree on `SubagentStart`, recomputes the delta on `SubagentStop`, and checks whether the files it *claimed* to change actually changed. If a claimed file never landed, it (opt-in) blocks the completion so the same agent is forced to fix it. Fail-open on every doubt; verified end-to-end against real Claude Code with captured payloads committed to the repo.
 
 ```bash
-# Claude Code plugin
 /plugin marketplace add https://github.com/ek33450505/attest
-/plugin install attest@attest
+# or: brew tap ek33450505/attest && brew install attest
 ```
 
-```bash
-# or via Homebrew
-brew tap ek33450505/attest && brew install attest
-```
+</details>
 
----
+<details>
+<summary><b>looptrip</b> — trips multi-agent loops at iteration 2, not on the invoice</summary>
 
-## looptrip — Multi-Agent Coordination-Pathology Detector
+<br>
 
-[`looptrip`](https://github.com/ek33450505/looptrip) · Python 3 (stdlib-only core) · Apache-2.0 · **v0.1.0** · **491 tests** · live on [PyPI](https://pypi.org/project/looptrip/)
+[`looptrip`](https://github.com/ek33450505/looptrip) · Python 3 · Apache-2.0 · 491 tests · [![PyPI](https://img.shields.io/pypi/v/looptrip?style=flat-square&label=pypi)](https://pypi.org/project/looptrip/) [![installs](https://img.shields.io/pypi/dm/looptrip?style=flat-square&label=installs)](https://pypi.org/project/looptrip/)
 
 > **Catch the loop at iteration 2 — not on the invoice.**
 
-A standalone OSS detector for the failure mode that quietly burns money in multi-agent systems: they *loop*. The same subagent gets dispatched again and again with no progress between repeats — duplicate-work, ping-pong / livelock, deadlock, non-termination — and you find out on the bill. looptrip watches a run as a stream of normalized events and trips at the **second** dispatch, the first repeat, instead of letting the loop run to exhaustion.
-
-**Design decisions worth defending:**
-
-- **Deterministic and zero-LLM.** Same event stream → same verdict; it adds no tokens and cannot hallucinate its own finding. The structure of the run is the only ground truth.
-- **An observer, never a gate.** It reports; it never blocks, kills, or auto-fixes. What to do about a loop stays the human's call — blocking is a different tool's job.
-- **Detection-first, over data you already have.** Works over OpenTelemetry GenAI handoff spans or a CAST `cast.db` — no new instrumentation — plus a live `SpanProcessor` for in-flight detection.
-- **Proven on real money.** On two real recorded runaway sessions, tripping at iteration 2 would have averted **$792.96** of duplicate-work spend — reproducible in one command (`looptrip proof`), triple-anchored against a byte-faithful fixture and an independent oracle.
-
-### Install
+The failure mode that quietly burns money: agents *loop* — the same subagent dispatched again and again with no progress between repeats (duplicate-work, ping-pong / livelock, deadlock, non-termination), and you find out on the bill. looptrip watches a run as a stream of normalized events and trips at the **second** dispatch. An observer, never a gate. Works over OpenTelemetry GenAI spans or a CAST `cast.db` — no new instrumentation. On two real recorded runaway sessions, tripping at iteration 2 would have averted **$792.96** of duplicate-work spend (`looptrip proof` reproduces it).
 
 ```bash
-# Claude Code plugin
-/plugin marketplace add https://github.com/ek33450505/looptrip
-/plugin install looptrip@looptrip
-```
-
-```bash
-# or via Homebrew / PyPI
-brew tap ek33450505/looptrip && brew install looptrip
 pip install looptrip
+# or: brew tap ek33450505/looptrip && brew install looptrip
 ```
+
+</details>
+
+---
+
+## Coming soon
+
+<details>
+<summary><b>misfire</b> 🚧 — turns the rules your agents ignore into the hooks that stop them <em>(in development)</em></summary>
+
+<br>
+
+[`misfire`](https://github.com/ek33450505/misfire) · Python · Apache-2.0 · **In development (Phase 0) · ships later this week**
+
+Most agent guardrails are written up front and hoped to hold. misfire works backward from evidence: it measures which of *your own* safety and style rules your agents demonstrably ignore — ranked from your run history — then auto-converts only the violated ones into enforcement hooks, leaving the rules they already follow as prose.
+
+▸ Public release later this week. [**Watch the repo →**](https://github.com/ek33450505/misfire)
+
+</details>
 
 ---
 
@@ -166,23 +196,12 @@ pip install looptrip
 | [cast-dash](https://github.com/ek33450505/cast-dash) | Terminal UI dashboard for live swarm monitoring. 4-panel real-time display (Textual framework). | ![](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fek33450505%2Fclaude-agent-team%2Fmain%2Fecosystem-versions.json&query=%24%5B%22cast-dash%22%5D&label=cast-dash&style=flat-square) | `brew tap ek33450505/cast-dash && brew install cast-dash` |
 | [cast-claudes_journal](https://github.com/ek33450505/cast-claudes_journal) | Session continuity — Claude's Journal auto-injects prior-day context via SessionStart hook. Obsidian vault sync. | ![](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fek33450505%2Fclaude-agent-team%2Fmain%2Fecosystem-versions.json&query=%24%5B%22cast-claudes_journal%22%5D&label=cast-claudes_journal&style=flat-square) | `brew tap ek33450505/homebrew-claudes-journal && brew install claudes-journal` |
 | [cast-website](https://github.com/ek33450505/cast-website) | castframework.dev — marketing site and docs portal for the CAST ecosystem. | ![](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fek33450505%2Fclaude-agent-team%2Fmain%2Fecosystem-versions.json&query=%24%5B%22cast-website%22%5D&label=cast-website&style=flat-square) | — |
-| [cast-desktop](https://github.com/ek33450505/cast-desktop) | Tauri 2 native app — embedded PTY terminal, command palette, ~20 dashboard views. v8-synced. | ![](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fek33450505%2Fclaude-agent-team%2Fmain%2Fecosystem-versions.json&query=%24%5B%22cast-desktop%22%5D&label=cast-desktop&style=flat-square) | `brew tap ek33450505/homebrew-cast-desktop && brew install cast-desktop` |
+| [cast-desktop](https://github.com/ek33450505/cast-desktop) | Tauri 2 native app — embedded PTY terminal, command palette, 11 dashboard views. v8-synced. | ![](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fek33450505%2Fclaude-agent-team%2Fmain%2Fecosystem-versions.json&query=%24%5B%22cast-desktop%22%5D&label=cast-desktop&style=flat-square) | `brew tap ek33450505/homebrew-cast-desktop && brew install cast-desktop` |
 <!-- ECOSYSTEM_END -->
 
 </details>
 
-<!--
-
-## Also Building
-
-Not part of CAST proper, but built alongside:
-
-- [**aether**](https://github.com/ek33450505/aether) — Tauri 2 AI-aware terminal for macOS.
-- [**forge**](https://github.com/ek33450505/forge) — Native macOS terminal for AI-native development.
-- [**promptbot**](https://github.com/ek33450505/promptbot) — Local-first CLI prompt rewriter.
-- [**cellar-door**](https://github.com/ek33450505/cellar-door) — Typed shared memory for local AI agents.
-
---->
+---
 
 ## Stack
 
@@ -190,8 +209,4 @@ Bash · Python · TypeScript · React 19 · Express 5 · SQLite · BATS · Vites
 
 ---
 
-## Get in touch
-
-Building in public. Questions, feedback, or interest in collaborating? Reach out:
-
-**Email:** [edward.kubiak.dev@gmail.com](mailto:edward.kubiak.dev@gmail.com) · **Portfolio:** [edwardkubiak.com](https://edwardkubiak.com) · **LinkedIn:** [linkedin.com/in/edward-kubiak/](https://linkedin.com/in/edward-kubiak/)
+Building in public · **[edward.kubiak.dev@gmail.com](mailto:edward.kubiak.dev@gmail.com)** · [edwardkubiak.com](https://edwardkubiak.com) · [LinkedIn](https://linkedin.com/in/edward-kubiak/)

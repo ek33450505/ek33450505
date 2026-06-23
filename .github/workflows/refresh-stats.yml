@@ -34,13 +34,40 @@ jobs:
           repository: ek33450505/cast-desktop
           path: _siblings/cast-desktop
 
+      - name: Check out claude-code-dashboard
+        uses: actions/checkout@v4
+        with:
+          repository: ek33450505/claude-code-dashboard
+          path: _siblings/claude-code-dashboard
+
+      - name: Check out attest
+        uses: actions/checkout@v4
+        with:
+          repository: ek33450505/attest
+          path: _siblings/attest
+
+      - name: Check out looptrip
+        uses: actions/checkout@v4
+        with:
+          repository: ek33450505/looptrip
+          path: _siblings/looptrip
+
+      - name: Check out misfire
+        uses: actions/checkout@v4
+        with:
+          repository: ek33450505/misfire
+          path: _siblings/misfire
+
       - name: Refresh profile stats
         run: PERSONAL_ROOT="$GITHUB_WORKSPACE/_siblings" bash scripts/refresh-stats.sh
+
+      - name: Regenerate ecosystem SVG card
+        run: PERSONAL_ROOT="$GITHUB_WORKSPACE/_siblings" python3 scripts/gen-ecosystem-card.py
 
       - name: Check for stat changes
         id: changes
         run: |
-          if git diff --quiet README.md; then
+          if git diff --quiet README.md assets/ecosystem-card.svg; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
