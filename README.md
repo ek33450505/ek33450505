@@ -17,7 +17,7 @@ By day I architect and maintain production EdTech at META Solutions — 5 apps s
 
 ## What I work on
 
-Multi-agent systems fail in predictable ways: routing is opaque, memory bleeds across agents, policy is aspirational, and observability stops at the tool call. I build **[CAST](https://github.com/ek33450505/claude-agent-team)** to close those gaps — and a set of standalone, zero-LLM guardrails that fell out of building it.
+Multi-agent systems fail in predictable ways: routing is opaque, memory bleeds across agents, policy is aspirational, and observability stops at the tool call. I build **[CAST](https://github.com/ek33450505/claude-agent-team)** to close those gaps — and a set of standalone, zero-LLM guardrails that fell out of building it. More info @ [castframework.dev](https://castframework.dev).
 
 <p align="center">
   <img src="assets/ecosystem-card.svg" width="760" alt="CAST v8.0.0 — 23 agents, 1,797 tests, 36 db tables, 20 commands, 18 skills, 13 packages" />
