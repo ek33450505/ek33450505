@@ -88,7 +88,7 @@ Everything CAST records lands in `cast.db`. Read it on the web, or natively — 
 
 [`claude-code-dashboard`](https://github.com/ek33450505/claude-code-dashboard) · React 19 · TypeScript · Vite 6 · Express 5 · better-sqlite3 · Tailwind v4 · **v<!-- VERSION:claude-code-dashboard -->2.5.0<!-- /VERSION:claude-code-dashboard -->**
 
-A browser dashboard for everything CAST records. Reads `~/.claude/` directly and streams live session data over SSE — which agents fired, what they cost, whether the guards are holding. 21+ views across sessions, analytics, agents, swarm teams, hook health, a memory browser, plans, and a database explorer. No accounts, no telemetry, nothing leaves your machine.
+A browser dashboard for everything CAST records. Reads `~/.claude/` directly and streams live session data over SSE — which agents fired, what they cost, whether the guards are holding. 21+ views across sessions, analytics, agents, hook health, a memory browser, plans, and a database explorer. No accounts, no telemetry, nothing leaves your machine.
 
 ```bash
 git clone https://github.com/ek33450505/claude-code-dashboard
