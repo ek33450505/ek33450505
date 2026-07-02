@@ -27,7 +27,7 @@ Multi-agent systems fail in predictable ways: routing is opaque, memory bleeds a
 | Project | What it does | Stack | Status |
 |---|---|---|---|
 | **[CAST](https://github.com/ek33450505/claude-agent-team)** ⭐ | Local-first multi-agent control plane for Claude Code | Bash · SQLite | v<!-- CAST_VERSION -->9.0.0<!-- /CAST_VERSION --> |
-| **[claude-code-dashboard](https://github.com/ek33450505/claude-code-dashboard)** ✨ | Web observability UI — 21+ views, live SSE streaming | React · Express | v<!-- VERSION:claude-code-dashboard -->2.5.0<!-- /VERSION:claude-code-dashboard --> |
+| **[claude-code-dashboard](https://github.com/ek33450505/claude-code-dashboard)** ✨ | Web observability UI — 21+ views, live SSE streaming | React · Express | v<!-- VERSION:claude-code-dashboard -->2.6.0<!-- /VERSION:claude-code-dashboard --> |
 | **[cast-desktop](https://github.com/ek33450505/cast-desktop)** | Native macOS observability app + embedded terminal | Tauri 2 · Rust | v<!-- VERSION:cast-desktop -->1.2.12<!-- /VERSION:cast-desktop --> |
 | **[attest](https://github.com/ek33450505/attest)** | Zero-LLM gate: verifies a subagent's `DONE` vs the git delta | Python | v<!-- VERSION:attest -->0.3.0<!-- /VERSION:attest --> |
 | **[looptrip](https://github.com/ek33450505/looptrip)** | Zero-LLM detector for multi-agent loop pathologies | Python · PyPI | v<!-- VERSION:looptrip -->0.1.2<!-- /VERSION:looptrip --> |
@@ -38,14 +38,6 @@ Multi-agent systems fail in predictable ways: routing is opaque, memory bleeds a
 ---
 
 ## CAST
-<!--
-```text
-  ____    _    ____ _____
- / ___|  / \  / ___|_   _|
-| |     / _ \ \___ \ | |
-| |___ / ___ \ ___) || |
- \____/_/   \_\____/ |_|
-```-->
 
 [`claude-agent-team`](https://github.com/ek33450505/claude-agent-team) · Bash · MIT · **v<!-- CAST_VERSION -->9.0.0<!-- /CAST_VERSION -->** · <!-- CAST_AGENT_COUNT -->23<!-- /CAST_AGENT_COUNT --> agents · <!-- CAST_TEST_COUNT -->2068<!-- /CAST_TEST_COUNT --> tests · <!-- CAST_DB_TABLE_COUNT -->38<!-- /CAST_DB_TABLE_COUNT --> tables · <!-- CAST_COMMAND_COUNT -->21<!-- /CAST_COMMAND_COUNT --> commands · <!-- CAST_SKILL_COUNT -->17<!-- /CAST_SKILL_COUNT --> skills · <!-- CAST_PACKAGE_COUNT -->9<!-- /CAST_PACKAGE_COUNT --> packages
 
@@ -86,7 +78,7 @@ Everything CAST records lands in `cast.db`. Read it on the web, or natively — 
 
 <br>
 
-[`claude-code-dashboard`](https://github.com/ek33450505/claude-code-dashboard) · React 19 · TypeScript · Vite 6 · Express 5 · better-sqlite3 · Tailwind v4 · **v<!-- VERSION:claude-code-dashboard -->2.5.0<!-- /VERSION:claude-code-dashboard -->**
+[`claude-code-dashboard`](https://github.com/ek33450505/claude-code-dashboard) · React 19 · TypeScript · Vite 6 · Express 5 · better-sqlite3 · Tailwind v4 · **v<!-- VERSION:claude-code-dashboard -->2.6.0<!-- /VERSION:claude-code-dashboard -->**
 
 A browser dashboard for everything CAST records. Reads `~/.claude/` directly and streams live session data over SSE — which agents fired, what they cost, whether the guards are holding. 21+ views across sessions, analytics, agents, hook health, a memory browser, plans, and a database explorer. No accounts, no telemetry, nothing leaves your machine.
 
