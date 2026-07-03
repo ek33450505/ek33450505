@@ -19,12 +19,15 @@ By day I architect and maintain production EdTech at META Solutions — 5 apps s
 Multi-agent systems fail in predictable ways: routing is opaque, memory bleeds across agents, policy is aspirational, and observability stops at the tool call. I build **[CAST](https://github.com/ek33450505/claude-agent-team)** to close those gaps — and a set of standalone, zero-LLM guardrails that fell out of building it. More at [castframework.dev](https://castframework.dev).
 
 <p align="center">
-  <img src="assets/ecosystem-card.svg" width="760" alt="CAST ecosystem metrics card — version, agents, tests, db tables, commands, skills, packages (exact counts in the CAST section below)" />
+  <picture>
+    <source media="(prefers-color-scheme: light)" srcset="assets/ecosystem-card-light.svg" />
+    <img src="assets/ecosystem-card.svg" width="760" alt="CAST ecosystem metrics card — version, agents, tests, db tables, commands, skills, packages (exact counts in the CAST section below)" />
+  </picture>
 </p>
 
 ## Projects at a glance
 
-| Project | What it does | Stack | Status |
+| Project | What it does | Stack | Latest |
 |---|---|---|---|
 | **[CAST](https://github.com/ek33450505/claude-agent-team)** ⭐ | Local-first multi-agent control plane for Claude Code | Bash · SQLite | v<!-- CAST_VERSION -->9.1.0<!-- /CAST_VERSION --> |
 | **[claude-code-dashboard](https://github.com/ek33450505/claude-code-dashboard)** ✨ | Web observability UI — 21+ views, live SSE streaming | React · Express | v<!-- VERSION:claude-code-dashboard -->2.6.0<!-- /VERSION:claude-code-dashboard --> |
@@ -39,7 +42,7 @@ Multi-agent systems fail in predictable ways: routing is opaque, memory bleeds a
 
 ## CAST
 
-[`claude-agent-team`](https://github.com/ek33450505/claude-agent-team) · Bash · MIT · **v<!-- CAST_VERSION -->9.1.0<!-- /CAST_VERSION -->** · <!-- CAST_AGENT_COUNT -->23<!-- /CAST_AGENT_COUNT --> agents · <!-- CAST_TEST_COUNT -->2068<!-- /CAST_TEST_COUNT --> tests · <!-- CAST_DB_TABLE_COUNT -->38<!-- /CAST_DB_TABLE_COUNT --> tables · <!-- CAST_COMMAND_COUNT -->21<!-- /CAST_COMMAND_COUNT --> commands · <!-- CAST_SKILL_COUNT -->17<!-- /CAST_SKILL_COUNT --> skills · <!-- CAST_PACKAGE_COUNT -->9<!-- /CAST_PACKAGE_COUNT --> packages
+[`claude-agent-team`](https://github.com/ek33450505/claude-agent-team) · Bash · MIT · <!-- CAST_AGENT_COUNT -->23<!-- /CAST_AGENT_COUNT --> agents · <!-- CAST_TEST_COUNT -->2113<!-- /CAST_TEST_COUNT --> tests · <!-- CAST_DB_TABLE_COUNT -->39<!-- /CAST_DB_TABLE_COUNT --> tables · <!-- CAST_COMMAND_COUNT -->21<!-- /CAST_COMMAND_COUNT --> commands · <!-- CAST_SKILL_COUNT -->17<!-- /CAST_SKILL_COUNT --> skills · <!-- CAST_PACKAGE_COUNT -->9<!-- /CAST_PACKAGE_COUNT --> packages
 
 A local-first control plane for Claude Code. Multi-agent systems need observability, persistence, and unforgeable policy — CAST ships all three by construction, hung off Claude Code's own lifecycle hooks and recorded in a SQLite database that two surfaces read from.
 
@@ -78,7 +81,7 @@ Everything CAST records lands in `cast.db`. Read it on the web, or natively — 
 
 <br>
 
-[`claude-code-dashboard`](https://github.com/ek33450505/claude-code-dashboard) · React 19 · TypeScript · Vite 6 · Express 5 · better-sqlite3 · Tailwind v4 · **v<!-- VERSION:claude-code-dashboard -->2.6.0<!-- /VERSION:claude-code-dashboard -->**
+[`claude-code-dashboard`](https://github.com/ek33450505/claude-code-dashboard) · React 19 · TypeScript · Vite 6 · Express 5 · better-sqlite3 · Tailwind v4
 
 A browser dashboard for everything CAST records. Reads `~/.claude/` directly and streams live session data over SSE — which agents fired, what they cost, whether the guards are holding. 21+ views across sessions, analytics, agents, hook health, a memory browser, plans, and a database explorer. No accounts, no telemetry, nothing leaves your machine.
 
@@ -94,7 +97,7 @@ cd claude-code-dashboard && npm install && npm run dev
 
 <br>
 
-[`cast-desktop`](https://github.com/ek33450505/cast-desktop) · Tauri 2 · Rust · TypeScript · **v<!-- VERSION:cast-desktop -->1.2.12<!-- /VERSION:cast-desktop -->**
+[`cast-desktop`](https://github.com/ek33450505/cast-desktop) · Tauri 2 · Rust · TypeScript
 
 The same `cast.db`, packaged as a self-contained native app — no Node, no server to run. An embedded PTY terminal with persistent pane-to-session binding, an inline CodeMirror editor that dispatches agents on selection, 11 dashboard views over 70+ read-only loopback routes, and live per-session cost streaming ($/min plus a 4-hour projection).
 
@@ -115,7 +118,7 @@ Three standalone, deterministic, **zero-LLM** tools for Claude Code. None calls 
 
 <br>
 
-[`attest`](https://github.com/ek33450505/attest) · Python 3 (stdlib-only) · MIT · **v<!-- VERSION:attest -->0.3.0<!-- /VERSION:attest -->** · 302 tests
+[`attest`](https://github.com/ek33450505/attest) · Python 3 (stdlib-only) · MIT · 302 tests
 
 > **"DONE" is a claim, not proof. Grade the act, not the output.**
 
@@ -151,7 +154,7 @@ pip install looptrip
 
 <br>
 
-[`misfire`](https://github.com/ek33450505/misfire) · Python 3 (stdlib-only) · Apache-2.0 · **v<!-- VERSION:misfire -->0.2.0<!-- /VERSION:misfire -->** · 430 + 5 BATS tests · [![PyPI](https://img.shields.io/pypi/v/misfire?style=flat-square&label=pypi)](https://pypi.org/project/misfire/)
+[`misfire`](https://github.com/ek33450505/misfire) · Python 3 (stdlib-only) · Apache-2.0 · 430 + 5 BATS tests · [![PyPI](https://img.shields.io/pypi/v/misfire?style=flat-square&label=pypi)](https://pypi.org/project/misfire/)
 
 > **Prose rules are hopes. misfire ranks the ones your agents ignore — and converts only those to hooks.**
 
