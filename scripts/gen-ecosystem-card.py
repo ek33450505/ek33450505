@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""gen-ecosystem-card.py — Generate a deterministic SVG ecosystem metrics card.
+"""gen-ecosystem-card.py — Generate deterministic SVG ecosystem metrics cards.
 
-Reads cast-stats.json from the sibling claude-agent-team repo and writes
-assets/ecosystem-card.svg relative to the repo root.
+Reads cast-stats.json from the sibling claude-agent-team repo and writes:
+  assets/ecosystem-card.svg       — dark palette (default/fallback)
+  assets/ecosystem-card-light.svg — light palette (GitHub Primer light tokens)
 
 Output is byte-identical across runs given identical input JSON:
   - No timestamps, no random values, no unordered iteration.
@@ -15,6 +16,42 @@ import html
 import json
 import os
 import sys
+from typing import NamedTuple
+
+
+class Palette(NamedTuple):
+    """Color palette for the SVG card."""
+
+    bg: str
+    border: str
+    title: str
+    subtitle: str
+    number: str
+    label: str
+    divider: str
+
+
+# GitHub dark theme colors (unchanged values)
+DARK = Palette(
+    bg="#0d1117",
+    border="#30363d",
+    title="#f0f6fc",
+    subtitle="#8b949e",
+    number="#58a6ff",
+    label="#8b949e",
+    divider="#21262d",
+)
+
+# GitHub Primer light tokens
+LIGHT = Palette(
+    bg="#ffffff",
+    border="#d0d7de",
+    title="#1f2328",
+    subtitle="#59636e",
+    number="#0969da",
+    label="#59636e",
+    divider="#d8dee4",
+)
 
 
 def fmt_int(value: int) -> str:
@@ -51,27 +88,19 @@ def load_stats(stats_path: str) -> dict:
     return data
 
 
-def generate_svg(version: str, metrics: list) -> str:
+def generate_svg(version: str, metrics: list, palette: Palette) -> str:
     """Generate the SVG card as a deterministic string.
 
     Args:
-        version: Version string to display, e.g. "v8.0.0".
+        version: Version string to display, e.g. "v9.1.0".
         metrics: Ordered list of (value_str, label_str) tuples.
+        palette: Color palette to apply (DARK or LIGHT).
 
     Returns:
         Complete SVG document as a string (UTF-8 safe, no BOM).
     """
     width = 760
     height = 190
-
-    # Color palette — GitHub dark theme compatible
-    bg_color = "#0d1117"
-    border_color = "#30363d"
-    title_color = "#f0f6fc"
-    subtitle_color = "#8b949e"
-    number_color = "#58a6ff"
-    label_color = "#8b949e"
-    divider_color = "#21262d"
 
     mono_font = "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace"
 
@@ -103,10 +132,10 @@ def generate_svg(version: str, metrics: list) -> str:
         metric_cells_parts.append(
             f'  <text x="{cx}" y="{number_y}" text-anchor="middle" dominant-baseline="auto"'
             f' font-family="{mono_font}" font-size="26" font-weight="600"'
-            f' fill="{number_color}">{safe_value}</text>\n'
+            f' fill="{palette.number}">{safe_value}</text>\n'
             f'  <text x="{cx}" y="{label_y}" text-anchor="middle" dominant-baseline="auto"'
             f' font-family="{mono_font}" font-size="11" font-weight="400"'
-            f' fill="{label_color}" letter-spacing="0.5">{safe_label}</text>\n'
+            f' fill="{palette.label}" letter-spacing="0.5">{safe_label}</text>\n'
         )
     metric_cells = "".join(metric_cells_parts)
 
@@ -118,15 +147,15 @@ def generate_svg(version: str, metrics: list) -> str:
         f' width="{width}" height="{height}"'
         f' viewBox="0 0 {width} {height}">\n'
         f'  <rect width="{width}" height="{height}" rx="8"'
-        f' fill="{bg_color}" stroke="{border_color}" stroke-width="1"/>\n'
+        f' fill="{palette.bg}" stroke="{palette.border}" stroke-width="1"/>\n'
         f'  <text x="{pad_x}" y="{title_y}"'
         f' font-family="{mono_font}" font-size="16" font-weight="600"'
-        f' fill="{title_color}">CAST · {safe_version}</text>\n'
+        f' fill="{palette.title}">CAST · {safe_version}</text>\n'
         f'  <text x="{pad_x}" y="{subtitle_y}"'
         f' font-family="{mono_font}" font-size="11" font-weight="400"'
-        f' fill="{subtitle_color}">local-first control plane for Claude Code</text>\n'
+        f' fill="{palette.subtitle}">local-first control plane for Claude Code</text>\n'
         f'  <line x1="{pad_x}" y1="{divider_y}" x2="{divider_x2}" y2="{divider_y}"'
-        f' stroke="{divider_color}" stroke-width="1"/>\n'
+        f' stroke="{palette.divider}" stroke-width="1"/>\n'
         f'{metric_cells}'
         f'</svg>\n'
     )
@@ -170,18 +199,21 @@ def main() -> None:
         (fmt_int(packages), "packages"),
     ]
 
-    # Generate SVG
-    svg_content = generate_svg(version_tag, metrics)
-
-    # Write output
+    # Write output files
     assets_dir = os.path.join(repo_root, "assets")
     os.makedirs(assets_dir, exist_ok=True)
-    output_path = os.path.join(assets_dir, "ecosystem-card.svg")
 
-    with open(output_path, "w", encoding="utf-8", newline="\n") as f:
-        f.write(svg_content)
+    # Dark (default/fallback) — keep exact filename for back-compat
+    dark_path = os.path.join(assets_dir, "ecosystem-card.svg")
+    with open(dark_path, "w", encoding="utf-8", newline="\n") as f:
+        f.write(generate_svg(version_tag, metrics, DARK))
+    print(dark_path)
 
-    print(output_path)
+    # Light — new file for GitHub's prefers-color-scheme: light viewers
+    light_path = os.path.join(assets_dir, "ecosystem-card-light.svg")
+    with open(light_path, "w", encoding="utf-8", newline="\n") as f:
+        f.write(generate_svg(version_tag, metrics, LIGHT))
+    print(light_path)
 
 
 if __name__ == "__main__":

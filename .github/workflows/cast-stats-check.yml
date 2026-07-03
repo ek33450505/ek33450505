@@ -22,3 +22,20 @@ jobs:
       - uses: ek33450505/claude-agent-team/.github/actions/cast-stats-drift-check@main
         with:
           sentinels: README.md
+
+  svg-drift-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check out claude-agent-team (canonical stats)
+        uses: actions/checkout@v4
+        with:
+          repository: ek33450505/claude-agent-team
+          path: _siblings/claude-agent-team
+
+      - name: Regenerate ecosystem SVGs
+        run: PERSONAL_ROOT="$GITHUB_WORKSPACE/_siblings" python3 scripts/gen-ecosystem-card.py
+
+      - name: Fail if committed SVGs are stale
+        run: git diff --exit-code assets/ecosystem-card.svg assets/ecosystem-card-light.svg

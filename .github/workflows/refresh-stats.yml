@@ -67,7 +67,7 @@ jobs:
       - name: Check for stat changes
         id: changes
         run: |
-          if git diff --quiet README.md assets/ecosystem-card.svg; then
+          if git diff --quiet README.md assets/ecosystem-card.svg assets/ecosystem-card-light.svg; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
