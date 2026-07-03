@@ -26,7 +26,7 @@ Multi-agent systems fail in predictable ways: routing is opaque, memory bleeds a
 
 | Project | What it does | Stack | Status |
 |---|---|---|---|
-| **[CAST](https://github.com/ek33450505/claude-agent-team)** ⭐ | Local-first multi-agent control plane for Claude Code | Bash · SQLite | v<!-- CAST_VERSION -->9.0.0<!-- /CAST_VERSION --> |
+| **[CAST](https://github.com/ek33450505/claude-agent-team)** ⭐ | Local-first multi-agent control plane for Claude Code | Bash · SQLite | v<!-- CAST_VERSION -->9.1.0<!-- /CAST_VERSION --> |
 | **[claude-code-dashboard](https://github.com/ek33450505/claude-code-dashboard)** ✨ | Web observability UI — 21+ views, live SSE streaming | React · Express | v<!-- VERSION:claude-code-dashboard -->2.6.0<!-- /VERSION:claude-code-dashboard --> |
 | **[cast-desktop](https://github.com/ek33450505/cast-desktop)** | Native macOS observability app + embedded terminal | Tauri 2 · Rust | v<!-- VERSION:cast-desktop -->1.2.12<!-- /VERSION:cast-desktop --> |
 | **[attest](https://github.com/ek33450505/attest)** | Zero-LLM gate: verifies a subagent's `DONE` vs the git delta | Python | v<!-- VERSION:attest -->0.3.0<!-- /VERSION:attest --> |
@@ -39,7 +39,7 @@ Multi-agent systems fail in predictable ways: routing is opaque, memory bleeds a
 
 ## CAST
 
-[`claude-agent-team`](https://github.com/ek33450505/claude-agent-team) · Bash · MIT · **v<!-- CAST_VERSION -->9.0.0<!-- /CAST_VERSION -->** · <!-- CAST_AGENT_COUNT -->23<!-- /CAST_AGENT_COUNT --> agents · <!-- CAST_TEST_COUNT -->2068<!-- /CAST_TEST_COUNT --> tests · <!-- CAST_DB_TABLE_COUNT -->38<!-- /CAST_DB_TABLE_COUNT --> tables · <!-- CAST_COMMAND_COUNT -->21<!-- /CAST_COMMAND_COUNT --> commands · <!-- CAST_SKILL_COUNT -->17<!-- /CAST_SKILL_COUNT --> skills · <!-- CAST_PACKAGE_COUNT -->9<!-- /CAST_PACKAGE_COUNT --> packages
+[`claude-agent-team`](https://github.com/ek33450505/claude-agent-team) · Bash · MIT · **v<!-- CAST_VERSION -->9.1.0<!-- /CAST_VERSION -->** · <!-- CAST_AGENT_COUNT -->23<!-- /CAST_AGENT_COUNT --> agents · <!-- CAST_TEST_COUNT -->2068<!-- /CAST_TEST_COUNT --> tests · <!-- CAST_DB_TABLE_COUNT -->38<!-- /CAST_DB_TABLE_COUNT --> tables · <!-- CAST_COMMAND_COUNT -->21<!-- /CAST_COMMAND_COUNT --> commands · <!-- CAST_SKILL_COUNT -->17<!-- /CAST_SKILL_COUNT --> skills · <!-- CAST_PACKAGE_COUNT -->9<!-- /CAST_PACKAGE_COUNT --> packages
 
 A local-first control plane for Claude Code. Multi-agent systems need observability, persistence, and unforgeable policy — CAST ships all three by construction, hung off Claude Code's own lifecycle hooks and recorded in a SQLite database that two surfaces read from.
 
