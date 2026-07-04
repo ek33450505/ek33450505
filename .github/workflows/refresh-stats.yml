@@ -12,6 +12,12 @@ on:
     # Monday at 09:00 UTC
     - cron: '0 9 * * 1'
   workflow_dispatch:
+  # Fired by the flagship (claude-agent-team) via repository_dispatch the moment
+  # cast-stats.json changes on its main branch, so the profile refreshes
+  # near-instantly instead of waiting for the weekly cron above.
+  # See claude-agent-team/.github/workflows/notify-profile.yml (event_type: cast-stats-updated).
+  repository_dispatch:
+    types: [cast-stats-updated]
 
 jobs:
   refresh:

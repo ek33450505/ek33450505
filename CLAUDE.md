@@ -15,7 +15,7 @@ Reads framework counts from `~/Projects/personal/claude-agent-team/cast-stats.js
 
 ## Automated Weekly PR
 
-`.github/workflows/refresh-stats.yml` — **scheduled Monday 09:00 UTC** — automatically opens stat-update PRs.
+`.github/workflows/refresh-stats.yml` — **scheduled Monday 09:00 UTC, and triggered on-demand via `repository_dispatch` when `cast-stats.json` updates** — automatically opens stat-update PRs.
 
 - Checks out sibling repos (`claude-agent-team`, `cast-desktop`, `claude-code-dashboard`, `attest`, `looptrip`, `misfire`)
 - Runs `refresh-stats.sh` with `PERSONAL_ROOT` pointing to the checkout
@@ -24,6 +24,8 @@ Reads framework counts from `~/Projects/personal/claude-agent-team/cast-stats.js
 - Auto-merge after CI green is safe — docs-only change
 
 **Prerequisite:** Repo Settings → Actions → General → Workflow permissions must allow "GitHub Actions to create and approve pull requests."
+
+**Near-instant refresh prerequisite:** the on-demand `repository_dispatch` path fires only once the flagship (`claude-agent-team`) has a `notify-profile.yml` workflow that POSTs a `cast-stats-updated` dispatch to this repo, authenticated by a `PROFILE_DISPATCH_TOKEN` secret (fine-grained PAT scoped to `ek33450505/ek33450505` with `Contents: read and write` — the permission the repository-dispatch API requires; a classic PAT needs `repo` scope). Until both are in place, the weekly Monday cron remains the sole trigger.
 
 ## CI Gates
 
