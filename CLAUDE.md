@@ -34,31 +34,26 @@ Two jobs in `.github/workflows/cast-stats-check.yml` gate profile freshness on e
 
 ## Sentinels
 
-The following tokens auto-update in `README.md` from `~/Projects/personal/claude-agent-team/cast-stats.json`:
+The following CAST framework count tokens auto-update in `README.md` from `~/Projects/personal/claude-agent-team/cast-stats.json`:
 
-- `<!-- CAST_VERSION -->` — CAST framework version (e.g., 8.0.0)
-- `<!-- CAST_AGENT_COUNT -->` — Total agents (17 lean + 4 opt-in via --with-extras)
+- `<!-- CAST_AGENT_COUNT -->` — Total agents (23 in v8+)
 - `<!-- CAST_TEST_COUNT -->` — Total BATS tests across all files
-- `<!-- CAST_DB_TABLE_COUNT -->` — Distinct tables in cast.db (36 in v8)
-- `<!-- CAST_COMMAND_COUNT -->` — Top-level commands (20 in v8)
-- `<!-- CAST_SKILL_COUNT -->` — Callable skills (18 in v8)
-- `<!-- CAST_PACKAGE_COUNT -->` — Homebrew-installable packages (13 in v8)
+- `<!-- CAST_DB_TABLE_COUNT -->` — Distinct tables in cast.db (39 in v8+)
+- `<!-- CAST_COMMAND_COUNT -->` — Top-level commands (21 in v8+)
+- `<!-- CAST_SKILL_COUNT -->` — Callable skills (17 in v8+)
+- `<!-- CAST_PACKAGE_COUNT -->` — Homebrew-installable packages (9 in v8+)
 
-Per-project version tokens (resolved from each sibling repo, not `cast-stats.json`):
+Per-project versions (no longer auto-refreshed in `README.md`):
 
-- `<!-- VERSION:cast-desktop -->` — from `package.json`
-- `<!-- VERSION:claude-code-dashboard -->` — from `package.json`
-- `<!-- VERSION:attest -->` — from `attest/__init__.py` `__version__`
-- `<!-- VERSION:looptrip -->` — from `pyproject.toml`
-- `<!-- VERSION:misfire -->` — from `pyproject.toml` (added when misfire ships; harmless if absent)
+The `CAST_VERSION` and `VERSION:*` sentinels have been removed from `README.md` along with the "Latest" version column from "Projects at a glance". Per-project versions now appear only via live release badges in "The CAST ecosystem" table and PyPI badges in the guardrail deep-dives. The CAST version appears in the dynamic top-of-README badge and the auto-generated SVG card. `refresh-stats.sh` still resolves these values harmlessly — it only rewrites tokens that exist in the file.
 
 Format: `<!-- TOKEN_NAME -->value<!-- /TOKEN_NAME -->`. Sentinels for repos not currently in `README.md` are simply skipped — `refresh-stats.sh` only rewrites tokens that exist in the file.
 
-**Version placement (sparse):** each project's version appears **once** — in the *Projects at a glance* table (column headed *Latest*). The collapsible detail-section headers intentionally omit it; do not re-add `VERSION:*` / `CAST_VERSION` tokens there. Live badges (top-of-README dynamic badges, ecosystem release badges, PyPI badges) are the exception — they read upstream directly and don't drift.
+**Version display:** The "Latest" version column has been removed from "Projects at a glance" to reduce manual maintenance burden. Per-project versions now appear only via live release badges in the "The CAST ecosystem" section tables and PyPI badges in the guardrail deep-dives (looptrip, misfire). The CAST framework version appears in the dynamic top-of-README badge and the auto-generated SVG card — no sentinel tokens.
 
 **Deprecated (v8):** `CAST_TEST_FILE_COUNT` — no longer in canonical stats; dropped from README.
 
-**Note:** per-project *test counts* (e.g. attest 302, looptrip 491) are NOT auto-refreshed — they are hand-verified at edit time. Versions auto-refresh; test counts do not.
+**Note:** per-project *test counts* (e.g. attest 302, looptrip 491) have been removed from the README to eliminate manual-update burden. Only live PyPI badges (looptrip, misfire) remain in the guardrail deep-dives.
 
 ## Bug Artifact: Tilde Directory
 

@@ -16,7 +16,7 @@ By day I architect and maintain production EdTech at META Solutions — 5 apps s
 
 ## What I work on
 
-Multi-agent systems fail in predictable ways: routing is opaque, memory bleeds across agents, policy is aspirational, and observability stops at the tool call. I build **[CAST](https://github.com/ek33450505/claude-agent-team)** to close those gaps — and a set of standalone, zero-LLM guardrails that fell out of building it. More at [castframework.dev](https://castframework.dev).
+Multi-agent systems fail in predictable ways: routing is opaque, memory bleeds across agents, policy is aspirational, and observability stops at the tool call. I build **[CAST](https://github.com/ek33450505/claude-agent-team)** to close those gaps — a local-first control plane for Claude Code — and a family of standalone, zero-LLM guardrails that fell out of building it. More at [castframework.dev](https://castframework.dev).
 
 <p align="center">
   <picture>
@@ -25,16 +25,18 @@ Multi-agent systems fail in predictable ways: routing is opaque, memory bleeds a
   </picture>
 </p>
 
+One control plane. Two observability surfaces. A family of deterministic, zero-LLM guardrails — all local-first, all recorded to a single SQLite execution log. Nothing leaves your machine, and nothing calls a model to grade itself.
+
 ## Projects at a glance
 
-| Project | What it does | Stack | Latest |
-|---|---|---|---|
-| **[CAST](https://github.com/ek33450505/claude-agent-team)** ⭐ | Local-first multi-agent control plane for Claude Code | Bash · SQLite | v<!-- CAST_VERSION -->9.1.0<!-- /CAST_VERSION --> |
-| **[claude-code-dashboard](https://github.com/ek33450505/claude-code-dashboard)** ✨ | Web observability UI — 21+ views, live SSE streaming | React · Express | v<!-- VERSION:claude-code-dashboard -->2.6.0<!-- /VERSION:claude-code-dashboard --> |
-| **[cast-desktop](https://github.com/ek33450505/cast-desktop)** | Native macOS observability app + embedded terminal | Tauri 2 · Rust | v<!-- VERSION:cast-desktop -->1.2.12<!-- /VERSION:cast-desktop --> |
-| **[attest](https://github.com/ek33450505/attest)** | Zero-LLM gate: verifies a subagent's `DONE` vs the git delta | Python | v<!-- VERSION:attest -->0.3.0<!-- /VERSION:attest --> |
-| **[looptrip](https://github.com/ek33450505/looptrip)** | Zero-LLM detector for multi-agent loop pathologies | Python · PyPI | v<!-- VERSION:looptrip -->0.1.2<!-- /VERSION:looptrip --> |
-| **[misfire](https://github.com/ek33450505/misfire)** | Turns the rules your agents ignore into enforcement hooks | Python | v<!-- VERSION:misfire -->0.2.0<!-- /VERSION:misfire --> |
+| Project | What it does | Stack |
+|---|---|---|
+| **[CAST](https://github.com/ek33450505/claude-agent-team)** ⭐ | Local-first multi-agent control plane for Claude Code | Bash · SQLite |
+| **[claude-code-dashboard](https://github.com/ek33450505/claude-code-dashboard)** ✨ | Web observability UI — 21+ views, live SSE streaming | React · Express |
+| **[cast-desktop](https://github.com/ek33450505/cast-desktop)** | Native macOS observability app + embedded terminal | Tauri 2 · Rust |
+| **[attest](https://github.com/ek33450505/attest)** | Zero-LLM gate: verifies a subagent's `DONE` vs the git delta | Python |
+| **[looptrip](https://github.com/ek33450505/looptrip)** | Zero-LLM detector for multi-agent loop pathologies | Python · PyPI |
+| **[misfire](https://github.com/ek33450505/misfire)** | Turns the rules your agents ignore into enforcement hooks | Python |
 
 <sub>Deep-dives below — click any project to expand.</sub>
 
@@ -42,7 +44,7 @@ Multi-agent systems fail in predictable ways: routing is opaque, memory bleeds a
 
 ## CAST
 
-[`claude-agent-team`](https://github.com/ek33450505/claude-agent-team) · Bash · MIT · <!-- CAST_AGENT_COUNT -->23<!-- /CAST_AGENT_COUNT --> agents · <!-- CAST_TEST_COUNT -->2113<!-- /CAST_TEST_COUNT --> tests · <!-- CAST_DB_TABLE_COUNT -->39<!-- /CAST_DB_TABLE_COUNT --> tables · <!-- CAST_COMMAND_COUNT -->21<!-- /CAST_COMMAND_COUNT --> commands · <!-- CAST_SKILL_COUNT -->17<!-- /CAST_SKILL_COUNT --> skills · <!-- CAST_PACKAGE_COUNT -->9<!-- /CAST_PACKAGE_COUNT --> packages
+[`claude-agent-team`](https://github.com/ek33450505/claude-agent-team) · Bash · MIT · <!-- CAST_AGENT_COUNT -->23<!-- /CAST_AGENT_COUNT --> agents · <!-- CAST_TEST_COUNT -->2115<!-- /CAST_TEST_COUNT --> tests · <!-- CAST_DB_TABLE_COUNT -->39<!-- /CAST_DB_TABLE_COUNT --> tables · <!-- CAST_COMMAND_COUNT -->21<!-- /CAST_COMMAND_COUNT --> commands · <!-- CAST_SKILL_COUNT -->17<!-- /CAST_SKILL_COUNT --> skills · <!-- CAST_PACKAGE_COUNT -->9<!-- /CAST_PACKAGE_COUNT --> packages
 
 A local-first control plane for Claude Code. Multi-agent systems need observability, persistence, and unforgeable policy — CAST ships all three by construction, hung off Claude Code's own lifecycle hooks and recorded in a SQLite database that two surfaces read from.
 
@@ -118,7 +120,7 @@ Three standalone, deterministic, **zero-LLM** tools for Claude Code. None calls 
 
 <br>
 
-[`attest`](https://github.com/ek33450505/attest) · Python 3 (stdlib-only) · MIT · 302 tests
+[`attest`](https://github.com/ek33450505/attest) · Python 3 (stdlib-only) · MIT
 
 > **"DONE" is a claim, not proof. Grade the act, not the output.**
 
@@ -136,7 +138,7 @@ A subagent reports `Status: DONE` after a `Write` that returned success but neve
 
 <br>
 
-[`looptrip`](https://github.com/ek33450505/looptrip) · Python 3 · Apache-2.0 · 491 tests · [![PyPI](https://img.shields.io/pypi/v/looptrip?style=flat-square&label=pypi)](https://pypi.org/project/looptrip/)
+[`looptrip`](https://github.com/ek33450505/looptrip) · Python 3 · Apache-2.0 · [![PyPI](https://img.shields.io/pypi/v/looptrip?style=flat-square&label=pypi)](https://pypi.org/project/looptrip/)
 
 > **Catch the loop at iteration 2 — not on the invoice.**
 
@@ -154,7 +156,7 @@ pip install looptrip
 
 <br>
 
-[`misfire`](https://github.com/ek33450505/misfire) · Python 3 (stdlib-only) · Apache-2.0 · 430 + 5 BATS tests · [![PyPI](https://img.shields.io/pypi/v/misfire?style=flat-square&label=pypi)](https://pypi.org/project/misfire/)
+[`misfire`](https://github.com/ek33450505/misfire) · Python 3 (stdlib-only) · Apache-2.0 · [![PyPI](https://img.shields.io/pypi/v/misfire?style=flat-square&label=pypi)](https://pypi.org/project/misfire/)
 
 > **Prose rules are hopes. misfire ranks the ones your agents ignore — and converts only those to hooks.**
 
@@ -169,10 +171,12 @@ pip install misfire
 
 ---
 
-## The CAST Ecosystem
+## The CAST ecosystem
+
+Beyond the flagship, CAST has spun off a constellation of small, single-purpose tools — a read-only MCP server over the execution record, signed hash-chained session receipts, telemetry-driven dispatch prediction, persistent agent memory, a standalone install health check, a clock, and a cross-session journaling layer. Each ships independently; each installs via Homebrew.
 
 <details>
-<summary><!-- CAST_PACKAGE_COUNT -->9<!-- /CAST_PACKAGE_COUNT --> Homebrew-installable packages</summary>
+<summary><!-- CAST_PACKAGE_COUNT -->9<!-- /CAST_PACKAGE_COUNT --> Homebrew-installable packages — the full table</summary>
 
 <!-- Locked ecosystem block, synced by hand from claude-agent-team/docs/ecosystem.md — do not edit out of step with the flagship. -->
 
