@@ -211,6 +211,14 @@ Beyond the flagship, CAST has spun off a constellation of small, single-purpose 
 
 ---
 
+## Beyond the agent stack
+
+Not everything I build is agent infrastructure. **[Compute Atlas](https://www.compute-atlas.com)** is an open, mapped census of the AI datacenter buildout across North America — **230+ facilities across 48 states**, each scored across power draw, water use, and community impact from primary sources. An interactive MapLibre map, a sortable data table, per-facility dossiers, and the entire dataset published as open data anyone can download and cite.
+
+[`compute-atlas`](https://github.com/ek33450505/compute-atlas) · Next.js 16 · React 19 · TypeScript · MapLibre · dual-licensed MIT (code) + CC BY 4.0 (data) · live at **[compute-atlas.com](https://www.compute-atlas.com)**
+
+---
+
 ## Stack
 
 Bash · Python · TypeScript · React 19 · Express 5 · SQLite · BATS · Vitest · Tauri 2 · GitHub Actions · Homebrew. macOS first, Linux supported. Anthropic API + Claude Code Agent SDK.
