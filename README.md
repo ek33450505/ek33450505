@@ -1,6 +1,6 @@
 # Edward Kubiak
 
-> **Agent infrastructure engineer** — I build the layer between you and the agent loop.
+> **Open-source developer** — I build developer tools (agent infrastructure, guardrails) and open data platforms.
 
 [![CAST](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fek33450505%2Fclaude-agent-team%2Fmain%2Fcast-stats.json&query=%24.version&label=CAST&style=flat-square)](https://github.com/ek33450505/claude-agent-team)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
@@ -8,15 +8,15 @@
 
 **Columbus, Ohio** · [edwardkubiak.com](https://edwardkubiak.com) · [LinkedIn](https://linkedin.com/in/edward-kubiak/) · [edward.kubiak.dev@gmail.com](mailto:edward.kubiak.dev@gmail.com)
 
-By day I architect and maintain production EdTech at META Solutions — 5 apps serving 4,200+ users across 900+ Ohio school districts. Nights and weekends I build agent infrastructure for Claude Code.
+By day I architect and maintain production EdTech at META Solutions — 5 apps serving 4,200+ users across 900+ Ohio school districts. Nights and weekends I build open-source infrastructure and data projects.
 
-**Focus: agent infrastructure, developer tools, and AI platform engineering.**
+**Focus: multi-agent systems, developer tools, and open-source infrastructure.**
 
 ---
 
 ## What I work on
 
-Multi-agent systems fail in predictable ways: routing is opaque, memory bleeds across agents, policy is aspirational, and observability stops at the tool call. I build **[CAST](https://github.com/ek33450505/claude-agent-team)** to close those gaps — a local-first control plane for Claude Code — and a family of standalone, zero-LLM guardrails that fell out of building it. More at [castframework.dev](https://castframework.dev).
+Multi-agent systems fail in predictable ways: routing is opaque, memory bleeds across agents, policy is aspirational, and observability stops at the tool call. I build **[CAST](https://github.com/ek33450505/claude-agent-team)** to close those gaps — a local-first control plane for Claude Code — and a family of standalone, zero-LLM guardrails that fell out of building it. I also build **[Compute Atlas](https://www.compute-atlas.com)**, an open-source census of AI datacenters with provenance-first public data. More at [castframework.dev](https://castframework.dev).
 
 <p align="center">
   <picture>
@@ -213,7 +213,9 @@ Beyond the flagship, CAST has spun off a constellation of small, single-purpose 
 
 ## Beyond the agent stack
 
-Not everything I build is agent infrastructure. **[Compute Atlas](https://www.compute-atlas.com)** is an open, mapped census of the AI datacenter buildout across North America — **230+ facilities across 48 states**, each scored across power draw, water use, and community impact from primary sources. An interactive MapLibre map, a sortable data table, per-facility dossiers, and the entire dataset published as open data anyone can download and cite.
+Not everything I build is agent infrastructure. **[Compute Atlas](https://www.compute-atlas.com)** is an open, provenance-first census of AI datacenters across the United States — each facility cites ≥1 public source (permit filings, utility interconnection queues, company announcements, subsidy disclosures) with confidence levels (`confirmed`/`reported`/`rumored`). Surfaces: an interactive MapLibre map, sortable data table, per-facility dossiers, civic-footprint tracking (energy, water, subsidies, jobs, community impact), and the entire dataset published as open data anyone can download and cite.
+
+[![facilities](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fek33450505%2Fcompute-atlas%2Fmain%2Fdata%2Ffacilities.json&query=%24.length&label=facilities&style=flat-square)](https://www.compute-atlas.com/stats)
 
 [`compute-atlas`](https://github.com/ek33450505/compute-atlas) · Next.js 16 · React 19 · TypeScript · MapLibre · dual-licensed MIT (code) + CC BY 4.0 (data) · live at **[compute-atlas.com](https://www.compute-atlas.com)**
 
