@@ -18,12 +18,12 @@ By day I architect and maintain production EdTech at META Solutions — 5 apps s
 
 Multi-agent systems fail in predictable ways: routing is opaque, memory bleeds across agents, policy is aspirational, and observability stops at the tool call. I build **[CAST](https://github.com/ek33450505/claude-agent-team)** to close those gaps — a local-first control plane for Claude Code — and a family of standalone, zero-LLM guardrails that fell out of building it. I also build **[Compute Atlas](https://www.compute-atlas.com)**, an open-source census of AI datacenters with provenance-first public data. More at [castframework.dev](https://castframework.dev).
 
-<p align="center">
+<!-- <p align="center">
   <picture>
     <source media="(prefers-color-scheme: light)" srcset="assets/ecosystem-card-light.svg" />
     <img src="assets/ecosystem-card.svg" width="760" alt="CAST ecosystem metrics card — version, agents, tests, db tables, commands, skills, packages (exact counts in the CAST section below)" />
   </picture>
-</p>
+</p> -->
 
 One control plane. Two observability surfaces. A family of deterministic, zero-LLM guardrails — all local-first, all recorded to a single SQLite execution log. Nothing leaves your machine, and nothing calls a model to grade itself.
 
