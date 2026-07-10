@@ -2,10 +2,6 @@
 
 > **Open-source developer** — I build developer tools (agent infrastructure, guardrails) and open data platforms.
 
-[![CAST](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fek33450505%2Fclaude-agent-team%2Fmain%2Fcast-stats.json&query=%24.version&label=CAST&style=flat-square)](https://github.com/ek33450505/claude-agent-team)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
-[![Tests](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fek33450505%2Fclaude-agent-team%2Fmain%2Fcast-stats.json&query=%24.tests&label=tests&style=flat-square)](https://github.com/ek33450505/claude-agent-team/tree/main/tests)
-
 **Columbus, Ohio** · [edwardkubiak.com](https://edwardkubiak.com) · [LinkedIn](https://linkedin.com/in/edward-kubiak/) · [edward.kubiak.dev@gmail.com](mailto:edward.kubiak.dev@gmail.com)
 
 By day I architect and maintain production EdTech at META Solutions — 5 apps serving 4,200+ users across 900+ Ohio school districts. Nights and weekends I build open-source infrastructure and data projects.
@@ -44,7 +40,9 @@ One control plane. Two observability surfaces. A family of deterministic, zero-L
 
 ## CAST
 
-[`claude-agent-team`](https://github.com/ek33450505/claude-agent-team) · Bash · MIT · <!-- CAST_AGENT_COUNT -->23<!-- /CAST_AGENT_COUNT --> agents · <!-- CAST_TEST_COUNT -->2247<!-- /CAST_TEST_COUNT --> tests · <!-- CAST_DB_TABLE_COUNT -->39<!-- /CAST_DB_TABLE_COUNT --> tables · <!-- CAST_COMMAND_COUNT -->21<!-- /CAST_COMMAND_COUNT --> commands · <!-- CAST_SKILL_COUNT -->17<!-- /CAST_SKILL_COUNT --> skills · <!-- CAST_PACKAGE_COUNT -->9<!-- /CAST_PACKAGE_COUNT --> packages
+[![CAST](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fek33450505%2Fclaude-agent-team%2Fmain%2Fcast-stats.json&query=%24.version&label=CAST&style=flat-square)](https://github.com/ek33450505/claude-agent-team)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
+[![Tests](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fek33450505%2Fclaude-agent-team%2Fmain%2Fcast-stats.json&query=%24.tests&label=tests&style=flat-square)](https://github.com/ek33450505/claude-agent-team/tree/main/tests)
 
 A local-first control plane for Claude Code. Multi-agent systems need observability, persistence, and unforgeable policy — CAST ships all three by construction, hung off Claude Code's own lifecycle hooks and recorded in a SQLite database that two surfaces read from.
 
