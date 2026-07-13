@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="760" height="190" viewBox="0 0 760 190">
   <rect width="760" height="190" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1"/>
-  <text x="32" y="46" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="16" font-weight="600" fill="#1f2328">CAST · v9.2.0</text>
+  <text x="32" y="46" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="16" font-weight="600" fill="#1f2328">CAST · v9.5.3</text>
   <text x="32" y="68" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#59636e">local-first control plane for Claude Code</text>
   <line x1="32" y1="85" x2="728" y2="85" stroke="#d8dee4" stroke-width="1"/>
-  <text x="90.0" y="130" text-anchor="middle" dominant-baseline="auto" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="26" font-weight="600" fill="#0969da">23</text>
+  <text x="90.0" y="130" text-anchor="middle" dominant-baseline="auto" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="26" font-weight="600" fill="#0969da">27</text>
   <text x="90.0" y="152" text-anchor="middle" dominant-baseline="auto" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#59636e" letter-spacing="0.5">agents</text>
-  <text x="206.0" y="130" text-anchor="middle" dominant-baseline="auto" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="26" font-weight="600" fill="#0969da">2,247</text>
+  <text x="206.0" y="130" text-anchor="middle" dominant-baseline="auto" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="26" font-weight="600" fill="#0969da">2,353</text>
   <text x="206.0" y="152" text-anchor="middle" dominant-baseline="auto" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#59636e" letter-spacing="0.5">tests</text>
   <text x="322.0" y="130" text-anchor="middle" dominant-baseline="auto" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="26" font-weight="600" fill="#0969da">39</text>
   <text x="322.0" y="152" text-anchor="middle" dominant-baseline="auto" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#59636e" letter-spacing="0.5">db tables</text>
