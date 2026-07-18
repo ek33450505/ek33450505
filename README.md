@@ -2,7 +2,7 @@
 
 > **Open-source developer** — I build developer tools (agent infrastructure, guardrails) and open data platforms.
 
-**Columbus, Ohio** · [edwardkubiak.com](https://edwardkubiak.com) · [LinkedIn](https://linkedin.com/in/edward-kubiak/) · [edward.kubiak.dev@gmail.com](mailto:edward.kubiak.dev@gmail.com)
+**Columbus, Ohio** · [edwardkubiak.com](https://edwardkubiak.com)
 
 By day I architect and maintain production EdTech at META Solutions — 5 apps serving 4,200+ users across 900+ Ohio school districts. Nights and weekends I build open-source infrastructure and data projects.
 
@@ -226,4 +226,4 @@ Bash · Python · TypeScript · React 19 · Express 5 · SQLite · BATS · Vites
 
 ---
 
-Building in public · **[edward.kubiak.dev@gmail.com](mailto:edward.kubiak.dev@gmail.com)** · [edwardkubiak.com](https://edwardkubiak.com) · [LinkedIn](https://linkedin.com/in/edward-kubiak/)
+Building in public · [edwardkubiak.com](https://edwardkubiak.com)
