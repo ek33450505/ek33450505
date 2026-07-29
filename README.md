@@ -4,7 +4,7 @@
 
 **Columbus, Ohio** · [edwardkubiak.com](https://edwardkubiak.com)
 
-By day I architect and maintain production EdTech at META Solutions — 5 apps serving 4,200+ users across 900+ Ohio school districts. Nights and weekends I build open-source infrastructure and data projects.
+By day I architect and maintain production EdTech at META Solutions for Ohio school districts. Nights and weekends I build open-source infrastructure and data projects.
 
 **Focus: multi-agent systems, developer tools, and open-source infrastructure.**
 
