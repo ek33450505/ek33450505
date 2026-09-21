@@ -67,7 +67,7 @@ flowchart LR
 - **Hard-blocking policy gates.** Force-pushes, raw `git commit`, destructive shell ops — refused at the hook seam, not left to agent discipline.
 - **Every override is on the record.** Each escape hatch writes an `ack_events` row with the reason, so an absent row means the hatch was never used — not that the recorder failed.
 
-<sub><!-- CAST_AGENT_COUNT -->27<!-- /CAST_AGENT_COUNT --> specialist agents · <!-- CAST_TEST_COUNT -->3339<!-- /CAST_TEST_COUNT --> BATS tests · <!-- CAST_DB_TABLE_COUNT -->42<!-- /CAST_DB_TABLE_COUNT --> tables in <code>cast.db</code> · <!-- CAST_COMMAND_COUNT -->21<!-- /CAST_COMMAND_COUNT --> commands · <!-- CAST_SKILL_COUNT -->18<!-- /CAST_SKILL_COUNT --> skills · <!-- CAST_PACKAGE_COUNT -->9<!-- /CAST_PACKAGE_COUNT --> Homebrew packages. Counts auto-refresh from the flagship's canonical stats — never hand-edited.</sub>
+<sub><!-- CAST_AGENT_COUNT -->27<!-- /CAST_AGENT_COUNT --> specialist agents · <!-- CAST_TEST_COUNT -->3362<!-- /CAST_TEST_COUNT --> BATS tests · <!-- CAST_DB_TABLE_COUNT -->42<!-- /CAST_DB_TABLE_COUNT --> tables in <code>cast.db</code> · <!-- CAST_COMMAND_COUNT -->21<!-- /CAST_COMMAND_COUNT --> commands · <!-- CAST_SKILL_COUNT -->18<!-- /CAST_SKILL_COUNT --> skills · <!-- CAST_PACKAGE_COUNT -->9<!-- /CAST_PACKAGE_COUNT --> Homebrew packages. Counts auto-refresh from the flagship's canonical stats — never hand-edited.</sub>
 
 <details>
 <summary><b>v10.0.0 — "Make the Gates Tell the Truth"</b>: what a release looks like when you audit your own guardrails</summary>
