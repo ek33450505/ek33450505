@@ -12,7 +12,7 @@ By day I architect and maintain production EdTech at META Solutions for Ohio sch
 
 ## What I work on
 
-Multi-agent systems fail in predictable ways: routing is opaque, memory bleeds across agents, policy is aspirational, and observability stops at the tool call. I build **[CAST](https://github.com/ek33450505/claude-agent-team)** to close those gaps — a local-first control plane for Claude Code — and a family of standalone, zero-LLM guardrails that fell out of building it. I also build **[Compute Atlas](https://www.compute-atlas.com)**, an open, source-cited census of U.S. grid-scale compute infrastructure. More at [castframework.dev](https://castframework.dev).
+Multi-agent systems fail in predictable ways: routing is opaque, memory bleeds across agents, policy is aspirational, and observability stops at the tool call. I build **[CAST](https://github.com/ek33450505/claude-agent-team)** to close those gaps — a local-first control plane for Claude Code — and a family of standalone, zero-LLM guardrails that fell out of building it. I also build **[Compute Atlas](https://www.compute-atlas.com)**, an open, source-cited census of U.S. grid-scale compute infrastructure.
 
 <p align="center">
   <picture>
