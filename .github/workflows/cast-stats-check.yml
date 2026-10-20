@@ -39,3 +39,52 @@ jobs:
 
       - name: Fail if committed SVGs are stale
         run: git diff --exit-code assets/ecosystem-card.svg assets/ecosystem-card-light.svg
+
+  package-count-check:
+    # The flagship's cast-stats-drift-check skips CAST_PACKAGE_COUNT (its script
+    # treats `packages` as JSON-only), so this job gates that sentinel here.
+    # Fails closed: a missing canonical field, no sentinel, or a malformed
+    # sentinel is an error, never a silent pass.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check out claude-agent-team (canonical stats)
+        uses: actions/checkout@v4
+        with:
+          repository: ek33450505/claude-agent-team
+          path: _siblings/claude-agent-team
+
+      - name: Fail if CAST_PACKAGE_COUNT drifts from canonical packages
+        env:
+          README: README.md
+          STATS: _siblings/claude-agent-team/cast-stats.json
+        run: |
+          want="$(python3 -c 'import json, sys; v = json.load(open(sys.argv[1])).get("packages"); print(v if isinstance(v, int) and not isinstance(v, bool) else "")' "$STATS")" || {
+            echo "::error::cannot read or parse $STATS"
+            exit 1
+          }
+          if ! [[ "$want" =~ ^[0-9]+$ ]]; then
+            echo "::error::canonical cast-stats.json has no integer 'packages' field"
+            exit 1
+          fi
+          values="$(grep -o '<!-- CAST_PACKAGE_COUNT -->[^<]*<!-- /CAST_PACKAGE_COUNT -->' "$README" \
+            | sed -e 's/^<!-- CAST_PACKAGE_COUNT -->//' -e 's/<!-- \/CAST_PACKAGE_COUNT -->$//' || true)"
+          if [[ -z "$values" ]]; then
+            echo "::error::no well-formed CAST_PACKAGE_COUNT sentinel with a value found in $README"
+            exit 1
+          fi
+          n=0
+          while IFS= read -r v; do
+            n=$((n + 1))
+            if [[ "$v" != "$want" ]]; then
+              echo "::error::CAST_PACKAGE_COUNT #$n is '$v', canonical packages is $want"
+              exit 1
+            fi
+          done <<< "$values"
+          opens="$(grep -o '<!-- CAST_PACKAGE_COUNT -->' "$README" | wc -l | tr -d ' ')"
+          if [[ "$opens" != "$n" ]]; then
+            echo "::error::$opens CAST_PACKAGE_COUNT opening tokens but $n well-formed sentinels"
+            exit 1
+          fi
+          echo "PASS  CAST_PACKAGE_COUNT x$n -> packages: $want"

@@ -39,9 +39,10 @@ The README tells the same story as the portfolio (Ed, 2026-10-20). The portfolio
 
 ## CI Gates
 
-Two jobs in `.github/workflows/cast-stats-check.yml` gate profile freshness on every PR and push to `main`:
+Three jobs in `.github/workflows/cast-stats-check.yml` gate profile freshness on every PR and push to `main`:
 
-- **`cast-stats-drift-check`** — compares the README `CAST_*` sentinels against canonical `cast-stats.json` (via the reusable `claude-agent-team` action).
+- **`cast-stats-drift-check`** — compares the README `CAST_*` sentinels against canonical `cast-stats.json` (via the reusable `claude-agent-team` action). It skips `CAST_PACKAGE_COUNT`, because the flagship script treats `packages` as JSON-only.
+- **`package-count-check`** — covers that gap: every `CAST_PACKAGE_COUNT` sentinel must equal canonical `packages`. Fails closed on a missing field, no sentinel, or an unclosed sentinel.
 - **`svg-drift-check`** — checks out canonical stats, regenerates the SVGs, and `git diff --exit-code`s them, so a hand-edited or stale hero card cannot merge. Relies on `gen-ecosystem-card.py` being byte-deterministic.
 
 ## Sentinels
