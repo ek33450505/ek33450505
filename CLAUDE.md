@@ -39,21 +39,24 @@ The README tells the same story as the portfolio (Ed, 2026-10-20). The portfolio
 
 ## CI Gates
 
-Two jobs in `.github/workflows/cast-stats-check.yml` gate profile freshness on every PR and push to `main`:
+Three jobs in `.github/workflows/cast-stats-check.yml` gate profile freshness on every PR and push to `main`:
 
-- **`cast-stats-drift-check`** — compares the README `CAST_*` sentinels against canonical `cast-stats.json` (via the reusable `claude-agent-team` action).
+- **`cast-stats-drift-check`** — compares the README `CAST_*` sentinels against canonical `cast-stats.json` (via the reusable `claude-agent-team` action). It skips `CAST_PACKAGE_COUNT`, because the flagship script treats `packages` as JSON-only.
+- **`package-count-check`** — covers that gap: every `CAST_PACKAGE_COUNT` sentinel must equal canonical `packages`. Fails closed on a missing field, no sentinel, or an unclosed sentinel.
 - **`svg-drift-check`** — checks out canonical stats, regenerates the SVGs, and `git diff --exit-code`s them, so a hand-edited or stale hero card cannot merge. Relies on `gen-ecosystem-card.py` being byte-deterministic.
 
 ## Sentinels
 
 The following CAST framework count tokens auto-update in `README.md` from `~/Projects/personal/claude-agent-team/cast-stats.json`:
 
-- `<!-- CAST_AGENT_COUNT -->` — Total agents (23 in v8+)
+- `<!-- CAST_AGENT_COUNT -->` — Total agents
 - `<!-- CAST_TEST_COUNT -->` — Total BATS tests across all files
-- `<!-- CAST_DB_TABLE_COUNT -->` — Distinct tables in cast.db (39 in v8+)
-- `<!-- CAST_COMMAND_COUNT -->` — Top-level commands (21 in v8+)
-- `<!-- CAST_SKILL_COUNT -->` — Callable skills (17 in v8+)
-- `<!-- CAST_PACKAGE_COUNT -->` — Homebrew-installable packages (9 in v8+)
+- `<!-- CAST_DB_TABLE_COUNT -->` — Distinct tables in cast.db
+- `<!-- CAST_COMMAND_COUNT -->` — Top-level commands
+- `<!-- CAST_SKILL_COUNT -->` — Callable skills
+- `<!-- CAST_PACKAGE_COUNT -->` — Homebrew-installable packages
+
+Current values live in canonical `cast-stats.json` and the README sentinels. Never copy them here: hand-written counts in this file went stale (agents, tables and skills had all moved on from their v8 values by v10.6.1).
 
 Per-project versions (no longer auto-refreshed in `README.md`):
 
