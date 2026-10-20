@@ -292,7 +292,7 @@ Bash · Python · TypeScript · React 19 · Next.js 16 · Express 5 · SQLite ·
 
 ## Support
 
-If my open-source work is useful to you, you can back it through [GitHub Sponsors](https://github.com/sponsors/ek33450505) (monthly sponsorship) or [Ko-fi](https://ko-fi.com/L2T725R7FV) (a one-off tip, no account needed).
+If my open-source work is useful to you, you can back it through [GitHub Sponsors](https://github.com/sponsors/ek33450505) or [Ko-fi](https://ko-fi.com/L2T725R7FV) (a one-off tip, no account needed).
 
 ---
 
