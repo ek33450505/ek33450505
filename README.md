@@ -21,6 +21,7 @@ Full-stack engineer. I build data products, and the agent architecture that ship
 | **[attest](https://github.com/ek33450505/attest)** | Zero-LLM gate: verifies a subagent's `DONE` vs the git delta | Python |
 | **[looptrip](https://github.com/ek33450505/looptrip)** | Zero-LLM detector for multi-agent loop pathologies | Python · PyPI |
 | **[misfire](https://github.com/ek33450505/misfire)** | Turns the rules your agents ignore into enforcement hooks | Python · PyPI |
+| **[tin-can](https://github.com/ek33450505/tin-can)** | Hands a long session to a fresh terminal tab through a handoff file | Bash · Claude Code plugin |
 
 <sub>Deep-dives below — click any project to expand.</sub>
 
@@ -186,7 +187,7 @@ brew tap ek33450505/cast && brew install --cask cast-desktop
 
 ## Guardrails & detectors
 
-Three standalone, deterministic, **zero-LLM** tools for Claude Code. None calls a model — so none adds tokens or can hallucinate its own verdict. They grade the *act* against ground truth on disk.
+Four standalone tools for Claude Code. The three guardrails are deterministic and **zero-LLM**. None calls a model — so none adds tokens or can hallucinate its own verdict. They grade the *act* against ground truth on disk. tin-can is the odd one out: a session-handoff launcher.
 
 <details>
 <summary><b>attest</b> — catches a subagent's false <code>DONE</code> against the real git delta</summary>
@@ -238,6 +239,24 @@ Most agent guardrails are written up front and hoped to hold. misfire works back
 ```bash
 pip install misfire
 # or: brew tap ek33450505/misfire && brew install misfire
+```
+
+</details>
+
+<details>
+<summary><b>tin-can</b> — hands a long session to a fresh terminal tab through a handoff file</summary>
+
+<br>
+
+[`tin-can`](https://github.com/ek33450505/tin-can) · Bash 3.2+ · MIT
+
+> **Hand an AI coding session off to a fresh session in a new terminal tab, without copy-paste.**
+
+When a long session fills its context, the agent writes a markdown handoff with a `KICKOFF` section; one command opens a new tab in cmux, tmux, Zellij, WezTerm or kitty (or prints the command for any other terminal), starts Claude Code or Codex there, and gives it a single prompt naming the file. tin-can never parses the handoff or puts its contents on a command line. An optional Claude Code plugin bundles the handoff skill with hooks that surface the launch command and ask for a handoff at wrap-up. Verified live in cmux with Claude Code; the other terminals and Codex are tested with stubs.
+
+```bash
+git clone https://github.com/ek33450505/tin-can
+cd tin-can && ./install.sh
 ```
 
 </details>
