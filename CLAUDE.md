@@ -11,7 +11,17 @@ The `scripts/refresh-stats.sh` bash script syncs dynamic counts from the CAST fr
 bash scripts/refresh-stats.sh
 ```
 
-Reads framework counts from `~/Projects/personal/claude-agent-team/cast-stats.json`, then walks **every** sibling repo under `~/Projects/personal/` to resolve each project's version (precedence: `VERSION` file → `package.json` → `pyproject.toml` → `<pkg>/__init__.py`), and updates the sentinel tokens in `README.md`. `scripts/gen-ecosystem-card.py` regenerates the hero card from the same `cast-stats.json` as **two** deterministic variants — `assets/ecosystem-card.svg` (dark, the default/fallback) and `assets/ecosystem-card-light.svg` (light) — which `README.md` renders through a `<picture>` element so GitHub serves the right one per viewer theme (deterministic — no timestamps, so identical input yields identical bytes).
+Reads framework counts from `~/Projects/personal/claude-agent-team/cast-stats.json`, then walks **every** sibling repo under `~/Projects/personal/` to resolve each project's version (precedence: `VERSION` file → `package.json` → `pyproject.toml` → `<pkg>/__init__.py`), and updates the sentinel tokens in `README.md`. `scripts/gen-ecosystem-card.py` regenerates the hero card from the same `cast-stats.json` as **two** deterministic variants — `assets/ecosystem-card.svg` (dark, the default/fallback) and `assets/ecosystem-card-light.svg` (light) — which `README.md` renders through a `<picture>` element so GitHub serves the right one per viewer theme (deterministic — no timestamps, so identical input yields identical bytes). Both palettes follow edwardkubiak.com's Systems Console tokens (graphite `#111214`, amber `#F2A93B`); the light variant darkens the amber to `#9A5B00` for ≥4.5:1 text contrast on white.
+
+## Profile story (mirrors edwardkubiak.com)
+
+The README tells the same story as the portfolio (Ed, 2026-10-20). The portfolio repo (`~/Projects/personal/Edward_Kubiak`) is the source of truth for wording: mirror it, never upgrade it.
+
+- **Order:** Compute Atlas leads (the live product); CAST is second (the development architecture).
+- **Tagline:** "Full Stack Software Engineer · Agent Systems & Developer Tooling" (`src/data/resume.js`).
+- **Compute Atlas numbers:** live shields.io badges fed from `compute-atlas.com/api/stats` only, never in prose. The API's `states` field counts states plus DC and territories, so its badge is labelled `jurisdictions`, never `states`. Cite the Zenodo **concept** DOI `10.5281/zenodo.22284476`, never a version DOI.
+- **Contact:** edwardkubiak.com, LinkedIn and GitHub. No public email and no location line.
+- **Sponsoring:** Ed's GitHub Sponsors profile defines monthly tiers only, so never advertise one-time tiers (GitHub's own One-time tab still accepts a custom amount). Ko-fi is the one-off tip. `.github/FUNDING.yml` adds the Sponsor button to this repo's page.
 
 ## Automated Weekly PR
 

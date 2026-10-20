@@ -1,34 +1,21 @@
 # Edward Kubiak
 
-> **Open-source developer** — I build developer tools (agent infrastructure, guardrails) and open data platforms.
+> **Full Stack Software Engineer · Agent Systems & Developer Tooling**
 
-**Columbus, Ohio** · [edwardkubiak.com](https://edwardkubiak.com)
+[edwardkubiak.com](https://edwardkubiak.com) · [LinkedIn](https://www.linkedin.com/in/edward-kubiak/)
 
-By day I architect and maintain production EdTech at META Solutions for Ohio school districts. Nights and weekends I build open-source infrastructure and data projects.
+Full-stack engineer. I build data products, and the agent architecture that ships them.
 
-**Focus: multi-agent systems, developer tools, and open-source infrastructure.**
+**[Compute Atlas](https://www.compute-atlas.com)** is a full-stack data product I designed and shipped solo, cited by Erin Brockovich's data center reporting map and by Power To The People. I build it with **[CAST](https://github.com/ek33450505/claude-agent-team)**, my Claude Code agent architecture, and ship production education software at META Solutions.
 
 ---
-
-## What I work on
-
-Multi-agent systems fail in predictable ways: routing is opaque, memory bleeds across agents, policy is aspirational, and observability stops at the tool call. I build **[CAST](https://github.com/ek33450505/claude-agent-team)** to close those gaps — a local-first control plane for Claude Code — and a family of standalone, zero-LLM guardrails that fell out of building it. I also build **[Compute Atlas](https://www.compute-atlas.com)**, an open, source-cited census of U.S. grid-scale compute infrastructure.
-
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: light)" srcset="assets/ecosystem-card-light.svg" />
-    <img src="assets/ecosystem-card.svg" width="760" alt="CAST ecosystem metrics card — version, agents, tests, db tables, commands, skills, packages (exact counts in the CAST section below)" />
-  </picture>
-</p>
-
-One control plane. Two observability surfaces. A family of deterministic, zero-LLM guardrails — all local-first, all recorded to a single SQLite execution log. Nothing leaves your machine, and nothing calls a model to grade itself.
 
 ## Projects at a glance
 
 | Project | What it does | Stack |
 |---|---|---|
-| **[CAST](https://github.com/ek33450505/claude-agent-team)** ⭐ | Local-first multi-agent control plane for Claude Code | Bash · Python · SQLite |
-| **[Compute Atlas](https://github.com/ek33450505/compute-atlas)** 🗺️ | Open, source-cited census of U.S. data centers, mining sites, and dedicated power | Next.js 16 · Postgres · MapLibre |
+| **[Compute Atlas](https://github.com/ek33450505/compute-atlas)** 🗺️ | Open, source-cited census of U.S. data centers, crypto-mining sites, and dedicated power | Next.js 16 · Postgres · MapLibre |
+| **[CAST](https://github.com/ek33450505/claude-agent-team)** ⭐ | Local-first multi-agent control plane for Claude Code: the agent architecture I build with | Bash · Python · SQLite |
 | **[claude-code-dashboard](https://github.com/ek33450505/claude-code-dashboard)** ✨ | Web observability UI — 21+ views, live SSE streaming | React 19 · Express 5 |
 | **[cast-desktop](https://github.com/ek33450505/cast-desktop)** | Native macOS observability app + embedded terminal | Tauri 2 · Rust |
 | **[attest](https://github.com/ek33450505/attest)** | Zero-LLM gate: verifies a subagent's `DONE` vs the git delta | Python |
@@ -39,15 +26,73 @@ One control plane. Two observability surfaces. A family of deterministic, zero-L
 
 ---
 
+## Compute Atlas
+
+`01 · Live product` · [`compute-atlas`](https://github.com/ek33450505/compute-atlas) · live at **[compute-atlas.com](https://www.compute-atlas.com)**
+
+[![facilities](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fwww.compute-atlas.com%2Fapi%2Fstats&query=%24.count&label=facilities&color=3F5B43&style=flat-square)](https://www.compute-atlas.com/stats)
+[![jurisdictions](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fwww.compute-atlas.com%2Fapi%2Fstats&query=%24.states&label=jurisdictions&color=3F5B43&style=flat-square)](https://www.compute-atlas.com/states)
+[![release](https://img.shields.io/github/v/release/ek33450505/compute-atlas?style=flat-square)](https://github.com/ek33450505/compute-atlas/releases)
+[![code: MIT](https://img.shields.io/badge/code-MIT-informational?style=flat-square)](https://github.com/ek33450505/compute-atlas/blob/main/LICENSE)
+[![data: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-informational?style=flat-square)](https://github.com/ek33450505/compute-atlas/blob/main/LICENSE-DATA)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22284476.svg)](https://doi.org/10.5281/zenodo.22284476)
+
+> **There is no national registry of grid-scale compute. This is an attempt at one — with a public source behind every record.**
+
+A full-stack data product I designed and shipped solo: an open, provenance-first census of U.S. grid-scale compute — hyperscale and AI/ML campuses, crypto-mining operations, and the **dedicated power generation** built or contracted to supply them — tracked from proposed and permitted through under construction and operational. Every record links at least one public source (permit filings, SEC filings, utility interconnection queues, company announcements, subsidy disclosures) with a label, a source kind, and a retrieval date. Intended audience: journalists, researchers, local officials, and residents.
+
+**Who builds on it.** The open dataset is cited by [Erin Brockovich's data center reporting map](https://brockovichdatacenter.com) and by [Power To The People](https://powertothepeopleproject.com). It is archived on Zenodo with a citable DOI: [10.5281/zenodo.22284476](https://doi.org/10.5281/zenodo.22284476).
+
+**The discipline is the product.**
+
+- **A source for every record**, or the record does not exist.
+- **Honest confidence** — every facility is marked `confirmed` / `reported` / `rumored`, and compute records carry a separate AI classification (`confirmed` / `likely` / `mixed_use`). Uncertainty is surfaced, not hidden.
+- **Numbers only when firm** — ranges, ceilings, and modeled projections go in a record's notes, never into a numeric field. Statutory *eligibility* for an incentive is never recorded as a confirmed award.
+- **Human approval is the core invariant.** A scheduled daily discovery run stages candidate facilities for review, and their source URLs are mechanically verified before staging — but nothing becomes a live facility without human approval.
+
+**What you can do with it**
+
+| Surface | |
+|---|---|
+| 🗺️ **Interactive map** | MapLibre, with water and geology overlays, siting-context datums, and a radius tool |
+| 📊 **Sortable table & dossiers** | Per-facility pages with full source lists and status history |
+| ⚡ **Power** | Dedicated generation tracked as a first-class facility type, with capacity roll-ups |
+| 🏛️ **Civic footprint** | Energy, water, subsidies, jobs, and community impact — public but scattered across county records and water-authority filings |
+| 🚫 **Opposition** | Defeated projects and local-opposition cancellations, tracked as a dimension |
+| 👥 **Stakeholders** | Named people with a documented stake in specific facilities |
+| 📚 **Learn** | Cited prose explainers, not just statistics |
+| 🔌 **Public API** | CORS-open, no auth, CDN-cached, `X-License: CC-BY-4.0` — `/api/facilities`, `/api/search`, `/api/stats`, `/api/schema` |
+| 📦 **Bulk data** | The entire dataset published as a CC BY 4.0 JSON snapshot anyone can download, fork, and cite |
+
+**Under the hood.** Next.js 16 (App Router, RSC, ISR) · React 19 · TypeScript + Zod (runtime-validated records with JSON Schema export) · Neon Postgres + Drizzle ORM as the authoritative store · MapLibre GL · Tailwind v4 + shadcn/ui · Vitest + Playwright in CI. `data/facilities.json` is a generated export, never hand-edited — every data wave runs DB-first through a dry-run-by-default sync that writes facility history and busts cache tags.
+
+**Built with CAST.** Compute Atlas is developed through [CAST](#cast), my Claude Code agent architecture: specialist agents, hook-driven dispatch, and review gates around the work.
+
+Dual-licensed: **MIT** for the code, **CC BY 4.0** for the data.
+
+---
+
 ## CAST
-[`claude-agent-team`](https://github.com/ek33450505/claude-agent-team)
+
+`02 · Development architecture` · [`claude-agent-team`](https://github.com/ek33450505/claude-agent-team) · [castframework.dev](https://castframework.dev)
 
 [![CAST](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fek33450505%2Fclaude-agent-team%2Fmain%2Fcast-stats.json&query=%24.version&label=CAST&style=flat-square)](https://github.com/ek33450505/claude-agent-team/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 [![Tests](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fek33450505%2Fclaude-agent-team%2Fmain%2Fcast-stats.json&query=%24.tests&label=tests&style=flat-square)](https://github.com/ek33450505/claude-agent-team/tree/main/tests)
 [![Agents](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fek33450505%2Fclaude-agent-team%2Fmain%2Fcast-stats.json&query=%24.agents&label=agents&style=flat-square)](https://github.com/ek33450505/claude-agent-team/tree/main/agents/core)
 
-A local-first control plane for Claude Code. Multi-agent systems need observability, persistence, and unforgeable policy — CAST ships all three by construction, hung off Claude Code's own lifecycle hooks and recorded in a SQLite database that two surfaces read from.
+The development architecture behind my projects, Compute Atlas included: a local-first, open-source multi-agent framework embedded into Claude Code at the hook layer. Specialist agents, hook-driven dispatch, and review gates — no routing tables, no cloud.
+
+Multi-agent systems fail in predictable ways: routing is opaque, memory bleeds across agents, policy is aspirational, and observability stops at the tool call. CAST closes those gaps, and a family of standalone, zero-LLM guardrails fell out of building it.
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: light)" srcset="assets/ecosystem-card-light.svg" />
+    <img src="assets/ecosystem-card.svg" width="760" alt="CAST ecosystem metrics card — version, agents, tests, db tables, commands, skills, packages (exact counts in the CAST section below)" />
+  </picture>
+</p>
+
+One control plane. Two observability surfaces. A family of deterministic, zero-LLM guardrails — all local-first, all recorded to a single SQLite execution log. Nothing leaves your machine, and nothing calls a model to grade itself.
 
 ```mermaid
 flowchart LR
@@ -239,51 +284,16 @@ Beyond the flagship, CAST has spun off a constellation of small, single-purpose 
 
 ---
 
-## Compute Atlas
-
-[`compute-atlas`](https://github.com/ek33450505/compute-atlas) · live at **[compute-atlas.com](https://www.compute-atlas.com)**
-
-[![facilities](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fwww.compute-atlas.com%2Fapi%2Fstats&query=%24.count&label=facilities&color=3F5B43&style=flat-square)](https://www.compute-atlas.com/stats)
-[![states](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fwww.compute-atlas.com%2Fapi%2Fstats&query=%24.states&label=states&color=3F5B43&style=flat-square)](https://www.compute-atlas.com/states)
-[![release](https://img.shields.io/github/v/release/ek33450505/compute-atlas?style=flat-square)](https://github.com/ek33450505/compute-atlas/releases)
-[![code: MIT](https://img.shields.io/badge/code-MIT-informational?style=flat-square)](https://github.com/ek33450505/compute-atlas/blob/main/LICENSE)
-[![data: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-informational?style=flat-square)](https://github.com/ek33450505/compute-atlas/blob/main/LICENSE-DATA)
-
-> **There is no national registry of data centers. This is an attempt at one — with a public source behind every record.**
-
-Compute Atlas is an open, provenance-first census of U.S. grid-scale compute infrastructure: hyperscale and AI/ML campuses, crypto-mining operations, and the **dedicated power generation** built or contracted to supply them — tracked from proposed and permitted through under construction and operational. Coverage spans all 50 states, and every record links at least one public source (permit filings, SEC filings, utility interconnection queues, company announcements, subsidy disclosures) with a label, a source kind, and a retrieval date. Intended audience: journalists, researchers, local officials, and residents.
-
-**The discipline is the product.**
-
-- **A source for every record**, or the record does not exist.
-- **Honest confidence** — every facility is marked `confirmed` / `reported` / `rumored`, and compute records carry a separate AI classification (`confirmed` / `likely` / `mixed_use`). Uncertainty is surfaced, not hidden.
-- **Numbers only when firm** — ranges, ceilings, and modeled projections go in a record's notes, never into a numeric field. Statutory *eligibility* for an incentive is never recorded as a confirmed award.
-- **Human approval is the core invariant.** A scheduled discovery pipeline proposes candidates and mechanically verifies each cited URL against the claim it supports (using a local model on the maintainer's machine, never in the deployed app) — but nothing becomes a live facility without a human review step.
-
-**What you can do with it**
-
-| Surface | |
-|---|---|
-| 🗺️ **Interactive map** | MapLibre, with water and geology overlays, siting-context datums, and a radius tool |
-| 📊 **Sortable table & dossiers** | Per-facility pages with full source lists and status history |
-| ⚡ **Power** | Dedicated generation tracked as a first-class facility type, with capacity roll-ups |
-| 🏛️ **Civic footprint** | Energy, water, subsidies, jobs, and community impact — public but scattered across county records and water-authority filings |
-| 🚫 **Opposition** | Defeated projects and local-opposition cancellations, tracked as a dimension |
-| 👥 **Stakeholders** | Named people with a documented stake in specific facilities |
-| 📚 **Learn** | Cited prose explainers, not just statistics |
-| 🔌 **Public API** | CORS-open, no auth, CDN-cached, `X-License: CC-BY-4.0` — `/api/facilities`, `/api/search`, `/api/stats`, `/api/schema` |
-| 📦 **Bulk data** | The entire dataset published as a CC BY 4.0 JSON snapshot anyone can download, fork, and cite |
-
-**Under the hood.** Next.js 16 (App Router, RSC, ISR) · React 19 · TypeScript + Zod (runtime-validated records with JSON Schema export) · Neon Postgres + Drizzle ORM as the authoritative store · MapLibre GL · Tailwind v4 + shadcn/ui · Vitest + Playwright in CI. `data/facilities.json` is a generated export, never hand-edited — every data wave runs DB-first through a dry-run-by-default sync that writes facility history and busts cache tags.
-
-Dual-licensed: **MIT** for the code, **CC BY 4.0** for the data.
-
----
-
 ## Stack
 
 Bash · Python · TypeScript · React 19 · Next.js 16 · Express 5 · SQLite · Postgres · BATS · Vitest · Playwright · Tauri 2 · GitHub Actions · Homebrew. macOS first, Linux supported. Anthropic API + Claude Code Agent SDK.
 
 ---
 
-Building in public · [edwardkubiak.com](https://edwardkubiak.com)
+## Support
+
+If my open-source work is useful to you, you can back it through [GitHub Sponsors](https://github.com/sponsors/ek33450505) (monthly sponsorship) or [Ko-fi](https://ko-fi.com/L2T725R7FV) (a one-off tip, no account needed).
+
+---
+
+Building in public · [edwardkubiak.com](https://edwardkubiak.com) · [LinkedIn](https://www.linkedin.com/in/edward-kubiak/)

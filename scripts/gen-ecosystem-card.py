@@ -3,7 +3,10 @@
 
 Reads cast-stats.json from the sibling claude-agent-team repo and writes:
   assets/ecosystem-card.svg       — dark palette (default/fallback)
-  assets/ecosystem-card-light.svg — light palette (GitHub Primer light tokens)
+  assets/ecosystem-card-light.svg — light palette
+
+Both palettes follow the "Systems Console" tokens of edwardkubiak.com
+(src/index.css in the Edward_Kubiak repo): graphite base, one amber accent.
 
 Output is byte-identical across runs given identical input JSON:
   - No timestamps, no random values, no unordered iteration.
@@ -31,26 +34,29 @@ class Palette(NamedTuple):
     divider: str
 
 
-# GitHub dark theme colors (unchanged values)
+# Systems Console dark tokens, mirrored from edwardkubiak.com.
+# Contrast on #111214: title 15.2:1, muted 7.1:1, amber 9.4:1.
 DARK = Palette(
-    bg="#0d1117",
-    border="#30363d",
-    title="#f0f6fc",
-    subtitle="#8b949e",
-    number="#58a6ff",
-    label="#8b949e",
-    divider="#21262d",
+    bg="#111214",
+    border="#2A2D33",
+    title="#E6E7EA",
+    subtitle="#9AA0AA",
+    number="#F2A93B",
+    label="#9AA0AA",
+    divider="#2A2D33",
 )
 
-# GitHub Primer light tokens
+# Light counterpart (the site itself is dark-only). Amber #F2A93B is 2.0:1 on
+# white, so figures use a darkened amber. Contrast on #FFFFFF: title 18.7:1,
+# muted 6.2:1, amber 5.4:1.
 LIGHT = Palette(
-    bg="#ffffff",
-    border="#d0d7de",
-    title="#1f2328",
-    subtitle="#59636e",
-    number="#0969da",
-    label="#59636e",
-    divider="#d8dee4",
+    bg="#FFFFFF",
+    border="#D4D6DB",
+    title="#111214",
+    subtitle="#5B616B",
+    number="#9A5B00",
+    label="#5B616B",
+    divider="#E4E6EA",
 )
 
 
@@ -102,7 +108,10 @@ def generate_svg(version: str, metrics: list, palette: Palette) -> str:
     width = 760
     height = 190
 
-    mono_font = "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace"
+    # Geist / Geist Mono render only where installed (an <img> SVG cannot load web
+    # fonts); everyone else gets the system fallbacks.
+    mono_font = "'Geist Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace"
+    sans_font = "Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
 
     # Layout constants — chosen so 6 columns divide evenly (696 / 6 = 116.0 px each)
     pad_x = 32
@@ -149,7 +158,7 @@ def generate_svg(version: str, metrics: list, palette: Palette) -> str:
         f'  <rect width="{width}" height="{height}" rx="8"'
         f' fill="{palette.bg}" stroke="{palette.border}" stroke-width="1"/>\n'
         f'  <text x="{pad_x}" y="{title_y}"'
-        f' font-family="{mono_font}" font-size="16" font-weight="600"'
+        f' font-family="{sans_font}" font-size="16" font-weight="600"'
         f' fill="{palette.title}">CAST · {safe_version}</text>\n'
         f'  <text x="{pad_x}" y="{subtitle_y}"'
         f' font-family="{mono_font}" font-size="11" font-weight="400"'
