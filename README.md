@@ -14,7 +14,7 @@ Full-stack engineer. I build data products, and the agent architecture that ship
 
 | Project | What it does | Stack |
 |---|---|---|
-| **[Compute Atlas](https://github.com/ek33450505/compute-atlas)** 🗺️ | Open, source-cited census of U.S. data centers, crypto-mining sites, and dedicated power | Next.js 16 · Postgres · MapLibre |
+| **[Compute Atlas](https://github.com/ek33450505/compute-atlas)** 🗺️ | Source-cited tracker of U.S. AI data centers, crypto-mining sites, and the power built for them | Next.js 16 · Postgres · MapLibre |
 | **[CAST](https://github.com/ek33450505/claude-agent-team)** ⭐ | Local-first multi-agent control plane for Claude Code: the agent architecture I build with | Bash · Python · SQLite |
 | **[claude-code-dashboard](https://github.com/ek33450505/claude-code-dashboard)** ✨ | Web observability UI — 21+ views, live SSE streaming | React 19 · Express 5 |
 | **[cast-desktop](https://github.com/ek33450505/cast-desktop)** | Native macOS observability app + embedded terminal | Tauri 2 · Rust |
@@ -33,23 +33,23 @@ Full-stack engineer. I build data products, and the agent architecture that ship
 
 [![facilities](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fwww.compute-atlas.com%2Fapi%2Fstats&query=%24.count&label=facilities&color=3F5B43&style=flat-square)](https://www.compute-atlas.com/stats)
 [![jurisdictions](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fwww.compute-atlas.com%2Fapi%2Fstats&query=%24.states&label=jurisdictions&color=3F5B43&style=flat-square)](https://www.compute-atlas.com/states)
-[![release](https://img.shields.io/github/v/release/ek33450505/compute-atlas?style=flat-square)](https://github.com/ek33450505/compute-atlas/releases)
 [![code: MIT](https://img.shields.io/badge/code-MIT-informational?style=flat-square)](https://github.com/ek33450505/compute-atlas/blob/main/LICENSE)
 [![data: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-informational?style=flat-square)](https://github.com/ek33450505/compute-atlas/blob/main/LICENSE-DATA)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22284476.svg)](https://doi.org/10.5281/zenodo.22284476)
 
 > **There is no national registry of grid-scale compute. This is an attempt at one — with a public source behind every record.**
 
-A full-stack data product I designed and shipped solo: an open, provenance-first census of U.S. grid-scale compute — hyperscale and AI/ML campuses, crypto-mining operations, and the **dedicated power generation** built or contracted to supply them — tracked from proposed and permitted through under construction and operational. Every record links at least one public source (permit filings, SEC filings, utility interconnection queues, company announcements, subsidy disclosures) with a label, a source kind, and a retrieval date. Intended audience: journalists, researchers, local officials, and residents.
+A full-stack data product I designed and shipped solo: a source-cited, provenance-first tracker of U.S. grid-scale compute — hyperscale and AI/ML campuses, crypto-mining operations, and the **dedicated power generation** built or contracted to supply them — tracked from proposed and permitted through under construction and operational. Every record links at least one public source (permit filings, SEC filings, utility interconnection queues, company announcements, subsidy disclosures) with a label, a source kind, and a retrieval date. Intended audience: journalists, researchers, local officials, and residents.
 
-**Who builds on it.** The open dataset is cited by [Erin Brockovich's data center reporting map](https://brockovichdatacenter.com) and by [Power To The People](https://powertothepeopleproject.com). It is archived on Zenodo with a citable DOI: [10.5281/zenodo.22284476](https://doi.org/10.5281/zenodo.22284476).
+**Who builds on it.** The dataset is cited by [Erin Brockovich's data center reporting map](https://brockovichdatacenter.com) and by [Power To The People](https://powertothepeopleproject.com).
+
+**Access.** Free to browse and cite on the site, under CC BY 4.0. Journalists, researchers, and institutions can [request the full dataset](https://www.compute-atlas.com/contact).
 
 **The discipline is the product.**
 
 - **A source for every record**, or the record does not exist.
 - **Honest confidence** — every facility is marked `confirmed` / `reported` / `rumored`, and compute records carry a separate AI classification (`confirmed` / `likely` / `mixed_use`). Uncertainty is surfaced, not hidden.
 - **Numbers only when firm** — ranges, ceilings, and modeled projections go in a record's notes, never into a numeric field. Statutory *eligibility* for an incentive is never recorded as a confirmed award.
-- **Human approval is the core invariant.** A scheduled daily discovery run stages candidate facilities for review, and their source URLs are mechanically verified before staging — but nothing becomes a live facility without human approval.
+- **Human approval is the core invariant.** A scheduled discovery pipeline stages candidate facilities for review, and each cited URL is fetched and checked against the claim it supports before staging — but nothing becomes a live facility without human approval.
 
 **What you can do with it**
 
@@ -58,14 +58,13 @@ A full-stack data product I designed and shipped solo: an open, provenance-first
 | 🗺️ **Interactive map** | MapLibre, with water and geology overlays, siting-context datums, and a radius tool |
 | 📊 **Sortable table & dossiers** | Per-facility pages with full source lists and status history |
 | ⚡ **Power** | Dedicated generation tracked as a first-class facility type, with capacity roll-ups |
-| 🏛️ **Civic footprint** | Energy, water, subsidies, jobs, and community impact — public but scattered across county records and water-authority filings |
+| 🏛️ **Civic footprint** | Energy, water, emissions, subsidies, jobs, and community impact — public but scattered across county records and water-authority filings |
 | 🚫 **Opposition** | Defeated projects and local-opposition cancellations, tracked as a dimension |
 | 👥 **Stakeholders** | Named people with a documented stake in specific facilities |
 | 📚 **Learn** | Cited prose explainers, not just statistics |
-| 🔌 **Public API** | CORS-open, no auth, CDN-cached, `X-License: CC-BY-4.0` — `/api/facilities`, `/api/search`, `/api/stats`, `/api/schema` |
-| 📦 **Bulk data** | The entire dataset published as a CC BY 4.0 JSON snapshot anyone can download, fork, and cite |
+| 🧾 **Activity & corrections** | Every change to the record is public at `/activity`; a correction with a source is the most welcome contribution |
 
-**Under the hood.** Next.js 16 (App Router, RSC, ISR) · React 19 · TypeScript + Zod (runtime-validated records with JSON Schema export) · Neon Postgres + Drizzle ORM as the authoritative store · MapLibre GL · Tailwind v4 + shadcn/ui · Vitest + Playwright in CI. `data/facilities.json` is a generated export, never hand-edited — every data wave runs DB-first through a dry-run-by-default sync that writes facility history and busts cache tags.
+**Under the hood.** Next.js 16 (App Router, RSC, ISR) · React 19 · TypeScript + Zod (runtime-validated records with JSON Schema export) · Neon Postgres + Drizzle ORM, the only home of the records · MapLibre GL · Tailwind v4 + shadcn/ui · Vitest + Playwright in CI. Every data wave runs DB-first through a dry-run-by-default sync that writes facility history and busts cache tags. Discovery runs on a schedule on my machine, outside the deployed app: a Claude research call proposes candidates, and a local Ollama model checks each cited source against its claim.
 
 **Built with CAST.** Compute Atlas is developed through [CAST](#cast), my Claude Code agent architecture: specialist agents, hook-driven dispatch, and review gates around the work.
 
@@ -75,7 +74,7 @@ Dual-licensed: **MIT** for the code, **CC BY 4.0** for the data.
 
 ## CAST
 
-`02 · Development architecture` · [`claude-agent-team`](https://github.com/ek33450505/claude-agent-team) · [castframework.dev](https://castframework.dev)
+`02 · Development architecture` · [`claude-agent-team`](https://github.com/ek33450505/claude-agent-team)
 
 [![CAST](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fek33450505%2Fclaude-agent-team%2Fmain%2Fcast-stats.json&query=%24.version&label=CAST&style=flat-square)](https://github.com/ek33450505/claude-agent-team/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
@@ -116,34 +115,29 @@ flowchart LR
 <sub><!-- CAST_AGENT_COUNT -->27<!-- /CAST_AGENT_COUNT --> specialist agents · <!-- CAST_TEST_COUNT -->4795<!-- /CAST_TEST_COUNT --> BATS tests · <!-- CAST_DB_TABLE_COUNT -->46<!-- /CAST_DB_TABLE_COUNT --> tables in <code>cast.db</code> · <!-- CAST_COMMAND_COUNT -->21<!-- /CAST_COMMAND_COUNT --> commands · <!-- CAST_SKILL_COUNT -->19<!-- /CAST_SKILL_COUNT --> skills · <!-- CAST_PACKAGE_COUNT -->9<!-- /CAST_PACKAGE_COUNT --> Homebrew packages. Counts auto-refresh from the flagship's canonical stats — never hand-edited.</sub>
 
 <details>
-<summary><b>v10.0.0 — "Make the Gates Tell the Truth"</b>: what a release looks like when you audit your own guardrails</summary>
+<summary><b>v10.7.0</b> (2026-10-30): what happens when a review gate can't see the code it's reviewing</summary>
 
 <br>
 
-49 merged PRs, 423 files, +48,879/−3,259 — with one theme, arrived at the hard way:
+The review gate records what a reviewer approved, so a commit can be checked against it. This release audited what the gate had actually been seeing:
 
-> **A gate that has never failed is indistinguishable from a gate that cannot fail.**
+- **It never saw sibling worktrees.** Snapshots covered only the git toplevel of the session's cwd, so a review in a linked worktree recorded nothing. In the WARN week, **344 of 389** gate decisions (88%) would have blocked. It now snapshots every linked worktree, and an APPROVE binds only the worktrees the reviewer actually opened files in.
+- **A BLOCK was permanent.** After a fix and a re-review, every file the fix didn't touch stayed blocked: **306 of 917** blocked blobs were later approved unchanged. A same-type APPROVE of the same blob now clears it; a security BLOCK still needs a security APPROVE.
+- **`cast review-gate` could print OK when the gate errored.** With `CAST_UNREVIEWED_OK` set, a spent budget or an unavailable DB still printed OK; both now read WARN and name the error.
+- **The off-machine backup had logged a failure on every run since 2026-08-22.** A secret-scan abort left the mirror clone dirty, so every later pull refused. It now restores the mirror before pulling, and `cast doctor` reports the backup's freshness.
 
-Nearly every item in the release came from asking of an existing check: *what does its output look like when the thing it guards did not happen?* — and finding the answer was "identical to success."
-
-- The **destructive-op guard** was registered in the hook-contract gate but never actually executed by it.
-- The **session-end prune** had been failing on every run for months, swallowed behind a `|| true`.
-- A **`cast doctor` honesty check** compared two timestamp formats that can never match, so it could never fire.
-- The **review gate** could be satisfied by a review of a different artifact entirely — six defects, one Critical. Subagent self-review is now structurally impossible.
-- The **git guard** scanned only the first line of a Bash command; quoting and global options each defeated the whole module. Thirteen previously unguarded destructive git ops are now covered, each measured before a pattern was written.
-- **63%** of every recorded protocol violation turned out to be a well-formed handoff, and `cast verify-chain` reported tamper for **244 of 929** links — none of which was tamper.
-
-Tests went 2,353 → 3,320 across 204 → 239 files, and the new ones are **mutation-tested**: reverted against the bug they guard and confirmed RED first, because an assertion that never fails is the same defect one level up. Two of this release's own tests were caught that way and would otherwise have shipped green and empty.
+The gate also moved inside the PreToolUse git guard: it evaluates the staged content in-process on commit-agent commits, WARN-only in this release.
 
 📄 [Full changelog](https://github.com/ek33450505/claude-agent-team/blob/main/CHANGELOG.md)
 
 </details>
 
 ```bash
-# Claude Code plugin (recommended)
+brew tap ek33450505/cast && brew install cast
+bash "$(brew --prefix)/opt/cast/libexec/install.sh"   # sets up ~/.claude, cast.db, hooks
+# or as a Claude Code plugin, which coexists with install.sh:
 /plugin marketplace add ek33450505/claude-agent-team
-/plugin install cast && /plugin enable cast@cast
-# or: brew tap ek33450505/cast && brew install cast
+/plugin install cast@cast && /plugin enable cast@cast
 ```
 
 ---
@@ -175,7 +169,7 @@ cd claude-code-dashboard && npm install && npm run dev
 
 [`cast-desktop`](https://github.com/ek33450505/cast-desktop) · Tauri 2 · Rust · TypeScript
 
-The same `cast.db`, packaged as a self-contained native app — no Node, no server to run. An embedded PTY terminal with persistent pane-to-session binding, an inline CodeMirror editor that dispatches agents on selection, 11 dashboard views over 40+ read-only loopback routes, and live per-session cost streaming ($/min plus a 4-hour projection). Keyboard-first, with a command palette and a native macOS menu bar.
+The same `cast.db`, packaged as a self-contained native app — no Node, no server to run. An embedded PTY terminal with persistent pane-to-session binding, an inline CodeMirror editor that dispatches agents on selection, 11 dashboard views over 40+ loopback routes, and live per-session cost streaming ($/min plus a 4-hour projection). Keyboard-first, with a command palette and a native macOS menu bar.
 
 ```bash
 brew tap ek33450505/cast && brew install --cask cast-desktop
@@ -255,8 +249,8 @@ pip install misfire
 When a long session fills its context, the agent writes a markdown handoff with a `KICKOFF` section; one command opens a new tab in cmux, tmux, Zellij, WezTerm or kitty (or prints the command for any other terminal), starts Claude Code or Codex there, and gives it a single prompt naming the file. tin-can never parses the handoff or puts its contents on a command line. An optional Claude Code plugin bundles the handoff skill with hooks that surface the launch command and ask for a handoff at wrap-up. Verified live in cmux with Claude Code; the other terminals and Codex are tested with stubs.
 
 ```bash
-git clone https://github.com/ek33450505/tin-can
-cd tin-can && ./install.sh
+brew install ek33450505/tin-can/tin-can
+# or: git clone https://github.com/ek33450505/tin-can && cd tin-can && ./install.sh
 ```
 
 </details>
