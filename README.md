@@ -123,7 +123,7 @@ The review gate records what a reviewer approved, so a commit can be checked aga
 
 - **It never saw sibling worktrees.** Snapshots covered only the git toplevel of the session's cwd, so a review in a linked worktree recorded nothing. In the WARN week, **344 of 389** gate decisions (88%) would have blocked. It now snapshots every linked worktree, and an APPROVE binds only the worktrees the reviewer actually opened files in.
 - **A BLOCK was permanent.** After a fix and a re-review, every file the fix didn't touch stayed blocked: **306 of 917** blocked blobs were later approved unchanged. A same-type APPROVE of the same blob now clears it; a security BLOCK still needs a security APPROVE.
-- **`cast review-gate` could print OK when the gate errored.** With `CAST_UNREVIEWED_OK` set, a spent budget or an unavailable DB still printed OK; both now read WARN and name the error.
+- **`cast review-gate` could print OK when the gate errored.** A spent budget under `CAST_UNREVIEWED_OK`, or an unavailable DB with or without it, printed OK; both now read WARN and name the error.
 - **The off-machine backup had logged a failure on every run since 2026-08-22.** A secret-scan abort left the mirror clone dirty, so every later pull refused. It now restores the mirror before pulling, and `cast doctor` reports the backup's freshness.
 
 The gate also moved inside the PreToolUse git guard: it evaluates the staged content in-process on commit-agent commits, WARN-only in this release.
