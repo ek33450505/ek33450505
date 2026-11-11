@@ -22,7 +22,7 @@ The README tells the same story as the portfolio (Ed, 2026-10-20). The portfolio
 - **Compute Atlas numbers:** live shields.io badges fed from `compute-atlas.com/api/stats` only, never in prose. The API's `states` field counts states plus DC and territories, so its badge is labelled `jurisdictions`, never `states`.
 - **Compute Atlas data access (Ed, 2026-11-09):** the data stays CC BY 4.0 and the site is free to browse and cite; the full dataset is shared by request through `compute-atlas.com/contact` (repoint that link when the request portal ships). Never cite the Zenodo DOI (Compute Atlas stopped citing it, #539) and never advertise a public API, a bulk download or per-record JSON (bulk exits closed 2026-11-05). No release badge: the repo has no GitHub releases.
 - **Contact:** edwardkubiak.com, LinkedIn and GitHub. No public email and no location line.
-- **Sponsoring:** link GitHub Sponsors with no frequency qualifier (Ed, 2026-10-20). Ed's profile defines monthly tiers only, but GitHub's own One-time tab still accepts a custom amount, so "monthly" alone undersells it and "one-time tiers" would be false. Ko-fi is the one-off tip. `.github/FUNDING.yml` adds the Sponsor button to this repo's page.
+- **Sponsoring:** none (Ed, 2026-11-11). GitHub Sponsors and Ko-fi are retired: no FUNDING.yml, no Support section, no sponsor or tip links in this profile.
 
 ## Automated Weekly PR
 
