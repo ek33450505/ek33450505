@@ -22,6 +22,7 @@ Full-stack engineer. I build data products, and the agent architecture that ship
 | **[looptrip](https://github.com/ek33450505/looptrip)** | Zero-LLM detector for multi-agent loop pathologies | Python · PyPI |
 | **[misfire](https://github.com/ek33450505/misfire)** | Turns the rules your agents ignore into enforcement hooks | Python · PyPI |
 | **[tin-can](https://github.com/ek33450505/tin-can)** | Hands a long session to a fresh terminal tab through a handoff file | Bash · Claude Code plugin |
+| **[eridian](https://github.com/ek33450505/eridian)** | Rocky, a persona for Claude Code: personal sessions get it, work artifacts never carry it | Python · Claude Code hook |
 
 <sub>Deep-dives below — click any project to expand.</sub>
 
@@ -181,7 +182,7 @@ brew tap ek33450505/cast && brew install --cask cast-desktop
 
 ## Guardrails & detectors
 
-Four standalone tools for Claude Code. The three guardrails are deterministic and **zero-LLM**. None calls a model — so none adds tokens or can hallucinate its own verdict. They grade the *act* against ground truth on disk. tin-can is the odd one out: a session-handoff launcher.
+Five standalone tools for Claude Code. The three guardrails are deterministic and **zero-LLM**. None calls a model — so none adds tokens or can hallucinate its own verdict. They grade the *act* against ground truth on disk. tin-can and eridian are the odd ones out: a session-handoff launcher and a persona hook.
 
 <details>
 <summary><b>attest</b> — catches a subagent's false <code>DONE</code> against the real git delta</summary>
@@ -251,6 +252,26 @@ When a long session fills its context, the agent writes a markdown handoff with 
 ```bash
 brew install ek33450505/tin-can/tin-can
 # or: git clone https://github.com/ek33450505/tin-can && cd tin-can && ./install.sh
+```
+
+</details>
+
+<details>
+<summary><b>eridian</b> — Rocky, a persona for Claude Code: personal sessions get it, work artifacts never carry it</summary>
+
+<br>
+
+[`eridian`](https://github.com/ek33450505/eridian) · Python 3.12+ · Apache-2.0
+
+> **A Claude Code persona hook: Rocky in your personal sessions, a work clause for work repos, a small personal-only memory and a git-mood status line.**
+
+Rocky, a typed persona for Claude Code terminal sessions. A SessionStart hook injects the persona only when a session's working directory is under a directory you choose; every other session is untouched. With `--work-under`, work sessions get the persona plus a work clause that keeps its name and speech out of commits, PRs, tickets, messages and docs. A small personal-only memory keeps short notes (wins, failures, running jokes, facts, moods) across personal sessions, refuses to run inside the work directory, and is injected as background data, not instructions. A status line command prints a one-line mood from the session's git state. No runtime dependencies.
+
+```sh
+git clone https://github.com/ek33450505/eridian
+cd eridian
+uv venv
+uv pip install -e .
 ```
 
 </details>
