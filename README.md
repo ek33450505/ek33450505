@@ -6,8 +6,6 @@
 
 Full-stack engineer. I build data products, and the agent architecture that ships them.
 
-**[Compute Atlas](https://www.compute-atlas.com)** is a full-stack data product I designed and shipped solo. I build it with **[CAST](https://github.com/ek33450505/claude-agent-team)**, my Claude Code agent architecture, and ship production education software at META Solutions.
-
 ---
 
 ## Projects at a glance
