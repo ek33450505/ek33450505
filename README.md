@@ -36,11 +36,10 @@ Full-stack engineer. I build data products, and the agent architecture that ship
 [![jurisdictions](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fwww.compute-atlas.com%2Fapi%2Fstats&query=%24.states&label=jurisdictions&color=3F5B43&style=flat-square)](https://www.compute-atlas.com/states)
 [![data: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-informational?style=flat-square)](https://creativecommons.org/licenses/by/4.0/)
 
-> **There is no national registry of grid-scale compute. This is an attempt at one — with a public source behind every record.**
+> **A source-cited tracker of US AI data centers, crypto-mining sites and the power built for them.
+Every record links to the public sources it comes from.**
 
 A full-stack data product I designed and shipped solo: a source-cited, provenance-first tracker of U.S. grid-scale compute — hyperscale and AI/ML campuses, crypto-mining operations, and the **dedicated power generation** built or contracted to supply them — tracked from proposed and permitted through under construction and operational. Every record links at least one public source (permit filings, SEC filings, utility interconnection queues, company announcements, subsidy disclosures) with a label, a source kind, and a retrieval date. Intended audience: journalists, researchers, local officials, and residents.
-
-**Who builds on it.** The dataset is cited by [Erin Brockovich's data center reporting map](https://brockovichdatacenter.com) and by [Power To The People](https://powertothepeopleproject.com).
 
 **Access.** Free to browse and cite on the site, under CC BY 4.0. Journalists, researchers, and institutions can [request the full dataset](https://www.compute-atlas.com/contact).
 
