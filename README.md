@@ -14,7 +14,7 @@ Full-stack engineer. I build data products, and the agent architecture that ship
 
 | Project | What it does | Stack |
 |---|---|---|
-| **[Compute Atlas](https://github.com/ek33450505/compute-atlas)** 🗺️ | Source-cited tracker of U.S. AI data centers, crypto-mining sites, and the power built for them | Next.js 16 · Postgres · MapLibre |
+| **[Compute Atlas](https://www.compute-atlas.com)** 🗺️ | Source-cited tracker of U.S. AI data centers, crypto-mining sites, and the power built for them | Next.js 16 · Postgres · MapLibre |
 | **[CAST](https://github.com/ek33450505/claude-agent-team)** ⭐ | Local-first multi-agent control plane for Claude Code: the agent architecture I build with | Bash · Python · SQLite |
 | **[claude-code-dashboard](https://github.com/ek33450505/claude-code-dashboard)** ✨ | Web observability UI — 21+ views, live SSE streaming | React 19 · Express 5 |
 | **[cast-desktop](https://github.com/ek33450505/cast-desktop)** | Native macOS observability app + embedded terminal | Tauri 2 · Rust |
@@ -30,12 +30,11 @@ Full-stack engineer. I build data products, and the agent architecture that ship
 
 ## Compute Atlas
 
-`01 · Live product` · [`compute-atlas`](https://github.com/ek33450505/compute-atlas) · live at **[compute-atlas.com](https://www.compute-atlas.com)**
+`01 · Live product` · live at **[compute-atlas.com](https://www.compute-atlas.com)**
 
 [![facilities](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fwww.compute-atlas.com%2Fapi%2Fstats&query=%24.count&label=facilities&color=3F5B43&style=flat-square)](https://www.compute-atlas.com/stats)
 [![jurisdictions](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fwww.compute-atlas.com%2Fapi%2Fstats&query=%24.states&label=jurisdictions&color=3F5B43&style=flat-square)](https://www.compute-atlas.com/states)
-[![code: MIT](https://img.shields.io/badge/code-MIT-informational?style=flat-square)](https://github.com/ek33450505/compute-atlas/blob/main/LICENSE)
-[![data: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-informational?style=flat-square)](https://github.com/ek33450505/compute-atlas/blob/main/LICENSE-DATA)
+[![data: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-informational?style=flat-square)](https://creativecommons.org/licenses/by/4.0/)
 
 > **There is no national registry of grid-scale compute. This is an attempt at one — with a public source behind every record.**
 
@@ -69,7 +68,7 @@ A full-stack data product I designed and shipped solo: a source-cited, provenanc
 
 **Built with CAST.** Compute Atlas is developed through [CAST](#cast), my Claude Code agent architecture: specialist agents, hook-driven dispatch, and review gates around the work.
 
-Dual-licensed: **MIT** for the code, **CC BY 4.0** for the data.
+The data is licensed **CC BY 4.0**.
 
 ---
 

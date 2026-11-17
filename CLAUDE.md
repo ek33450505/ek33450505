@@ -21,6 +21,7 @@ The README tells the same story as the portfolio (Ed, 2026-10-20). The portfolio
 - **Tagline:** "Full Stack Software Engineer · Agent Systems & Developer Tooling" (`src/data/resume.js`).
 - **Compute Atlas numbers:** live shields.io badges fed from `compute-atlas.com/api/stats` only, never in prose. The API's `states` field counts states plus DC and territories, so its badge is labelled `jurisdictions`, never `states`.
 - **Compute Atlas data access (Ed, 2026-11-09):** the data stays CC BY 4.0 and the site is free to browse and cite; the full dataset is shared by request through `compute-atlas.com/contact` (repoint that link when the request portal ships). Never cite the Zenodo DOI (Compute Atlas stopped citing it, #539) and never advertise a public API, a bulk download or per-record JSON (bulk exits closed 2026-11-05). No release badge: the repo has no GitHub releases.
+- **Compute Atlas repo is private (Ed, 2026-11-16):** never link `github.com/ek33450505/compute-atlas`, and make no MIT or open-source claim for its code. Link the live site, and point the CC BY 4.0 data badge at `creativecommons.org/licenses/by/4.0/`.
 - **Contact:** edwardkubiak.com, LinkedIn and GitHub. No public email and no location line.
 - **Sponsoring:** none (Ed, 2026-11-11). GitHub Sponsors and Ko-fi are retired: no FUNDING.yml, no Support section, no sponsor or tip links in this profile.
 
